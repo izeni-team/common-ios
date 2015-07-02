@@ -1,6 +1,6 @@
 import Foundation
 
-class HelloWorld {
+public class HelloWorld {
     class func test() {
         println("Test")
     }
