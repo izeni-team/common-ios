@@ -10,12 +10,9 @@
 Pod::Spec.new do |s|
   s.name             = "ios-pod-test"
   s.version          = "0.1.0"
-  s.summary          = "A short description of ios-pod-test."
+  s.summary          = "Common iOS code."
   s.description      = <<-DESC
-                       An optional longer description of ios-pod-test
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       All of izeni's common code for iOS.
                        DESC
   s.homepage         = "https://github.com/<GITHUB_USERNAME>/ios-pod-test"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
