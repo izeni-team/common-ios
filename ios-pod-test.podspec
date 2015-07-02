@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/ios-pod-test"
+  s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "bhenderson@izeni.com" => "bhenderson@izeni.com" }
