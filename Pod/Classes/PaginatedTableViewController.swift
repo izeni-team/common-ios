@@ -9,10 +9,10 @@
 import UIKit
 
 public protocol PaginatedTableViewDelegate: class {
-    public func downloadPage(page: Int, success: (serializedResponse: AnyObject) -> Void, failure: () -> Void) -> NSURLSessionDataTask
-    public func appendPageData(serializedResponse: AnyObject)
-    public func isLastPage(serializedResponse: AnyObject) -> Bool
-    public func clearData()
+    func downloadPage(page: Int, success: (serializedResponse: AnyObject) -> Void, failure: () -> Void) -> NSURLSessionDataTask
+    func appendPageData(serializedResponse: AnyObject)
+    func isLastPage(serializedResponse: AnyObject) -> Bool
+    func clearData()
 }
 
 public class PaginatedTableViewController: UITableViewController {
@@ -35,7 +35,7 @@ public class PaginatedTableViewController: UITableViewController {
     private var downloadTask: NSURLSessionDataTask?
     private var wasPageReset = false
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         let refreshControl = UIRefreshControl()
@@ -43,7 +43,7 @@ public class PaginatedTableViewController: UITableViewController {
         self.refreshControl = refreshControl
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         assert(delegate != nil, "You forgot to set the delegate in your viewDidLoad")
     }
@@ -105,7 +105,7 @@ public class PaginatedTableViewController: UITableViewController {
         })
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override public func scrollViewDidScroll(scrollView: UIScrollView) {
         let visible = scrollView.contentOffset.y + scrollView.h
         let floor = scrollView.contentSize.height
         

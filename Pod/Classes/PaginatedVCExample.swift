@@ -9,7 +9,7 @@
 import UIKit
 
 public class PaginatedVCExample: PaginatedTableViewController, PaginatedTableViewDelegate {
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -67,11 +67,11 @@ public class PaginatedVCExample: PaginatedTableViewController, PaginatedTableVie
         tableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         cell.textLabel!.text = data[indexPath.row]
         return cell
