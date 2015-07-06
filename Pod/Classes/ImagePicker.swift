@@ -18,7 +18,7 @@ private let iPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
 
 public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
     public var parentVC: UIViewController!
-    public var delegate: ImagePickerDelegate!
+    var delegate: ImagePickerDelegate!
     public var popoverSource: UIView! // Required for iPad
     public static var singleton = ImagePicker()
     
@@ -26,7 +26,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
         return UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
     }
     
-    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
+    class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
         singleton.delegate = delegate
         singleton.parentVC = from
         singleton.popoverSource = popoverSource

@@ -18,7 +18,7 @@ public extension NSDateFormatter {
             Static.formatter.timeStyle = timeStyle
             Static.formatter.doesRelativeDateFormatting = true
             
-            public let now = NSDate()
+            let now = NSDate()
             if dateStyle != .NoStyle && now.daysSince(date) < 7 && now.daysSince(date) > 1 {
                 Static.formatter.dateStyle = .NoStyle
                 

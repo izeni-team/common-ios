@@ -71,7 +71,7 @@ public func min<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Ar
 }
 
 public extension Array {
-    public func foreach(closure: (item: T) -> Void) {
+    func foreach(closure: (item: T) -> Void) {
         for item in self {
             closure(item: item)
         }
