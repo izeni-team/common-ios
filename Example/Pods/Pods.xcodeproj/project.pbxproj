@@ -14,10 +14,12 @@
 		6D0C1E577F490D9A33CDAAA1 /* ios-pod-test.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F30111EACFCB773216CCA0DE /* ios-pod-test.bundle */; };
 		7F89E8C231C3B25A8119B017 /* Pods-ios-pod-test_Tests-ios-pod-test-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01F0829A78008B7C7540BC /* Pods-ios-pod-test_Tests-ios-pod-test-dummy.m */; };
 		A22244DA197527A24832F47C /* Pods-ios-pod-test_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4566B8D9F6B8FE066079855A /* Pods-ios-pod-test_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D4393DF21B4B1C1800F366E6 /* DistanceFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D4393DF01B4B1C1800F366E6 /* DistanceFormatter.h */; };
+		D4393DF21B4B1C1800F366E6 /* DistanceFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D4393DF01B4B1C1800F366E6 /* DistanceFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4393DF31B4B1C1800F366E6 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4393DF11B4B1C1800F366E6 /* DistanceFormatter.m */; };
 		D4393DFA1B4B243700F366E6 /* EDQueueActuator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393DF81B4B243700F366E6 /* EDQueueActuator.swift */; };
 		D4393DFB1B4B243700F366E6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393DF91B4B243700F366E6 /* ImagePicker.swift */; };
+		D4393DFE1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.h in Headers */ = {isa = PBXBuildFile; fileRef = D4393DFC1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4393DFF1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m in Sources */ = {isa = PBXBuildFile; fileRef = D4393DFD1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m */; };
 		F13E3686128C7CE4CAD53859 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0D96BD943FFB73661A15F /* Test.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		D4393DF11B4B1C1800F366E6 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		D4393DF81B4B243700F366E6 /* EDQueueActuator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDQueueActuator.swift; sourceTree = "<group>"; };
 		D4393DF91B4B243700F366E6 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D4393DFC1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IzeniBroadcast.h"; sourceTree = "<group>"; };
+		D4393DFD1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IzeniBroadcast.m"; sourceTree = "<group>"; };
 		E76A3423ED55F0230DC03D9A /* Pods-ios-pod-test_Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-environment.h"; sourceTree = "<group>"; };
 		F30111EACFCB773216CCA0DE /* ios-pod-test.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-pod-test.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E6AC31B8C78041D3090EFA /* Pods-ios-pod-test_Tests-ios-pod-test-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-ios-pod-test-umbrella.h"; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		D8C99B8C43458BDF22FC96CE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4393DFC1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.h */,
+				D4393DFD1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m */,
 				D4393DF81B4B243700F366E6 /* EDQueueActuator.swift */,
 				D4393DF91B4B243700F366E6 /* ImagePicker.swift */,
 				32D0D96BD943FFB73661A15F /* Test.swift */,
@@ -229,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4393DF21B4B1C1800F366E6 /* DistanceFormatter.h in Headers */,
+				D4393DFE1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.h in Headers */,
 				A22244DA197527A24832F47C /* Pods-ios-pod-test_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +358,7 @@
 			files = (
 				5654ACD561389F6CF0B06B2F /* Pods-ios-pod-test_Tests-dummy.m in Sources */,
 				D4393DFB1B4B243700F366E6 /* ImagePicker.swift in Sources */,
+				D4393DFF1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m in Sources */,
 				D4393DF31B4B1C1800F366E6 /* DistanceFormatter.m in Sources */,
 				D4393DFA1B4B243700F366E6 /* EDQueueActuator.swift in Sources */,
 			);
