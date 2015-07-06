@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     
-    func heightToFit() {
+    public func heightToFit() {
         let text = (self.text ?? "") as NSString
         let attributes = [
             NSFontAttributeName: self.font

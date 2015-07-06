@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol PaginatedTableViewDelegate: class {
-    func downloadPage(page: Int, success: (serializedResponse: AnyObject) -> Void, failure: () -> Void) -> NSURLSessionDataTask
-    func appendPageData(serializedResponse: AnyObject)
-    func isLastPage(serializedResponse: AnyObject) -> Bool
-    func clearData()
+public protocol PaginatedTableViewDelegate: class {
+    public func downloadPage(page: Int, success: (serializedResponse: AnyObject) -> Void, failure: () -> Void) -> NSURLSessionDataTask
+    public func appendPageData(serializedResponse: AnyObject)
+    public func isLastPage(serializedResponse: AnyObject) -> Bool
+    public func clearData()
 }
 
-class PaginatedTableViewController: UITableViewController {
+public class PaginatedTableViewController: UITableViewController {
     // Configurable
-    var errorTitle = "Network Error"
-    var errorMessage = "Failed to download items."
-    var delegate: PaginatedTableViewDelegate! {
+    public var errorTitle = "Network Error"
+    public var errorMessage = "Failed to download items."
+    public var delegate: PaginatedTableViewDelegate! {
         didSet {
             // The delegate should be set in the top-level class's viewDidLoad
             // If we do this here, then we avoid having silly ordering requirements
@@ -48,7 +48,7 @@ class PaginatedTableViewController: UITableViewController {
         assert(delegate != nil, "You forgot to set the delegate in your viewDidLoad")
     }
     
-    func pullToRefresh() {
+    public func pullToRefresh() {
         resetPage()
         
         downloadPage {
@@ -56,7 +56,7 @@ class PaginatedTableViewController: UITableViewController {
         }
     }
     
-    func resetPage() {
+    public func resetPage() {
         page = 0
         endReached = false
         downloadTask?.cancel()
@@ -122,8 +122,8 @@ class PaginatedTableViewController: UITableViewController {
 //
 // See the following link for additional context:
 // http://stackoverflow.com/questions/12497940/uirefreshcontrol-without-uitableviewcontroller/28870899#28870899
-extension UIViewController {
-    func setupEmbeddedPaginatedTableVC(inout tableView: UITableView) {
+public extension UIViewController {
+    public func setupEmbeddedPaginatedTableVC(inout tableView: UITableView) {
         let paginatedTableVC = childViewControllers.first as! PaginatedTableViewController
         paginatedTableVC.delegate = (self as! PaginatedTableViewDelegate)
         tableView = paginatedTableVC.tableView

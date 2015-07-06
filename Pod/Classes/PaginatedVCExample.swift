@@ -8,16 +8,16 @@
 
 import UIKit
 
-class PaginatedVCExample: PaginatedTableViewController, PaginatedTableViewDelegate {
+public class PaginatedVCExample: PaginatedTableViewController, PaginatedTableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    var data: [String] = []
+    public var data: [String] = []
     
-    func downloadPage(page: Int, success: (serializedResponse: AnyObject) -> Void, failure: () -> Void) -> NSURLSessionDataTask {
+    public func downloadPage(page: Int, success: (serializedResponse: AnyObject) -> Void, failure: () -> Void) -> NSURLSessionDataTask {
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
         let url = "https://demo.toweez.com/api/ticket/?page=\(page + 1)"
@@ -48,16 +48,16 @@ class PaginatedVCExample: PaginatedTableViewController, PaginatedTableViewDelega
         return task
     }
     
-    func isLastPage(serializedResponse: AnyObject) -> Bool {
+    public func isLastPage(serializedResponse: AnyObject) -> Bool {
         let json = (serializedResponse as! [String:AnyObject])
         return json["next"] as? String == nil
     }
     
-    func clearData() {
+    public func clearData() {
         data = []
     }
     
-    func appendPageData(serializedResponse: AnyObject) {
+    public func appendPageData(serializedResponse: AnyObject) {
         let response = serializedResponse as! [String:AnyObject]
         for result in response["results"] as? [[String:AnyObject]] ?? [] {
             let id = result["id"] as! String

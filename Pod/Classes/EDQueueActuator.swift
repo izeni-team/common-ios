@@ -9,14 +9,14 @@
 import Foundation
 import EDQueue
 
-class EDQueueActuator: NSObject, EDQueueDelegate {
+public class EDQueueActuator: NSObject, EDQueueDelegate {
     
-    static let singleton = EDQueueActuator()
+    public static let singleton = EDQueueActuator()
     private let defaultCenter = NSNotificationCenter()
-    let delayTime: NSTimeInterval = 60
-    var resumeTimer: NSTimer?
+    public let delayTime: NSTimeInterval = 60
+    public var resumeTimer: NSTimer?
     
-    class func start() {
+    public class func start() {
         singleton
     }
     
@@ -32,7 +32,7 @@ class EDQueueActuator: NSObject, EDQueueDelegate {
         defaultCenter.addObserver(self, selector: "applicationDidBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
     
-    func reachabilityChanged(reachable: NSNumber) {
+    public func reachabilityChanged(reachable: NSNumber) {
         if reachable.boolValue {
             EDQueue.sharedInstance().start()
             println("reachable")
@@ -42,11 +42,11 @@ class EDQueueActuator: NSObject, EDQueueDelegate {
         }
     }
     
-    func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
+    public func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
         fatalError("This function must be overridden")
     }
     
-    func scheduleStart(#delay: Bool) {
+    public func scheduleStart(#delay: Bool) {
         resumeTimer?.invalidate()
         if delay {
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(delayTime, target: self, selector: "startTimeout", userInfo: nil, repeats: false )
@@ -55,17 +55,17 @@ class EDQueueActuator: NSObject, EDQueueDelegate {
         }
     }
     
-    func startTimeout() {
+    public func startTimeout() {
         if Reachability.isReachable {
             EDQueue.sharedInstance().start()
         }
     }
     
-    func applicationWillResignActive() {
+    public func applicationWillResignActive() {
         EDQueue.sharedInstance().stop()
     }
     
-    func applicationDidBecomeActive() {
+    public func applicationDidBecomeActive() {
         EDQueue.sharedInstance().delegate = self
         EDQueue.sharedInstance().retryLimit = UInt.max
         scheduleStart(delay: false)

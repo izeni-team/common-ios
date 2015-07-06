@@ -8,7 +8,7 @@
 
 import Foundation
 
-func sum<T where T: IntegerLiteralConvertible, T: Strideable>(list: Array<T>) -> T {
+public func sum<T where T: IntegerLiteralConvertible, T: Strideable>(list: Array<T>) -> T {
     var s: T = 0
     let zero: T = 0
     for item in list {
@@ -18,7 +18,7 @@ func sum<T where T: IntegerLiteralConvertible, T: Strideable>(list: Array<T>) ->
     return s
 }
 
-func sum<T, U where U: IntegerLiteralConvertible, U: Strideable>(list: Array<T>, numberForItem: (item: T) -> U) -> U {
+public func sum<T, U where U: IntegerLiteralConvertible, U: Strideable>(list: Array<T>, numberForItem: (item: T) -> U) -> U {
     var s: U = 0
     let zero: U = 0
     for item in list {
@@ -28,7 +28,7 @@ func sum<T, U where U: IntegerLiteralConvertible, U: Strideable>(list: Array<T>,
     return s
 }
 
-func max<T where T: Strideable, T: IntegerLiteralConvertible>(list: Array<T>) -> T {
+public func max<T where T: Strideable, T: IntegerLiteralConvertible>(list: Array<T>) -> T {
     var highest: T = 0
     for item in list {
         if highest == 0 || item.distanceTo(highest) < 0 {
@@ -38,7 +38,7 @@ func max<T where T: Strideable, T: IntegerLiteralConvertible>(list: Array<T>) ->
     return highest
 }
 
-func max<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Array<T>, numberForItem: (item: T) -> U) -> U {
+public func max<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Array<T>, numberForItem: (item: T) -> U) -> U {
     var highest: U = 0
     for item in list {
         let n = numberForItem(item: item)
@@ -49,7 +49,7 @@ func max<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Array<T>,
     return highest
 }
 
-func min<T where T: Strideable, T: IntegerLiteralConvertible>(list: Array<T>) -> T {
+public func min<T where T: Strideable, T: IntegerLiteralConvertible>(list: Array<T>) -> T {
     var lowest: T = 0
     for item in list {
         if lowest == 0 || item.distanceTo(lowest) > 0 {
@@ -59,7 +59,7 @@ func min<T where T: Strideable, T: IntegerLiteralConvertible>(list: Array<T>) ->
     return lowest
 }
 
-func min<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Array<T>, numberForItem: (item: T) -> U) -> U {
+public func min<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Array<T>, numberForItem: (item: T) -> U) -> U {
     var lowest: U = 0
     for item in list {
         let n = numberForItem(item: item)
@@ -70,8 +70,8 @@ func min<T, U where U: Strideable, U: IntegerLiteralConvertible>(list: Array<T>,
     return lowest
 }
 
-extension Array {
-    func foreach(closure: (item: T) -> Void) {
+public extension Array {
+    public func foreach(closure: (item: T) -> Void) {
         for item in self {
             closure(item: item)
         }

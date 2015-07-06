@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSDateFormatter {
+public extension NSDateFormatter {
     struct Relative {
         static func toString(date: NSDate, dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle) -> String {
             struct Static {
@@ -18,7 +18,7 @@ extension NSDateFormatter {
             Static.formatter.timeStyle = timeStyle
             Static.formatter.doesRelativeDateFormatting = true
             
-            let now = NSDate()
+            public let now = NSDate()
             if dateStyle != .NoStyle && now.daysSince(date) < 7 && now.daysSince(date) > 1 {
                 Static.formatter.dateStyle = .NoStyle
                 
@@ -36,7 +36,7 @@ extension NSDateFormatter {
         }
     }
     
-    class func getWeekday(date: NSDate) -> String {
+    public class func getWeekday(date: NSDate) -> String {
         switch date.weekday {
         case .Sunday: return "Sunday"
         case .Monday: return "Monday"

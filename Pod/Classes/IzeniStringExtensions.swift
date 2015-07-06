@@ -13,20 +13,20 @@ import Foundation
 //
 // One subtle difference is that Swift strings are immutable, whereas QString is mutable.
 
-extension String {
+public extension String {
     // Returns the number of characters in the string
-    var size: Int {
+    public var size: Int {
         return count(self)
     }
     
-    var length: Int {
+    public var length: Int {
         return count(self)
     }
     
     // Returns a substring that contains the n leftmost characters of the string.
     //
     // The entire string is returned if n is greater than size() or less than zero.
-    func left(n: Int) -> String {
+    public func left(n: Int) -> String {
         if n < 0 || n >= count(self) {
             // Return entire string
             return self
@@ -38,7 +38,7 @@ extension String {
     // Returns a substring that contains the n rightmost characters of the string.
     //
     // The entire string is returned if n is greater than size() or less than zero.
-    func right(n: Int) -> String {
+    public func right(n: Int) -> String {
         if n < 0 || n >= count(self) {
             // Return entire string
             return self
@@ -50,7 +50,7 @@ extension String {
     // Returns a string that contains n characters of this string, starting at the specified position index.
     //
     // Returns an empty string if the position index exceeds the length of the string.  If there are less than n characters available in the string starting at the given position, or if n is -1 (default), the function returns all characters that are available from the specified position.
-    func mid(position: Int, length: Int = -1) -> String {
+    public func mid(position: Int, length: Int = -1) -> String {
         assert(position >= 0)
         assert(length >= -1)
         
@@ -63,41 +63,41 @@ extension String {
         return (self as NSString).substringWithRange(NSMakeRange(position, safeLength))
     }
     
-    func replace(before: String, with: String) -> String {
+    public func replace(before: String, with: String) -> String {
         return stringByReplacingOccurrencesOfString(before, withString: with)
     }
     
-    func replace(before: String, with: String, caseInsensitive: Bool) -> String {
+    public func replace(before: String, with: String, caseInsensitive: Bool) -> String {
         return stringByReplacingOccurrencesOfString(before, withString: with, options: caseInsensitive ? .CaseInsensitiveSearch : .allZeros)
     }
     
-    func replace(#regex: String, with: String) -> String {
+    public func replace(#regex: String, with: String) -> String {
         return stringByReplacingOccurrencesOfString(regex, withString: with, options: .RegularExpressionSearch)
     }
     
-    func replace(#regex: String, with: String, caseInsensitive: Bool) -> String {
+    public func replace(#regex: String, with: String, caseInsensitive: Bool) -> String {
         let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : .allZeros) | .RegularExpressionSearch
         return stringByReplacingOccurrencesOfString(regex, withString: with, options: options)
     }
     
-    func remove(string: String) -> String {
+    public func remove(string: String) -> String {
         return stringByReplacingOccurrencesOfString(string, withString: "")
     }
     
-    func remove(string: String, caseInsensitive: Bool) -> String {
+    public func remove(string: String, caseInsensitive: Bool) -> String {
         return stringByReplacingOccurrencesOfString(string, withString: "", options: caseInsensitive ? .CaseInsensitiveSearch : .allZeros)
     }
     
-    func remove(#regex: String) -> String {
+    public func remove(#regex: String) -> String {
         return stringByReplacingOccurrencesOfString(regex, withString: "", options: .RegularExpressionSearch)
     }
     
-    func remove(#regex: String, caseInsensitive: Bool) -> String {
+    public func remove(#regex: String, caseInsensitive: Bool) -> String {
         let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : .allZeros) | .RegularExpressionSearch
         return stringByReplacingOccurrencesOfString(regex, withString: "", options: options)
     }
     
-    func remove(position: Int, length: Int) -> String {
+    public func remove(position: Int, length: Int) -> String {
         assert(position >= 0)
         assert(length >= -1)
         
@@ -111,59 +111,59 @@ extension String {
         return (self as NSString).stringByReplacingCharactersInRange(range, withString: "")
     }
     
-    func startsWith(string: String) -> Bool {
+    public func startsWith(string: String) -> Bool {
         return rangeOfString(string)?.startIndex == startIndex
     }
     
-    func startsWith(string: String, caseInsensitive: Bool) -> Bool {
+    public func startsWith(string: String, caseInsensitive: Bool) -> Bool {
         return rangeOfString(string, options: caseInsensitive ? .CaseInsensitiveSearch : .allZeros)?.startIndex == startIndex
     }
     
-    func startsWith(#regex: String) -> Bool {
+    public func startsWith(#regex: String) -> Bool {
         return rangeOfString(regex, options: .RegularExpressionSearch)?.startIndex == startIndex
     }
     
-    func startsWith(#regex: String, caseInsensitive: Bool) -> Bool {
+    public func startsWith(#regex: String, caseInsensitive: Bool) -> Bool {
         let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : .allZeros) | .RegularExpressionSearch
         return rangeOfString(regex, options: options)?.startIndex == startIndex
     }
     
-    func endsWith(string: String) -> Bool {
+    public func endsWith(string: String) -> Bool {
         return rangeOfString(string)?.endIndex == endIndex
     }
     
-    func endsWith(string: String, caseInsensitive: Bool) -> Bool {
+    public func endsWith(string: String, caseInsensitive: Bool) -> Bool {
         return rangeOfString(string, options: caseInsensitive ? .CaseInsensitiveSearch : .allZeros)?.endIndex == endIndex
     }
     
-    func endsWith(#regex: String) -> Bool {
+    public func endsWith(#regex: String) -> Bool {
         return rangeOfString(regex, options: .RegularExpressionSearch)?.endIndex == endIndex
     }
     
-    func endsWith(#regex: String, caseInsensitive: Bool) -> Bool {
+    public func endsWith(#regex: String, caseInsensitive: Bool) -> Bool {
         let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : .allZeros) | .RegularExpressionSearch
         return rangeOfString(regex, options: options)?.endIndex == endIndex
     }
     
-    func contains(string: String) -> Bool {
+    public func contains(string: String) -> Bool {
         return rangeOfString(string) != nil
     }
     
-    func contains(string: String, caseInsensitive: Bool) -> Bool {
+    public func contains(string: String, caseInsensitive: Bool) -> Bool {
         return rangeOfString(string, options: caseInsensitive ? .CaseInsensitiveSearch : .allZeros) != nil
     }
     
-    func contains(#regex: String) -> Bool {
+    public func contains(#regex: String) -> Bool {
         return rangeOfString(regex, options: .RegularExpressionSearch) != nil
     }
     
-    func contains(#regex: String, caseInsensitive: Bool) -> Bool {
+    public func contains(#regex: String, caseInsensitive: Bool) -> Bool {
         let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : .allZeros) | .RegularExpressionSearch
         return rangeOfString(regex, options: options) != nil
     }
     
     // Returns -1 if not found
-    func indexOf(string: String) -> Int {
+    public func indexOf(string: String) -> Int {
         let index = (self as NSString).rangeOfString(string).location
         if index == NSNotFound {
             return -1

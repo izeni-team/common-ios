@@ -16,17 +16,17 @@ import PEPhotoCropEditor
 
 private let iPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
 
-class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
-    var parentVC: UIViewController!
-    var delegate: ImagePickerDelegate!
-    var popoverSource: UIView! // Required for iPad
-    static var singleton = ImagePicker()
+public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
+    public var parentVC: UIViewController!
+    public var delegate: ImagePickerDelegate!
+    public var popoverSource: UIView! // Required for iPad
+    public static var singleton = ImagePicker()
     
-    class var isLibraryAvailable: Bool {
+    public class var isLibraryAvailable: Bool {
         return UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
     }
     
-    class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
+    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
         singleton.delegate = delegate
         singleton.parentVC = from
         singleton.popoverSource = popoverSource
@@ -51,7 +51,7 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControll
         singleton.show(alert)
     }
     
-    func show(vc: UIViewController) {
+    public func show(vc: UIViewController) {
         if iPad {
             let popover = UIPopoverController(contentViewController: vc)
             popover.presentPopoverFromRect(popoverSource.bounds, inView: popoverSource, permittedArrowDirections: .Any, animated: true)
@@ -60,14 +60,14 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControll
         }
     }
     
-    func pickImage(type: UIImagePickerControllerSourceType) {
+    public func pickImage(type: UIImagePickerControllerSourceType) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = type
         show(picker)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    public func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         
         let controller = PECropViewController()
@@ -81,17 +81,17 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControll
         show(navController)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         delegate.imagePickCancelled?()
     }
     
-    func cropViewController(controller: PECropViewController!, didFinishCroppingImage croppedImage: UIImage!) {
+    public func cropViewController(controller: PECropViewController!, didFinishCroppingImage croppedImage: UIImage!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         delegate.imagePicked(croppedImage)
     }
     
-    func cropViewControllerDidCancel(controller: PECropViewController!) {
+    public func cropViewControllerDidCancel(controller: PECropViewController!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         delegate.imagePickCancelled?()
     }

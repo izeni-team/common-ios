@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-extension JSON {
+public extension JSON {
     init(_ date: NSDate) {
         let formatted = NSDateFormatter.ISO8601.toString(date, format: .YearMonthDayHourMinuteSecondSubsecond)!
         self.init(formatted)
@@ -23,11 +23,11 @@ extension JSON {
         }
     }
     
-    var date: NSDate? {
+    public var date: NSDate? {
         return NSDateFormatter.ISO8601.fromString(string)
     }
     
-    func rawStringMinified() -> String? {
+    public func rawStringMinified() -> String? {
         return self.rawString(options: .allZeros)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension CGRect {
+public extension CGRect {
     public init(centerX: CGFloat, centerY: CGFloat, width: CGFloat, height: CGFloat) {
         self.init(x: centerX - width / 2, y: centerY - height / 2, width: width, height: height)
     }
@@ -84,7 +84,7 @@ extension CGRect {
     }
 }
 
-extension UIView {
+public extension UIView {
     public var presentationLayer: CALayer {
         get {
             return layer.presentationLayer() as! CALayer
@@ -227,13 +227,13 @@ extension UIView {
     }
 }
 
-extension String {
+public extension String {
     public var range: Range<String.Index> {
         return Range<String.Index>(start: startIndex, end: endIndex)
     }
 }
 
-extension UIColor {
+public extension UIColor {
     private class func rgbFromHex(hex: UInt32) -> [CGFloat] {
         return [
             CGFloat((hex >> 16) & 0xFF) / 255,
