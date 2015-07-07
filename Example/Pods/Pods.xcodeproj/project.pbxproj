@@ -38,6 +38,7 @@
 		D4393E2B1B4B2E3F00F366E6 /* UIImagePickerController+Magic.h in Headers */ = {isa = PBXBuildFile; fileRef = D4393E201B4B2E3F00F366E6 /* UIImagePickerController+Magic.h */; };
 		D4393E2C1B4B2E3F00F366E6 /* UIImagePickerController+Magic.m in Sources */ = {isa = PBXBuildFile; fileRef = D4393E211B4B2E3F00F366E6 /* UIImagePickerController+Magic.m */; };
 		D4393E2D1B4B2E3F00F366E6 /* UILabelMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393E221B4B2E3F00F366E6 /* UILabelMagic.swift */; };
+		D4393E331B4C2AA600F366E6 /* GenericPrefrences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393E321B4C2AA600F366E6 /* GenericPrefrences.swift */; };
 		F13E3686128C7CE4CAD53859 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0D96BD943FFB73661A15F /* Test.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		D4393E201B4B2E3F00F366E6 /* UIImagePickerController+Magic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+Magic.h"; sourceTree = "<group>"; };
 		D4393E211B4B2E3F00F366E6 /* UIImagePickerController+Magic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+Magic.m"; sourceTree = "<group>"; };
 		D4393E221B4B2E3F00F366E6 /* UILabelMagic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelMagic.swift; sourceTree = "<group>"; };
+		D4393E321B4C2AA600F366E6 /* GenericPrefrences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPrefrences.swift; sourceTree = "<group>"; };
 		E76A3423ED55F0230DC03D9A /* Pods-ios-pod-test_Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-environment.h"; sourceTree = "<group>"; };
 		F30111EACFCB773216CCA0DE /* ios-pod-test.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-pod-test.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E6AC31B8C78041D3090EFA /* Pods-ios-pod-test_Tests-ios-pod-test-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-ios-pod-test-umbrella.h"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				32D0D96BD943FFB73661A15F /* Test.swift */,
 				D4393DF01B4B1C1800F366E6 /* DistanceFormatter.h */,
 				D4393DF11B4B1C1800F366E6 /* DistanceFormatter.m */,
+				D4393E321B4C2AA600F366E6 /* GenericPrefrences.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				D4393E171B4B2D5B00F366E6 /* NSArray+Magic.m in Sources */,
 				D4393DFF1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m in Sources */,
 				D4393E191B4B2D5B00F366E6 /* NSLocale+Magic.m in Sources */,
+				D4393E331B4C2AA600F366E6 /* GenericPrefrences.swift in Sources */,
 				D4393E281B4B2E3F00F366E6 /* PaginatedVCExample.swift in Sources */,
 				D4393E2D1B4B2E3F00F366E6 /* UILabelMagic.swift in Sources */,
 				D4393DF31B4B1C1800F366E6 /* DistanceFormatter.m in Sources */,
