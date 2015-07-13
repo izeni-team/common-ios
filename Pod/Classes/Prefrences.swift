@@ -14,10 +14,10 @@ public struct Key {
         return "Key." + name
     }
     
-    static let previousSchemaVersion = Key(name: "previousSchemaVersion")
-    static let previousAppVersion = Key(name: "previousAppVersion")
-    static let loginSuccessful = Key(name: "loginSuccessful")
-    static let pushToken = Key(name: "pushToken")
+    public static let previousSchemaVersion = Key(name: "previousSchemaVersion")
+    public static let previousAppVersion = Key(name: "previousAppVersion")
+    public static let loginSuccessful = Key(name: "loginSuccessful")
+    public static let pushToken = Key(name: "pushToken")
 }
 
 public class Preferences {
