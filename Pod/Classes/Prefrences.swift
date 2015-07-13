@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Key {
+public struct Key {
     let name: String
     func path() -> String {
         return "Key." + name
@@ -20,30 +20,30 @@ struct Key {
     static let pushToken = Key(name: "pushToken")
 }
 
-class Preferences {
+public class Preferences {
     static let defaults = NSUserDefaults.standardUserDefaults()
     
-    class func clear(key: Key) {
+    public class func clear(key: Key) {
         defaults.removeObjectForKey(key.path())
         defaults.synchronize()
     }
     
-    class func set<T: AnyObject>(key: Key, _ value: T) {
+    public class func set<T: AnyObject>(key: Key, _ value: T) {
         defaults.setObject(value, forKey: key.path())
         defaults.synchronize()
     }
     
-    class func get<T>(key: Key, type: T.Type) -> T? {
+    public class func get<T>(key: Key, type: T.Type) -> T? {
         return defaults.objectForKey(key.path()) as? T
     }
     
-    static var keep = [
+    public static var keep = [
         Key.pushToken,
         Key.previousAppVersion,
         Key.previousSchemaVersion
     ]
     
-    class func clearAll() {
+    public class func clearAll() {
         let dictionary = defaults.dictionaryRepresentation()
         let keep = self.keep.map { $0.path() }
         for key in dictionary.keys {
