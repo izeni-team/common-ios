@@ -9,8 +9,8 @@
 import Foundation
 
 public struct Key {
-    let name: String
-    func path() -> String {
+    public let name: String
+    public func path() -> String {
         return "Key." + name
     }
     
