@@ -203,13 +203,13 @@
 			path = "Example/Pods/Target Support Files/Pods-ios-pod-test_Tests-ios-pod-test";
 			sourceTree = "<group>";
 		};
-		8A1400720FA224D7590B94A4 /* ios-pod-test */ = {
+		8A1400720FA224D7590B94A4 /* Izeni-Pod */ = {
 			isa = PBXGroup;
 			children = (
 				94F8C5E593FCE3C947127752 /* Pod */,
 				6C4DF7D279CF6DB73FA871D8 /* Support Files */,
 			);
-			name = "ios-pod-test";
+			name = "Izeni-Pod";
 			path = ../..;
 			sourceTree = "<group>";
 		};
@@ -224,7 +224,7 @@
 		C6B6AF4EDA496C786C7C3168 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8A1400720FA224D7590B94A4 /* ios-pod-test */,
+				8A1400720FA224D7590B94A4 /* Izeni-Pod */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
