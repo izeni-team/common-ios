@@ -33,6 +33,10 @@ public class Preferences {
         defaults.synchronize()
     }
     
+    public class func get(key: Key, type: Bool.Type) -> Bool {
+        return defaults.boolForKey(key.path())
+    }
+    
     public class func get<T>(key: Key, type: T.Type) -> T? {
         return defaults.objectForKey(key.path()) as? T
     }
