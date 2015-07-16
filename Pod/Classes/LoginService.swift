@@ -9,11 +9,11 @@
 import Foundation
 
 public class LoginService {
-    struct Broadcasts {
-        static let loggedOut = NSUUID()
+    public struct Broadcasts {
+        public static let loggedOut = NSUUID()
     }
     
-    class func logout() {
+    public class func logout() {
         Preferences.clearAll()
         Broadcast.emit(Broadcasts.loggedOut)
     }
