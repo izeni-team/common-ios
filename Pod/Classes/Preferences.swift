@@ -29,7 +29,7 @@ public class Preferences {
     }
     
     public class func set(key: Key, _ value: Int) {
-        set(key, NSNumber(value, forKey: key.path())
+        set(key, NSNumber(value, forKey: key.path()))
         defaults.synchronize()
     }
     
