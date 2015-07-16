@@ -12,7 +12,7 @@ import EDQueue
 
 public class AppMigrator {
     public static var realmVersion: Int = 1
-    public static var migrationHandler = { (migration: RLMMigration!, oldSchemaVersion: UInt64) -> Void in }
+    public static var migrationHandler = { (migration: Migration!, oldSchemaVersion: UInt64) -> Void in }
     public class func appVersion() -> Int {
         let info = NSBundle.mainBundle().infoDictionary!
         return (info[kCFBundleVersionKey] as! String).toInt()!
@@ -43,7 +43,7 @@ public class AppMigrator {
         Preferences.set(Key.previousSchemaVersion, Int(realmVersion))
         
         setDefaultRealmSchemaVersion(UInt64(realmVersion)) { migration, oldSchemaVersion in
-            migrationHandler(migration, oldSchemaVersion)
+            self.migrationHandler(migration, oldSchemaVersion)
         }
         
         if oldRealmVersion > realmVersion {
