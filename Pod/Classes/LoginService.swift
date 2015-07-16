@@ -17,4 +17,8 @@ public class LoginService {
         Preferences.clearAll()
         Broadcast.emit(Broadcasts.loggedOut)
     }
+    
+    public class func login() {
+//        public static var downloadStep = {}
+    }
 }
