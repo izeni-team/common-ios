@@ -28,6 +28,11 @@ public class Preferences {
         defaults.synchronize()
     }
     
+    public class func set(key: Key, _ value: Int) {
+        set(key, NSNumber(value, forKey: key.path())
+        defaults.synchronize()
+    }
+    
     public class func set<T: AnyObject>(key: Key, _ value: T) {
         defaults.setObject(value, forKey: key.path())
         defaults.synchronize()

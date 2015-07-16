@@ -39,6 +39,7 @@
 		D4393E2C1B4B2E3F00F366E6 /* UIImagePickerController+Magic.m in Sources */ = {isa = PBXBuildFile; fileRef = D4393E211B4B2E3F00F366E6 /* UIImagePickerController+Magic.m */; };
 		D4393E2D1B4B2E3F00F366E6 /* UILabelMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393E221B4B2E3F00F366E6 /* UILabelMagic.swift */; };
 		D4393E331B4C2AA600F366E6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393E321B4C2AA600F366E6 /* Preferences.swift */; };
+		D451C69D1B582C81000F70EE /* AppMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451C69C1B582C81000F70EE /* AppMigrator.swift */; };
 		D4BD502F1B55733B001A414C /* UIStoryboardExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD502E1B55733B001A414C /* UIStoryboardExtenstions.swift */; };
 		F13E3686128C7CE4CAD53859 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0D96BD943FFB73661A15F /* Test.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		D4393E211B4B2E3F00F366E6 /* UIImagePickerController+Magic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+Magic.m"; sourceTree = "<group>"; };
 		D4393E221B4B2E3F00F366E6 /* UILabelMagic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelMagic.swift; sourceTree = "<group>"; };
 		D4393E321B4C2AA600F366E6 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		D451C69C1B582C81000F70EE /* AppMigrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMigrator.swift; sourceTree = "<group>"; };
 		D4BD502E1B55733B001A414C /* UIStoryboardExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtenstions.swift; sourceTree = "<group>"; };
 		E76A3423ED55F0230DC03D9A /* Pods-ios-pod-test_Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-environment.h"; sourceTree = "<group>"; };
 		F30111EACFCB773216CCA0DE /* ios-pod-test.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-pod-test.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +261,7 @@
 				D4393DF11B4B1C1800F366E6 /* DistanceFormatter.m */,
 				D4393E321B4C2AA600F366E6 /* Preferences.swift */,
 				D4BD502E1B55733B001A414C /* UIStoryboardExtenstions.swift */,
+				D451C69C1B582C81000F70EE /* AppMigrator.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				D4393E2C1B4B2E3F00F366E6 /* UIImagePickerController+Magic.m in Sources */,
 				D4393E091B4B2C9200F366E6 /* ArrayMagic.swift in Sources */,
 				D4393DFB1B4B243700F366E6 /* ImagePicker.swift in Sources */,
+				D451C69D1B582C81000F70EE /* AppMigrator.swift in Sources */,
 				D4393E151B4B2D5B00F366E6 /* Magic.swift in Sources */,
 				D4393E0C1B4B2CB600F366E6 /* IzeniDateExtensions.swift in Sources */,
 				D4393E291B4B2E3F00F366E6 /* SwiftyJSONExtensions.swift in Sources */,
