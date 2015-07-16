@@ -36,13 +36,13 @@ public class AppMigrator {
     }
     
     public class func migrate() -> Bool {
-        public let oldAppVersion = Preferences.get(Key.previousAppVersion, type: Int.self)
-        public let oldRealmVersion = Preferences.get(Key.previousSchemaVersion, type: Int.self)
-        public Preferences.set(Key.previousAppVersion, appVersion())
-        public Preferences.set(Key.previousSchemaVersion, Int(realmVersion))
-        public var successful = true
+        let oldAppVersion = Preferences.get(Key.previousAppVersion, type: Int.self)
+        let oldRealmVersion = Preferences.get(Key.previousSchemaVersion, type: Int.self)
+        Preferences.set(Key.previousAppVersion, appVersion())
+        Preferences.set(Key.previousSchemaVersion, Int(realmVersion))
+        var successful = true
         
-        public setDefaultRealmSchemaVersion(UInt64(realmVersion)) { migration, oldSchemaVersion in
+        setDefaultRealmSchemaVersion(UInt64(realmVersion)) { migration, oldSchemaVersion in
             if oldSchemaVersion < 1 {
                 return
             }
@@ -50,13 +50,13 @@ public class AppMigrator {
         
         if oldRealmVersion > realmVersion {
             // The user has downgraded their app; the database is not usable
-            clearAllData(migration: nil, deleteDatabaseFile: true)
+            clearAllData(migration: nil, deleteDataBaseFile: true)
             return false
         }
         
         // Force a migration right now if it hasn't already been trigered
-        public let realm = Realm()
-        public realm.refresh()
+        let realm = Realm()
+        realm.refresh()
         
         return successful
     }
