@@ -40,6 +40,7 @@
 		D4393E2D1B4B2E3F00F366E6 /* UILabelMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393E221B4B2E3F00F366E6 /* UILabelMagic.swift */; };
 		D4393E331B4C2AA600F366E6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4393E321B4C2AA600F366E6 /* Preferences.swift */; };
 		D451C69D1B582C81000F70EE /* AppMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451C69C1B582C81000F70EE /* AppMigrator.swift */; };
+		D451C69F1B584A1A000F70EE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451C69E1B584A1A000F70EE /* LoginService.swift */; };
 		D4BD502F1B55733B001A414C /* UIStoryboardExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD502E1B55733B001A414C /* UIStoryboardExtenstions.swift */; };
 		F13E3686128C7CE4CAD53859 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0D96BD943FFB73661A15F /* Test.swift */; };
 /* End PBXBuildFile section */
@@ -108,6 +109,7 @@
 		D4393E221B4B2E3F00F366E6 /* UILabelMagic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelMagic.swift; sourceTree = "<group>"; };
 		D4393E321B4C2AA600F366E6 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		D451C69C1B582C81000F70EE /* AppMigrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMigrator.swift; sourceTree = "<group>"; };
+		D451C69E1B584A1A000F70EE /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		D4BD502E1B55733B001A414C /* UIStoryboardExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtenstions.swift; sourceTree = "<group>"; };
 		E76A3423ED55F0230DC03D9A /* Pods-ios-pod-test_Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-environment.h"; sourceTree = "<group>"; };
 		F30111EACFCB773216CCA0DE /* ios-pod-test.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-pod-test.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +264,7 @@
 				D4393E321B4C2AA600F366E6 /* Preferences.swift */,
 				D4BD502E1B55733B001A414C /* UIStoryboardExtenstions.swift */,
 				D451C69C1B582C81000F70EE /* AppMigrator.swift */,
+				D451C69E1B584A1A000F70EE /* LoginService.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				D4BD502F1B55733B001A414C /* UIStoryboardExtenstions.swift in Sources */,
 				D4393E171B4B2D5B00F366E6 /* NSArray+Magic.m in Sources */,
 				D4393DFF1B4B2A3D00F366E6 /* NSObject+IzeniBroadcast.m in Sources */,
+				D451C69F1B584A1A000F70EE /* LoginService.swift in Sources */,
 				D4393E191B4B2D5B00F366E6 /* NSLocale+Magic.m in Sources */,
 				D4393E331B4C2AA600F366E6 /* Preferences.swift in Sources */,
 				D4393E281B4B2E3F00F366E6 /* PaginatedVCExample.swift in Sources */,

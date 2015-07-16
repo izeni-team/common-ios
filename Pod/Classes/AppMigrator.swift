@@ -11,7 +11,8 @@ import RealmSwift
 import EDQueue
 
 public class AppMigrator {
-    public static let realmVersion: Int = 1
+    public static var realmVersion: Int = 1
+    public static var migrationHandler = { (migration: RLMMigration!, oldSchemaVersion: UInt64) -> Void in }
     public class func appVersion() -> Int {
         let info = NSBundle.mainBundle().infoDictionary!
         return (info[kCFBundleVersionKey] as! String).toInt()!
@@ -40,12 +41,9 @@ public class AppMigrator {
         let oldRealmVersion = Preferences.get(Key.previousSchemaVersion, type: Int.self)
         Preferences.set(Key.previousAppVersion, appVersion())
         Preferences.set(Key.previousSchemaVersion, Int(realmVersion))
-        var successful = true
         
         setDefaultRealmSchemaVersion(UInt64(realmVersion)) { migration, oldSchemaVersion in
-            if oldSchemaVersion < 1 {
-                return
-            }
+            migrationHandler(migration, oldSchemaVersion)
         }
         
         if oldRealmVersion > realmVersion {
@@ -55,9 +53,8 @@ public class AppMigrator {
         }
         
         // Force a migration right now if it hasn't already been trigered
-        let realm = Realm()
-        realm.refresh()
+        Realm().refresh()
         
-        return successful
+        return true
     }
 }
