@@ -25,6 +25,7 @@
 		42E6A220A7640A8943D63C3D /* UIStoryboardExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F28D15EB716F4A9A19616 /* UIStoryboardExtenstions.swift */; };
 		4AE63E4B13F4796F582763F4 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87622740066829687F0FF6 /* UIImageExtensions.swift */; };
 		5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B911B6C1B59A131007B759A /* IzeniAlert.swift */; };
+		5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7E6221B66967500F4CB50 /* IzeniResizingCellExtension.swift */; };
 		5CE5B4CB98E6081879B9AD60 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732641AB25B014BC0EB01480 /* Reachability.swift */; };
 		619EE048A430E035AC04CCD9 /* IzeniDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */; };
 		622EA061A2DDA3C92E33421E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCBF8AB2A4904E5A2BC159F /* Test.swift */; };
@@ -88,6 +89,7 @@
 		52B805E8C4B205A7A4C99D80 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IzeniDateExtensions.swift; sourceTree = "<group>"; };
 		5B911B6C1B59A131007B759A /* IzeniAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniAlert.swift; sourceTree = "<group>"; };
+		5BD7E6221B66967500F4CB50 /* IzeniResizingCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniResizingCellExtension.swift; sourceTree = "<group>"; };
 		62CA1F654BD6C58794E0FEED /* PaginatedTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaginatedTableViewController.swift; sourceTree = "<group>"; };
 		64A611ED2DE69950B9BFB7E6 /* Pods-ios-pod-test_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ios-pod-test_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6F87622740066829687F0FF6 /* UIImageExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				FF6ACCA737B511029E5C0F9F /* UILabelMagic.swift */,
 				359F28D15EB716F4A9A19616 /* UIStoryboardExtenstions.swift */,
 				5B911B6C1B59A131007B759A /* IzeniAlert.swift */,
+				5BD7E6221B66967500F4CB50 /* IzeniResizingCellExtension.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */,
 				5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */,
 				3DE909048F1AC86A2E562984 /* Pods-ios-pod-test_Tests-dummy.m in Sources */,
 			);
