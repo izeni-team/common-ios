@@ -25,12 +25,12 @@
 		42E6A220A7640A8943D63C3D /* UIStoryboardExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F28D15EB716F4A9A19616 /* UIStoryboardExtenstions.swift */; };
 		4AE63E4B13F4796F582763F4 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87622740066829687F0FF6 /* UIImageExtensions.swift */; };
 		5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B911B6C1B59A131007B759A /* IzeniAlert.swift */; };
+		5BC419D41B684F5B003DC68F /* IzeniViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC419D31B684F5B003DC68F /* IzeniViewControllerExtensions.swift */; };
 		5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7E6221B66967500F4CB50 /* IzeniResizingCellExtension.swift */; };
 		5CE5B4CB98E6081879B9AD60 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732641AB25B014BC0EB01480 /* Reachability.swift */; };
 		619EE048A430E035AC04CCD9 /* IzeniDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */; };
 		622EA061A2DDA3C92E33421E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCBF8AB2A4904E5A2BC159F /* Test.swift */; };
 		6294897F2748D011871135AC /* NSObject+IzeniBroadcast.h in Headers */ = {isa = PBXBuildFile; fileRef = C4C2D25C5080986D37A247B6 /* NSObject+IzeniBroadcast.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		69815891B90E62140E09253B /* NSArray+Magic.m in Sources */ = {isa = PBXBuildFile; fileRef = 43710CDFAC6AE0F13371B415 /* NSArray+Magic.m */; };
 		69D2779E0C3F95D5F575F56E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF16E7EE51C9434334E4A51 /* Preferences.swift */; };
 		74DA00A52CF56273A9AAAAE5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C582F5877C379960B714C6 /* Foundation.framework */; };
 		76C38AC00F4E56164772D1E9 /* NSLocale+Magic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFE91396739C5354D7DEBA4 /* NSLocale+Magic.m */; };
@@ -39,7 +39,6 @@
 		983B039DF41090C5E7484A21 /* PaginatedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CA1F654BD6C58794E0FEED /* PaginatedTableViewController.swift */; };
 		996820324ABFD1CEA25CF5E7 /* SwiftyJSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A2B1C5D56435B031223538 /* SwiftyJSONExtensions.swift */; };
 		9E9B859B08E1E3CD912A2544 /* UILabelMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6ACCA737B511029E5C0F9F /* UILabelMagic.swift */; };
-		A155B5144629C8575CDFE143 /* NSArray+Magic.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C3D06FBE1B867C8733717E7 /* NSArray+Magic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A526D30F7393D9C9D175B2C4 /* Magic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056EB491917D70AA09F8CF1 /* Magic.swift */; };
 		AF03575E7983237A4DB1386B /* Pods-ios-pod-test_Tests-ios-pod-test-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E9AF8C46DCA113DE417F50 /* Pods-ios-pod-test_Tests-ios-pod-test-dummy.m */; };
 		BDD4E1DC3D8454579DCD0897 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10BB71B482DB08DE5B56C77 /* DistanceFormatter.m */; };
@@ -84,11 +83,11 @@
 		336C16F68FE3D6096FCF6A67 /* Pods-ios-pod-test_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ios-pod-test_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3420649401BA4C783534080F /* ImagePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		359F28D15EB716F4A9A19616 /* UIStoryboardExtenstions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtenstions.swift; sourceTree = "<group>"; };
-		43710CDFAC6AE0F13371B415 /* NSArray+Magic.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Magic.m"; sourceTree = "<group>"; };
 		49AA755BD8CD7640A814BAD8 /* Pods-ios-pod-test_Tests-ios-pod-test-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-ios-pod-test-prefix.pch"; sourceTree = "<group>"; };
 		52B805E8C4B205A7A4C99D80 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IzeniDateExtensions.swift; sourceTree = "<group>"; };
 		5B911B6C1B59A131007B759A /* IzeniAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniAlert.swift; sourceTree = "<group>"; };
+		5BC419D31B684F5B003DC68F /* IzeniViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniViewControllerExtensions.swift; sourceTree = "<group>"; };
 		5BD7E6221B66967500F4CB50 /* IzeniResizingCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniResizingCellExtension.swift; sourceTree = "<group>"; };
 		62CA1F654BD6C58794E0FEED /* PaginatedTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaginatedTableViewController.swift; sourceTree = "<group>"; };
 		64A611ED2DE69950B9BFB7E6 /* Pods-ios-pod-test_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ios-pod-test_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -97,7 +96,6 @@
 		732641AB25B014BC0EB01480 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		73C582F5877C379960B714C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7BF92824E3301E05D4597E37 /* Pods-ios-pod-test_Tests-ios-pod-test-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ios-pod-test_Tests-ios-pod-test-umbrella.h"; sourceTree = "<group>"; };
-		7C3D06FBE1B867C8733717E7 /* NSArray+Magic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+Magic.h"; sourceTree = "<group>"; };
 		7F42D88E9FE498F161D69B1F /* NSObject+IzeniBroadcast.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IzeniBroadcast.m"; sourceTree = "<group>"; };
 		8056EB491917D70AA09F8CF1 /* Magic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Magic.swift; sourceTree = "<group>"; };
 		980F91B9033D6A591B662BFD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -248,13 +246,12 @@
 				E10BB71B482DB08DE5B56C77 /* DistanceFormatter.m */,
 				22DA45F346217B6183508C2A /* EDQueueActuator.swift */,
 				3420649401BA4C783534080F /* ImagePicker.swift */,
+				5BC419D31B684F5B003DC68F /* IzeniViewControllerExtensions.swift */,
 				56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */,
 				D1ADAA126941F685BFC281DC /* IzeniDateFormatterExtensions.swift */,
 				1F160F06064149FCD55B1000 /* IzeniStringExtensions.swift */,
 				AA67C8414F68EF59C31FEA97 /* LoginService.swift */,
 				8056EB491917D70AA09F8CF1 /* Magic.swift */,
-				7C3D06FBE1B867C8733717E7 /* NSArray+Magic.h */,
-				43710CDFAC6AE0F13371B415 /* NSArray+Magic.m */,
 				F74CE82062EC096A0115E15F /* NSLocale+Magic.h */,
 				2EFE91396739C5354D7DEBA4 /* NSLocale+Magic.m */,
 				C4C2D25C5080986D37A247B6 /* NSObject+IzeniBroadcast.h */,
@@ -310,7 +307,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3006706E754D0309EC24A24D /* DistanceFormatter.h in Headers */,
-				A155B5144629C8575CDFE143 /* NSArray+Magic.h in Headers */,
 				296AD40AF84A607BFFAE8611 /* NSLocale+Magic.h in Headers */,
 				6294897F2748D011871135AC /* NSObject+IzeniBroadcast.h in Headers */,
 				28A4AC031C345C8218B60383 /* NSTimer+Nonretained.h in Headers */,
@@ -443,7 +439,6 @@
 				0EEF00ED1C6159D8D9D08C57 /* IzeniStringExtensions.swift in Sources */,
 				F5176A5B7A20D0375EB97B8C /* LoginService.swift in Sources */,
 				A526D30F7393D9C9D175B2C4 /* Magic.swift in Sources */,
-				69815891B90E62140E09253B /* NSArray+Magic.m in Sources */,
 				76C38AC00F4E56164772D1E9 /* NSLocale+Magic.m in Sources */,
 				109CB9962370310F1F703F4A /* NSObject+IzeniBroadcast.m in Sources */,
 				C7F4A81487D1334D665157F4 /* NSTimer+Nonretained.m in Sources */,
@@ -466,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */,
+				5BC419D41B684F5B003DC68F /* IzeniViewControllerExtensions.swift in Sources */,
 				5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */,
 				3DE909048F1AC86A2E562984 /* Pods-ios-pod-test_Tests-dummy.m in Sources */,
 			);
