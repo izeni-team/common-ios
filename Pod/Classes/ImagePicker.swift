@@ -27,6 +27,9 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     }
     
     class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
+        
+        assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
+        
         singleton.delegate = delegate
         singleton.parentVC = from
         singleton.popoverSource = popoverSource
