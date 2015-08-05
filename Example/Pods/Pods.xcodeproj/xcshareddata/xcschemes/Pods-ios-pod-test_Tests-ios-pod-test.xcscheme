@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4876DFFCB28D2E9AEB6BBA07"
                BuildableName = "ios_pod_test.framework"
-               BlueprintName = "Pods-Izeni_Tests-Izeni"
+               BlueprintName = "Pods-ios-pod-test_Tests-ios-pod-test"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4876DFFCB28D2E9AEB6BBA07"
-            BuildableName = "ios_pod_test.framework"
-            BlueprintName = "Pods-Izeni_Tests-Izeni"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
