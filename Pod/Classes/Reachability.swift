@@ -3,7 +3,7 @@
 //  Brower
 //
 //  Created by Skyler Smith on 6/4/15.
-//  Copyright (c) 2015 Izeni. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation

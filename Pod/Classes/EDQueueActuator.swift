@@ -3,7 +3,7 @@
 //  Brower
 //
 //  Created by Skyler Smith on 6/4/15.
-//  Copyright (c) 2015 Izeni. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation
@@ -15,6 +15,7 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
     private let defaultCenter = NSNotificationCenter()
     public let delayTime: NSTimeInterval = 60
     public var resumeTimer: NSTimer?
+    public var needsInternet = true
     
     public class func start() {
         singleton
@@ -36,16 +37,28 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
         if reachable.boolValue {
             EDQueue.sharedInstance().start()
             println("reachable")
-        } else {
+        } else if needsInternet {
             println("not reachable")
             EDQueue.sharedInstance().stop()
         }
     }
     
+    /**
+    This function is called when a task reaches the front of the queue. It must be overridden.
+    
+    :param: queue The EDQueue with the task
+    :param: job The dictionary of values that was passed into the queue when the task was created.
+    :param: block Options are .Success, .Fail (Job will be retried), and .Critical (Job will not be retried).
+    */
     public func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
         fatalError("This function must be overridden")
     }
     
+    /**
+    Start the queue
+    
+    :param: delay if true, start the queue after the interval in the stored property delayTime. If false, start immediately.
+    */
     public func scheduleStart(#delay: Bool) {
         resumeTimer?.invalidate()
         if delay {
@@ -54,9 +67,11 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
             EDQueue.sharedInstance().start()
         }
     }
-    
+    /**
+    If needsInternet is false, starts the queue. If needsInternet is true, starts the queue if internet is marked as reachable.
+    */
     public func startTimeout() {
-        if Reachability.isReachable {
+        if Reachability.isReachable || !needsInternet {
             EDQueue.sharedInstance().start()
         }
     }

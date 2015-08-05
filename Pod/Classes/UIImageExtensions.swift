@@ -3,7 +3,7 @@
 //  IzeniCommon
 //
 //  Created by Taylor Allred on 6/1/15.
-//  Copyright (c) 2015 Taylor Allred. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import UIKit

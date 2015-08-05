@@ -3,14 +3,23 @@
 //  IzeniCommon
 //
 //  Created by Christopher Bryan Henderson on 6/3/15.
-//  Copyright (c) 2015 Christopher Bryan Henderson. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import UIKit
 import PEPhotoCropEditor
 
 @objc protocol ImagePickerDelegate: class {
+    /**
+    imagePicked() is called when the user has finished selecting and cropping an image.
+    
+    :param: image The resulting image after being cropped.
+    */
     func imagePicked(image: UIImage)
+    
+    /**
+    imagePickCancelled() is called when the user taps 'cancel' and closes the image picker.
+    */
     optional func imagePickCancelled()
 }
 
@@ -26,6 +35,13 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
         return UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
     }
     
+    /**
+    Opens a popover from which the user may select an image from their photo library or take a new picture.
+    
+    :param: from The UIViewController that will present the popover alert.
+    :param: popoverSource For iPad: The UIView that defines where the popover will be placed.
+    :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
+    */
     class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
         
         assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")

@@ -2,7 +2,7 @@
 // NSObject+IzeniBroadcast.m
 //
 // Created by Christopher Henderson on 6/2/14.
-// Copyright (c) 2014 Izeni. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 #import "NSObject+IzeniBroadcast.h"

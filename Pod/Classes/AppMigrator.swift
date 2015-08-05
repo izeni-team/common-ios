@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Taylor Allred on 7/16/15.
-//
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation
@@ -52,7 +52,7 @@ public class AppMigrator {
             return false
         }
         
-        // Force a migration right now if it hasn't already been trigered
+        // Force a migration right now if it hasn't already been triggered
         Realm().refresh()
         
         return true

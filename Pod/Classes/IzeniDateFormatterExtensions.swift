@@ -3,7 +3,7 @@
 //  IzeniCommon
 //
 //  Created by Jacob Ovard on 2/27/15.
-//  Copyright (c) 2015 Jacob Ovard. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation

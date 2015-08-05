@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Taylor Allred on 7/16/15.
-//
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation

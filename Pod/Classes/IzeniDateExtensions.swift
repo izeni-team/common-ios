@@ -3,7 +3,7 @@
 //  IzeniCommon
 //
 //  Created by Bryan Henderson on 2/22/15.
-//  Copyright (c) 2015 Bryan Henderson. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation

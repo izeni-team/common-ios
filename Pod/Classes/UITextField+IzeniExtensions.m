@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Skyler Smith on 8/4/15.
-//
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 #import "UITextField+IzeniExtensions.h"
@@ -13,7 +13,7 @@
 
 static int maximumLengthKey;
 
-- (NSInteger)maximumLength {
+- (NSInteger)maxLength {
     NSNumber *max = objc_getAssociatedObject(self, &maximumLengthKey);
     if (max != nil) {
         return max.integerValue;
@@ -22,7 +22,7 @@ static int maximumLengthKey;
     }
 }
 
-- (void)setMaximumLength:(NSInteger)maximumLength {
+- (void)setMaxLength:(NSInteger)maximumLength {
     if (objc_getAssociatedObject(self, &maximumLength) == nil) {
         // "init" here
         [self addTarget:self action:@selector(izeniExtTextDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -31,8 +31,8 @@ static int maximumLengthKey;
 }
 
 - (void)izeniExtTextDidChange:(UITextField *)textField {
-    if (textField.text.length > self.maximumLength) {
-        textField.text = [textField.text substringToIndex:self.maximumLength];
+    if (textField.text.length > self.maxLength) {
+        textField.text = [textField.text substringToIndex:self.maxLength];
     }
 }
 
