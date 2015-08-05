@@ -10,12 +10,12 @@ import Foundation
 import SwiftyJSON
 
 public extension JSON {
-    init(_ date: NSDate) {
+    public init(_ date: NSDate) {
         let formatted = NSDateFormatter.ISO8601.toString(date, format: .YearMonthDayHourMinuteSecondSubsecond)!
         self.init(formatted)
     }
     
-    init(_ date: NSDate?) {
+    public init(_ date: NSDate?) {
         if date != nil {
             self.init(date!)
         } else {
