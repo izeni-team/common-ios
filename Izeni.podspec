@@ -17,11 +17,9 @@ Pod::Spec.new do |s|
                        All of izeni's common code for iOS.
                        DESC
   s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "bhenderson@izeni.com" => "bhenderson@izeni.com" }
   s.source           = { :git => "https://dev.izeni.net/tallred/IOS-Common-Private-Pod.git", :tag => "0.1.0" }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
@@ -30,6 +28,8 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     'Izeni' => ['Pod/Assets/*.png']
   }
+
+  s.library = 'sqlite3.0'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MapKit'
