@@ -8,9 +8,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "ios-pod-test"
+  s.name             = "izeni_common"
   s.version          = "0.1.0"
-  s.summary          = "Common iOS code."
+  s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
                        DESC
