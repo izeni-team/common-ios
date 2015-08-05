@@ -2,7 +2,7 @@
 // NSObject+IzeniBroadcast.h
 //
 // Created by Christopher Henderson on 6/2/14.
-// Copyright (c) 2014 Izeni. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 // This category allows bus-like events to be globally communicated.

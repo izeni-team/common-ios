@@ -3,30 +3,49 @@
 //  IzeniCommon
 //
 //  Created by Christopher Bryan Henderson on 6/3/15.
-//  Copyright (c) 2015 Christopher Bryan Henderson. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import UIKit
 import PEPhotoCropEditor
 
 @objc protocol ImagePickerDelegate: class {
+    /**
+    imagePicked() is called when the user has finished selecting and cropping an image.
+    
+    :param: image The resulting image after being cropped.
+    */
     func imagePicked(image: UIImage)
+    
+    /**
+    imagePickCancelled() is called when the user taps 'cancel' and closes the image picker.
+    */
     optional func imagePickCancelled()
 }
 
 private let iPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
 
-class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
-    var parentVC: UIViewController!
+public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
+    public var parentVC: UIViewController!
     var delegate: ImagePickerDelegate!
-    var popoverSource: UIView! // Required for iPad
-    static var singleton = ImagePicker()
+    public var popoverSource: UIView! // Required for iPad
+    public static var singleton = ImagePicker()
     
-    class var isLibraryAvailable: Bool {
+    public class var isLibraryAvailable: Bool {
         return UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
     }
     
+    /**
+    Opens a popover from which the user may select an image from their photo library or take a new picture.
+    
+    :param: from The UIViewController that will present the popover alert.
+    :param: popoverSource For iPad: The UIView that defines where the popover will be placed.
+    :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
+    */
     class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
+        
+        assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
+        
         singleton.delegate = delegate
         singleton.parentVC = from
         singleton.popoverSource = popoverSource
@@ -51,7 +70,7 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControll
         singleton.show(alert)
     }
     
-    func show(vc: UIViewController) {
+    public func show(vc: UIViewController) {
         if iPad {
             let popover = UIPopoverController(contentViewController: vc)
             popover.presentPopoverFromRect(popoverSource.bounds, inView: popoverSource, permittedArrowDirections: .Any, animated: true)
@@ -60,14 +79,14 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControll
         }
     }
     
-    func pickImage(type: UIImagePickerControllerSourceType) {
+    public func pickImage(type: UIImagePickerControllerSourceType) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = type
         show(picker)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    public func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         
         let controller = PECropViewController()
@@ -81,17 +100,17 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControll
         show(navController)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         delegate.imagePickCancelled?()
     }
     
-    func cropViewController(controller: PECropViewController!, didFinishCroppingImage croppedImage: UIImage!) {
+    public func cropViewController(controller: PECropViewController!, didFinishCroppingImage croppedImage: UIImage!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         delegate.imagePicked(croppedImage)
     }
     
-    func cropViewControllerDidCancel(controller: PECropViewController!) {
+    public func cropViewControllerDidCancel(controller: PECropViewController!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         delegate.imagePickCancelled?()
     }

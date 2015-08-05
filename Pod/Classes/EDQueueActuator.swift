@@ -3,20 +3,21 @@
 //  Brower
 //
 //  Created by Skyler Smith on 6/4/15.
-//  Copyright (c) 2015 Izeni. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation
 import EDQueue
 
-class EDQueueActuator: NSObject, EDQueueDelegate {
+public class EDQueueActuator: NSObject, EDQueueDelegate {
     
-    static let singleton = EDQueueActuator()
+    public static let singleton = EDQueueActuator()
     private let defaultCenter = NSNotificationCenter()
-    let delayTime: NSTimeInterval = 60
-    var resumeTimer: NSTimer?
+    public let delayTime: NSTimeInterval = 60
+    public var resumeTimer: NSTimer?
+    public var needsInternet = true
     
-    class func start() {
+    public class func start() {
         singleton
     }
     
@@ -32,21 +33,33 @@ class EDQueueActuator: NSObject, EDQueueDelegate {
         defaultCenter.addObserver(self, selector: "applicationDidBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
     
-    func reachabilityChanged(reachable: NSNumber) {
+    public func reachabilityChanged(reachable: NSNumber) {
         if reachable.boolValue {
             EDQueue.sharedInstance().start()
             println("reachable")
-        } else {
+        } else if needsInternet {
             println("not reachable")
             EDQueue.sharedInstance().stop()
         }
     }
     
-    func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
+    /**
+    This function is called when a task reaches the front of the queue. It must be overridden.
+    
+    :param: queue The EDQueue with the task
+    :param: job The dictionary of values that was passed into the queue when the task was created.
+    :param: block Options are .Success, .Fail (Job will be retried), and .Critical (Job will not be retried).
+    */
+    public func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
         fatalError("This function must be overridden")
     }
     
-    func scheduleStart(#delay: Bool) {
+    /**
+    Start the queue
+    
+    :param: delay if true, start the queue after the interval in the stored property delayTime. If false, start immediately.
+    */
+    public func scheduleStart(#delay: Bool) {
         resumeTimer?.invalidate()
         if delay {
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(delayTime, target: self, selector: "startTimeout", userInfo: nil, repeats: false )
@@ -54,18 +67,20 @@ class EDQueueActuator: NSObject, EDQueueDelegate {
             EDQueue.sharedInstance().start()
         }
     }
-    
-    func startTimeout() {
-        if Reachability.isReachable {
+    /**
+    If needsInternet is false, starts the queue. If needsInternet is true, starts the queue if internet is marked as reachable.
+    */
+    public func startTimeout() {
+        if Reachability.isReachable || !needsInternet {
             EDQueue.sharedInstance().start()
         }
     }
     
-    func applicationWillResignActive() {
+    public func applicationWillResignActive() {
         EDQueue.sharedInstance().stop()
     }
     
-    func applicationDidBecomeActive() {
+    public func applicationDidBecomeActive() {
         EDQueue.sharedInstance().delegate = self
         EDQueue.sharedInstance().retryLimit = UInt.max
         scheduleStart(delay: false)

@@ -3,12 +3,12 @@
 //  IzeniCommon
 //
 //  Created by Jacob Ovard on 2/27/15.
-//  Copyright (c) 2015 Jacob Ovard. All rights reserved.
+//  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
 import Foundation
 
-extension NSDateFormatter {
+public extension NSDateFormatter {
     struct Relative {
         static func toString(date: NSDate, dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle) -> String {
             struct Static {
@@ -36,7 +36,7 @@ extension NSDateFormatter {
         }
     }
     
-    class func getWeekday(date: NSDate) -> String {
+    public class func getWeekday(date: NSDate) -> String {
         switch date.weekday {
         case .Sunday: return "Sunday"
         case .Monday: return "Monday"
