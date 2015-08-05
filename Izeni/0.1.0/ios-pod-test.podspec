@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint ios-pod-test.podspec' to ensure this is a
+# Be sure to run `pod lib lint Izeni.podspec' to ensure this is a
 # valid spec and remove all comments before submitting the spec.
 #
 # Any lines starting with a # are optional, but encouraged
@@ -8,9 +8,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "ios-pod-test"
+  s.name             = "Izeni"
   s.version          = "0.1.0"
-  s.summary          = "Common iOS code."
+  s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
                        DESC
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
-    'ios-pod-test' => ['Pod/Assets/*.png']
+    'Izeni' => ['Pod/Assets/*.png']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
