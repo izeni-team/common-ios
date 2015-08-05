@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "175C610BEBF7ADDA67A2E843"
-               BuildableName = "ios-pod-test.bundle"
-               BlueprintName = "Pods-ios-pod-test_Tests-ios-pod-test-ios-pod-test"
+               BuildableName = "Izeni.bundle"
+               BlueprintName = "Pods-Izeni_Tests-Izeni-Izeni"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "175C610BEBF7ADDA67A2E843"
+            BuildableName = "Izeni.bundle"
+            BlueprintName = "Pods-Izeni_Tests-Izeni-Izeni"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
