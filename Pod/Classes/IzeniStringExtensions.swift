@@ -22,7 +22,6 @@ public extension String {
     public var length: Int {
         return count(self)
     }
-    
     /// :returns: A substring that contains the n leftmost characters of the string. The entire string is returned if n is greater than size() or less than zero.
     public func left(n: Int) -> String {
         if n < 0 || n >= count(self) {
@@ -32,7 +31,6 @@ public extension String {
         
         return (self as NSString).substringToIndex(n)
     }
-    
     /// :returns: A substring that contains the n rightmost characters of the string. The entire string is returned if n is greater than size() or less than zero.
     public func right(n: Int) -> String {
         if n < 0 || n >= count(self) {
@@ -42,7 +40,6 @@ public extension String {
         
         return (self as NSString).substringFromIndex(count(self) - n)
     }
-    
     /// :returns: A string that contains n characters of this string, starting at the specified position index. Returns an empty string if the position index exceeds the length of the string.  If there are less than n characters available in the string starting at the given position, or if n is -1 (default), the function returns all characters that are available from the specified position.
     public func mid(position: Int, length: Int = -1) -> String {
         assert(position >= 0)
@@ -136,7 +133,6 @@ public extension String {
     public func contains(string: String, caseInsensitive: Bool) -> Bool {
         return rangeOfString(string, options: caseInsensitive ? .CaseInsensitiveSearch : .allZeros) != nil
     }
-    
     /** The dot (".") in iOS does not match the newline character by default, whereas in Qt the dot will match any character, including the newline character.
         :returns: True if the regular expression is contained in the string, False otherwise.
     */
