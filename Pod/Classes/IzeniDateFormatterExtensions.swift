@@ -9,8 +9,8 @@
 import Foundation
 
 public extension NSDateFormatter {
-    struct Relative {
-        static func toString(date: NSDate, dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle) -> String {
+    public struct Relative {
+        public static func toString(date: NSDate, dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle) -> String {
             struct Static {
                 static var formatter = NSDateFormatter()
             }
@@ -48,19 +48,19 @@ public extension NSDateFormatter {
         }
     }
     
-    struct ISO8601 {
-        enum Format {
+    public struct ISO8601 {
+        public enum Format {
             case Automatic
             case YearMonthDayHourMinuteSecondSubsecond
             case YearMonthDayHourMinuteSecond
             case YearMonthDay
         }
         
-        static func fromString(string: String?) -> NSDate? {
+        public static func fromString(string: String?) -> NSDate? {
             return fromString(string, format: .Automatic)
         }
         
-        static func fromString(string: String?, format: Format) -> NSDate? {
+        public static func fromString(string: String?, format: Format) -> NSDate? {
             if string == nil {
                 return nil
             }
@@ -78,11 +78,11 @@ public extension NSDateFormatter {
             }
         }
         
-        static func toString(date: NSDate?) -> String? {
+        public static func toString(date: NSDate?) -> String? {
             return toString(date, format: .Automatic)
         }
         
-        static func toString(date: NSDate?, format: Format) -> String? {
+        public static func toString(date: NSDate?, format: Format) -> String? {
             if date == nil {
                 return nil
             }
@@ -95,7 +95,7 @@ public extension NSDateFormatter {
             }
         }
         
-        static var formatters: [Format:NSDateFormatter] {
+        public static var formatters: [Format:NSDateFormatter] {
             struct Static {
                 static var formatters = [Format:NSDateFormatter]()
             }
