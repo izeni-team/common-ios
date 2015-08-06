@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 
+// As of Swift 1.2, this extension won't work unless you manually copy it into your project. :-(
 public extension JSON {
     public init(_ date: NSDate) {
         let formatted = NSDateFormatter.ISO8601.toString(date, format: .YearMonthDayHourMinuteSecondSubsecond)!
