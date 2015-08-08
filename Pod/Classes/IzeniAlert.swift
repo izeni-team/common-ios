@@ -32,7 +32,7 @@ The AppDelegate must implement didRecieveLocalNotification in the appDelegate li
     IzeniAlert.application(application, didReceiveLocalNotification: notification)
   }
 */
-class IzeniAlert: NSObject {
+public class IzeniAlert: NSObject {
     let data: [String:AnyObject]
     typealias Action = (text: String, identifier: String)
     let defaultAction: Action
@@ -54,7 +54,7 @@ class IzeniAlert: NSObject {
     /**
     Displays the UIAlert or UILocalNotification, depending on applicationState.
     */
-    func show() {
+    public func show() {
         let app = UIApplication.sharedApplication()
         if app.applicationState == .Background {
             let notification = UILocalNotification()

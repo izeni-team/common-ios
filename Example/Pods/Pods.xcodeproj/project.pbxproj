@@ -10,7 +10,6 @@
 		0420EC2A4AAC36198B6AB3D5 /* Pods-Izeni_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 207B5FD726BC6FD43546AD53 /* Pods-Izeni_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EEF00ED1C6159D8D9D08C57 /* IzeniStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F160F06064149FCD55B1000 /* IzeniStringExtensions.swift */; };
 		109CB9962370310F1F703F4A /* NSObject+IzeniBroadcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F42D88E9FE498F161D69B1F /* NSObject+IzeniBroadcast.m */; };
-		12983E4847A675D9C45CB1A9 /* AppMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE9DA21F4EE93CC930A56A /* AppMigrator.swift */; };
 		164EE83A6620A6033CBD0F17 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420649401BA4C783534080F /* ImagePicker.swift */; };
 		18413B66761AF35C0CAD0BC5 /* ArrayMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8119D51911A2A8CC720BA2 /* ArrayMagic.swift */; };
 		1C37249AE0800FEB5588A211 /* Pods-Izeni_Tests-Izeni-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BF92824E3301E05D4597E37 /* Pods-Izeni_Tests-Izeni-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +24,7 @@
 		42E6A220A7640A8943D63C3D /* UIStoryboardExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F28D15EB716F4A9A19616 /* UIStoryboardExtenstions.swift */; };
 		4AE63E4B13F4796F582763F4 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87622740066829687F0FF6 /* UIImageExtensions.swift */; };
 		5B0A27441B7590EA00A48237 /* SpinnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A27431B7590EA00A48237 /* SpinnerVC.swift */; };
+		5B0A27461B75940F00A48237 /* Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A27451B75940F00A48237 /* Migrator.swift */; };
 		5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B911B6C1B59A131007B759A /* IzeniAlert.swift */; };
 		5BB4EEB51B7126B100ED0909 /* UITextField+IzeniExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */; };
 		5BB4EEB61B7126B100ED0909 /* UITextField+IzeniExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */; };
@@ -68,7 +68,6 @@
 
 /* Begin PBXFileReference section */
 		02FA92EFA9D5BB89F3BB1D72 /* Pods-Izeni_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Izeni_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		04FE9DA21F4EE93CC930A56A /* AppMigrator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppMigrator.swift; sourceTree = "<group>"; };
 		0A2DC8CAE5D6287969C807A5 /* Pods-Izeni_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Izeni_Tests.modulemap"; sourceTree = "<group>"; };
 		0F368B4909DF116ECE2AC690 /* Izeni.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Izeni.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		13AFE1A752CD73630F6D4A10 /* Pods-Izeni_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Izeni_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		52B805E8C4B205A7A4C99D80 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IzeniDateExtensions.swift; sourceTree = "<group>"; };
 		5B0A27431B7590EA00A48237 /* SpinnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerVC.swift; sourceTree = "<group>"; };
+		5B0A27451B75940F00A48237 /* Migrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migrator.swift; sourceTree = "<group>"; };
 		5B911B6C1B59A131007B759A /* IzeniAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniAlert.swift; sourceTree = "<group>"; };
 		5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IzeniExtensions.h"; sourceTree = "<group>"; };
 		5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IzeniExtensions.m"; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		C8D5C221B183FE2A3DAB6D5B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				04FE9DA21F4EE93CC930A56A /* AppMigrator.swift */,
+				5B0A27451B75940F00A48237 /* Migrator.swift */,
 				2C8119D51911A2A8CC720BA2 /* ArrayMagic.swift */,
 				A351CB5F788C59231F043C49 /* DistanceFormatter.h */,
 				E10BB71B482DB08DE5B56C77 /* DistanceFormatter.m */,
@@ -436,7 +436,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12983E4847A675D9C45CB1A9 /* AppMigrator.swift in Sources */,
 				18413B66761AF35C0CAD0BC5 /* ArrayMagic.swift in Sources */,
 				BDD4E1DC3D8454579DCD0897 /* DistanceFormatter.m in Sources */,
 				40B0800737460029E2F3CE2B /* EDQueueActuator.swift in Sources */,
@@ -469,6 +468,7 @@
 				5B0A27441B7590EA00A48237 /* SpinnerVC.swift in Sources */,
 				5BB4EEB61B7126B100ED0909 /* UITextField+IzeniExtensions.m in Sources */,
 				5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */,
+				5B0A27461B75940F00A48237 /* Migrator.swift in Sources */,
 				5BC419D41B684F5B003DC68F /* IzeniViewControllerExtensions.swift in Sources */,
 				5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */,
 				3DE909048F1AC86A2E562984 /* Pods-Izeni_Tests-dummy.m in Sources */,

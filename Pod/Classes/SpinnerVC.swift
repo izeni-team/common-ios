@@ -22,7 +22,7 @@ public class SpinnerVC: UIViewController {
         spinner.center = view.center
     }
     
-    func presentOnVC(vc: UIViewController, completion: (() -> Void)) {
+    public func presentOnVC(vc: UIViewController, completion: (() -> Void)) {
         self.modalPresentationStyle = .OverCurrentContext
         self.modalTransitionStyle = .CrossDissolve
         view.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.6)
@@ -31,7 +31,7 @@ public class SpinnerVC: UIViewController {
         vc.presentViewController(self, animated: true, completion: completion)
     }
     
-    func dismissFromVC(vc: UIViewController, completion: (() -> Void)) {
+    public func dismissFromVC(vc: UIViewController, completion: (() -> Void)) {
         if vc.presentedViewController === self {
             vc.dismissViewControllerAnimated(true, completion: completion)
         } else {
