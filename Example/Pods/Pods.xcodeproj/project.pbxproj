@@ -24,6 +24,7 @@
 		40B0800737460029E2F3CE2B /* EDQueueActuator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA45F346217B6183508C2A /* EDQueueActuator.swift */; };
 		42E6A220A7640A8943D63C3D /* UIStoryboardExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359F28D15EB716F4A9A19616 /* UIStoryboardExtenstions.swift */; };
 		4AE63E4B13F4796F582763F4 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87622740066829687F0FF6 /* UIImageExtensions.swift */; };
+		5B0A27441B7590EA00A48237 /* SpinnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A27431B7590EA00A48237 /* SpinnerVC.swift */; };
 		5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B911B6C1B59A131007B759A /* IzeniAlert.swift */; };
 		5BB4EEB51B7126B100ED0909 /* UITextField+IzeniExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */; };
 		5BB4EEB61B7126B100ED0909 /* UITextField+IzeniExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */; };
@@ -69,7 +70,7 @@
 		02FA92EFA9D5BB89F3BB1D72 /* Pods-Izeni_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Izeni_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		04FE9DA21F4EE93CC930A56A /* AppMigrator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppMigrator.swift; sourceTree = "<group>"; };
 		0A2DC8CAE5D6287969C807A5 /* Pods-Izeni_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Izeni_Tests.modulemap"; sourceTree = "<group>"; };
-		0F368B4909DF116ECE2AC690 /* Izeni.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Izeni.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F368B4909DF116ECE2AC690 /* Izeni.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Izeni.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		13AFE1A752CD73630F6D4A10 /* Pods-Izeni_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Izeni_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		178F6D60AF05CB80FC7C018D /* NSTimer+Nonretained.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Nonretained.h"; sourceTree = "<group>"; };
 		18F6688E9B74BDDE01275D15 /* Pods-Izeni_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Izeni_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		49AA755BD8CD7640A814BAD8 /* Pods-Izeni_Tests-Izeni-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Izeni_Tests-Izeni-prefix.pch"; sourceTree = "<group>"; };
 		52B805E8C4B205A7A4C99D80 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IzeniDateExtensions.swift; sourceTree = "<group>"; };
+		5B0A27431B7590EA00A48237 /* SpinnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerVC.swift; sourceTree = "<group>"; };
 		5B911B6C1B59A131007B759A /* IzeniAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniAlert.swift; sourceTree = "<group>"; };
 		5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IzeniExtensions.h"; sourceTree = "<group>"; };
 		5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IzeniExtensions.m"; sourceTree = "<group>"; };
@@ -198,7 +200,7 @@
 				DBD640DEA3EAEA1D4032BDC0 /* Pod */,
 				390CC6BD4EB46D391E29C693 /* Support Files */,
 			);
-			name = "Izeni";
+			name = Izeni;
 			path = ../..;
 			sourceTree = "<group>";
 		};
@@ -274,6 +276,7 @@
 				5BD7E6221B66967500F4CB50 /* IzeniResizingCellExtension.swift */,
 				5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */,
 				5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */,
+				5B0A27431B7590EA00A48237 /* SpinnerVC.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B0A27441B7590EA00A48237 /* SpinnerVC.swift in Sources */,
 				5BB4EEB61B7126B100ED0909 /* UITextField+IzeniExtensions.m in Sources */,
 				5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */,
 				5BC419D41B684F5B003DC68F /* IzeniViewControllerExtensions.swift in Sources */,
@@ -495,7 +499,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Izeni_Tests";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = "Izeni";
+				PRODUCT_NAME = Izeni;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -697,7 +701,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Izeni_Tests";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = "Izeni";
+				PRODUCT_NAME = Izeni;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
