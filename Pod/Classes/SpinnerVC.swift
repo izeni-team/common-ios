@@ -8,18 +8,18 @@
 
 import UIKit
 
-class SpinnerVC: UIViewController {
+public class SpinnerVC: UIViewController {
     
     var spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(spinner)
     }
     
-    override func viewDidLayoutSubviews() {
+    override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        spinner.center = view.centerBounds
+        spinner.center = view.center
     }
     
     func presentOnVC(vc: UIViewController, completion: (() -> Void)) {
