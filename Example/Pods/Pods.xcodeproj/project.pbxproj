@@ -25,6 +25,8 @@
 		4AE63E4B13F4796F582763F4 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87622740066829687F0FF6 /* UIImageExtensions.swift */; };
 		5B0A27441B7590EA00A48237 /* SpinnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A27431B7590EA00A48237 /* SpinnerVC.swift */; };
 		5B0A27461B75940F00A48237 /* Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0A27451B75940F00A48237 /* Migrator.swift */; };
+		5B0D05AB1B794BE0005996F3 /* IzeniDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0D05AA1B794BE0005996F3 /* IzeniDispatch.swift */; };
+		5B0D05AC1B794BE0005996F3 /* IzeniDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0D05AA1B794BE0005996F3 /* IzeniDispatch.swift */; };
 		5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B911B6C1B59A131007B759A /* IzeniAlert.swift */; };
 		5BB4EEB51B7126B100ED0909 /* UITextField+IzeniExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */; };
 		5BB4EEB61B7126B100ED0909 /* UITextField+IzeniExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */; };
@@ -89,6 +91,7 @@
 		56F50E010FA2AEE4FFE5DC27 /* IzeniDateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IzeniDateExtensions.swift; sourceTree = "<group>"; };
 		5B0A27431B7590EA00A48237 /* SpinnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerVC.swift; sourceTree = "<group>"; };
 		5B0A27451B75940F00A48237 /* Migrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migrator.swift; sourceTree = "<group>"; };
+		5B0D05AA1B794BE0005996F3 /* IzeniDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniDispatch.swift; sourceTree = "<group>"; };
 		5B911B6C1B59A131007B759A /* IzeniAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IzeniAlert.swift; sourceTree = "<group>"; };
 		5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IzeniExtensions.h"; sourceTree = "<group>"; };
 		5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IzeniExtensions.m"; sourceTree = "<group>"; };
@@ -277,6 +280,7 @@
 				5BB4EEB31B7126B100ED0909 /* UITextField+IzeniExtensions.h */,
 				5BB4EEB41B7126B100ED0909 /* UITextField+IzeniExtensions.m */,
 				5B0A27431B7590EA00A48237 /* SpinnerVC.swift */,
+				5B0D05AA1B794BE0005996F3 /* IzeniDispatch.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -446,6 +450,7 @@
 				F5176A5B7A20D0375EB97B8C /* LoginService.swift in Sources */,
 				A526D30F7393D9C9D175B2C4 /* Magic.swift in Sources */,
 				76C38AC00F4E56164772D1E9 /* NSLocale+Magic.m in Sources */,
+				5B0D05AC1B794BE0005996F3 /* IzeniDispatch.swift in Sources */,
 				109CB9962370310F1F703F4A /* NSObject+IzeniBroadcast.m in Sources */,
 				C7F4A81487D1334D665157F4 /* NSTimer+Nonretained.m in Sources */,
 				983B039DF41090C5E7484A21 /* PaginatedTableViewController.swift in Sources */,
@@ -470,6 +475,7 @@
 				5BD7E6231B66967500F4CB50 /* IzeniResizingCellExtension.swift in Sources */,
 				5B0A27461B75940F00A48237 /* Migrator.swift in Sources */,
 				5BC419D41B684F5B003DC68F /* IzeniViewControllerExtensions.swift in Sources */,
+				5B0D05AB1B794BE0005996F3 /* IzeniDispatch.swift in Sources */,
 				5B911B6D1B59A131007B759A /* IzeniAlert.swift in Sources */,
 				3DE909048F1AC86A2E562984 /* Pods-Izeni_Tests-dummy.m in Sources */,
 			);

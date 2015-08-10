@@ -20,7 +20,7 @@ public class Migrator {
     
     public class func clearAllData(#migration: Migration?, deleteDataBaseFile: Bool) {
         Preferences.clearAll()
-        EDQueue.sharedInstance().empty()
+        EDQueueActuator.singleton.clearQueues()
         
         if deleteDataBaseFile {
             NSFileManager.defaultManager().removeItemAtPath(Realm.defaultPath, error: nil)

@@ -21,7 +21,11 @@ public class SpinnerVC: UIViewController {
         super.viewDidLayoutSubviews()
         spinner.center = view.center
     }
+    /**
+    Show a spinner view over the current context. Use in association with the class function "dismissFromVC."
     
+    :param: vc The UIViewController that will present the spinner view.
+    */
     public func presentOnVC(vc: UIViewController, completion: (() -> Void)) {
         self.modalPresentationStyle = .OverCurrentContext
         self.modalTransitionStyle = .CrossDissolve
@@ -31,12 +35,14 @@ public class SpinnerVC: UIViewController {
         vc.presentViewController(self, animated: true, completion: completion)
     }
     
-    public func dismissFromVC(vc: UIViewController, completion: (() -> Void)) {
-        if vc.presentedViewController === self {
+    /**
+    Dismiss a SpinnerVC from the given UIViewController, if possible. If the presented VC is not a SpinnerVC, the completion block will be called immediately.
+    */
+    public class func dismissFromVC(vc: UIViewController, completion: (() -> Void)) {
+        if vc.presentedViewController is SpinnerVC {
             vc.dismissViewControllerAnimated(true, completion: completion)
         } else {
             completion()
         }
     }
-    
 }
