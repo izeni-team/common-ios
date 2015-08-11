@@ -79,7 +79,7 @@
 
 @end
 
-// broadcastOp is for thread-safety
+// izeniBroadcastOperation is for thread-safety
 static dispatch_once_t izBroadQueueToken;
 static dispatch_queue_t izBroadQueue;
 static void izeniBroadcastOperation(void (^block)(void)) {
