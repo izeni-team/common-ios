@@ -13,7 +13,7 @@ protocol IzeniAlertDelegate: class
 
 The IzeniAlertDelegate will receive calls to alertHandled when the user taps an action on an IzeniAlert.
 */
-protocol IzeniAlertDelegate: class {
+public protocol IzeniAlertDelegate: class {
     /**
     :param: data: The data passed into the IzeniAlert Object
     :param: actionIdentifier: the identifier of the action tapped

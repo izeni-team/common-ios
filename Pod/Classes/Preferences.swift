@@ -21,7 +21,7 @@ public struct Key {
 }
 
 public class Preferences {
-    static let defaults = NSUserDefaults.standardUserDefaults()
+    public static let defaults = NSUserDefaults.standardUserDefaults()
     
     public class func clear(key: Key) {
         defaults.removeObjectForKey(key.path())

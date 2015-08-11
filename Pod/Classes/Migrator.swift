@@ -41,7 +41,7 @@ public class Migrator {
         return succeeded
     }
     
-    class func _migrate(migrationHandler: (migration: Migration!, oldSchemaVersion: UInt64) -> Void) -> Bool {
+    private class func _migrate(migrationHandler: (migration: Migration!, oldSchemaVersion: UInt64) -> Void) -> Bool {
         let oldAppVersion = Preferences.get(Key.previousAppVersion, type: Int.self)
         let oldRealmVersion = Preferences.get(Key.previousSchemaVersion, type: UInt64.self) ?? 0
         Preferences.set(Key.previousAppVersion, appVersion())

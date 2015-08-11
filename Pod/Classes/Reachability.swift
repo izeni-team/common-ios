@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
-import Foundation
 import SCNetworkReachability
-import EDQueue
 
-class Reachability {
-    private static var singleton: Reachability!
-    var watcher: SCNetworkReachability!
-    static var isReachable = true
-    private static let defaultHost = "http://8.8.8.8"
-    static let changedBroadcast = NSUUID()
+public class Reachability {
     
-    class func initialize() {
+    public static var isReachable = true
+    public static let changedBroadcast = NSUUID()
+    
+    private static var singleton: Reachability!
+    private var watcher: SCNetworkReachability!
+    private static let defaultHost = "http://8.8.8.8"
+    
+    public class func initialize() {
         singleton = Reachability()
         singleton.watcher = SCNetworkReachability(host: defaultHost)
         

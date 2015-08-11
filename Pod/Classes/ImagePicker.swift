@@ -9,7 +9,7 @@
 import UIKit
 import PEPhotoCropEditor
 
-@objc protocol ImagePickerDelegate: class {
+@objc public protocol ImagePickerDelegate: class {
     /**
     imagePicked() is called when the user has finished selecting and cropping an image.
     
@@ -26,9 +26,9 @@ import PEPhotoCropEditor
 private let iPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
 
 public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
-    var parentVC: UIViewController!
-    var delegate: ImagePickerDelegate!
-    var aspectRatio: CGFloat?
+    private var parentVC: UIViewController!
+    private var delegate: ImagePickerDelegate!
+    private var aspectRatio: CGFloat?
     public var popoverSource: UIView! // Required for iPad
     public static var singleton = ImagePicker()
     
