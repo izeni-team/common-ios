@@ -9,7 +9,7 @@
 import UIKit
 import PEPhotoCropEditor
 
-@objc protocol ImagePickerDelegate: class {
+@objc public protocol ImagePickerDelegate: class {
     /**
     imagePicked() is called when the user has finished selecting and cropping an image.
     
@@ -26,8 +26,9 @@ import PEPhotoCropEditor
 private let iPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
 
 public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
-    public var parentVC: UIViewController!
-    var delegate: ImagePickerDelegate!
+    private var parentVC: UIViewController!
+    private var delegate: ImagePickerDelegate!
+    private var aspectRatio: CGFloat?
     public var popoverSource: UIView! // Required for iPad
     public static var singleton = ImagePicker()
     
@@ -42,13 +43,17 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     :param: popoverSource For iPad: The UIView that defines where the popover will be placed.
     :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
     */
-    class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
+    class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, withAspectRatio aspectRatio: CGFloat? = nil) {
         
         assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
         
         singleton.delegate = delegate
         singleton.parentVC = from
         singleton.popoverSource = popoverSource
+        
+        if let ar = aspectRatio {
+            singleton.aspectRatio = ar
+        }
         
         let alert = UIAlertController()
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
@@ -92,8 +97,12 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
         let controller = PECropViewController()
         controller.delegate = self
         controller.image = image
-        controller.keepingCropAspectRatio = true
-        controller.cropAspectRatio = 1
+        if let ar = aspectRatio {
+            controller.keepingCropAspectRatio = true
+            controller.cropAspectRatio = ar
+        } else {
+            controller.keepingCropAspectRatio = false
+        }
         controller.toolbarHidden = true
         
         let navController = UINavigationController(rootViewController: controller)

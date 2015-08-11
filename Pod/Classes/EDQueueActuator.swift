@@ -11,14 +11,32 @@ import EDQueue
 
 public class EDQueueActuator: NSObject, EDQueueDelegate {
     
+    /// Set this to job processing function
+    
     public static let singleton = EDQueueActuator()
     private let defaultCenter = NSNotificationCenter()
-    public let delayTime: NSTimeInterval = 60
-    public var resumeTimer: NSTimer?
-    public var needsInternet = true
+    private let delayTime: NSTimeInterval = 5
+    private var resumeTimer: NSTimer?
+    /// An array of all the queues being processed.
+    public var queues = [EDQueue]()
+    private var processJob = { (queue: EDQueue, processJob: [String:AnyObject], completion: EDQueueCompletionBlock) -> Void in }
     
-    public class func start() {
-        singleton
+    /**
+    Call this before beginning to use the Queues.
+    
+    :param: additionalQueues An array of supplementary queues that will be processed with the default queue.
+    :param: process The function called when a job will be processed.
+    */
+    public class func start(#additionalQueues: [EDQueue], process: (queue: EDQueue, processJob: [String:AnyObject], completion: EDQueueCompletionBlock) -> Void) {
+        singleton.queues = [EDQueue.sharedInstance()] + additionalQueues
+        singleton.processJob = process
+        if Reachability.isReachable {
+            for queue in singleton.queues {
+                queue.delegate = singleton
+                queue.retryLimit = UInt.max
+            }
+            singleton.startQueues()
+        }
     }
     
     override init() {
@@ -31,15 +49,29 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
         
         defaultCenter.addObserver(self, selector: "applicationWillResignActive", name: UIApplicationWillResignActiveNotification, object: nil)
         defaultCenter.addObserver(self, selector: "applicationDidBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
+        EDQueue.sharedInstance().delegate = self
     }
     
     public func reachabilityChanged(reachable: NSNumber) {
         if reachable.boolValue {
-            EDQueue.sharedInstance().start()
+            startQueues()
             println("reachable")
-        } else if needsInternet {
+        } else {
+            stopQueues()
             println("not reachable")
-            EDQueue.sharedInstance().stop()
+        }
+    }
+    
+    private func startQueues() {
+        for queue in queues {
+            queue.start()
+        }
+    }
+    
+    private func stopQueues() {
+        for queue in queues {
+            queue.stop()
         }
     }
     
@@ -51,7 +83,19 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
     :param: block Options are .Success, .Fail (Job will be retried), and .Critical (Job will not be retried).
     */
     public func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
-        fatalError("This function must be overridden")
+        let overriddenBlock = { (result: EDQueueResult) -> Void in
+            switch result {
+            case .Success:
+                block(.Success)
+            case .Critical:
+                block(.Critical)
+            case .Fail:
+                block(.Fail)
+                self.scheduleStart(delay: true)
+            }
+        }
+        
+        processJob(queue, job as! [String:AnyObject], overriddenBlock)
     }
     
     /**
@@ -64,26 +108,31 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
         if delay {
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(delayTime, target: self, selector: "startTimeout", userInfo: nil, repeats: false )
         } else {
-            EDQueue.sharedInstance().start()
+            startQueues()
         }
     }
+    
     /**
-    If needsInternet is false, starts the queue. If needsInternet is true, starts the queue if internet is marked as reachable.
+    Starts the queues if internet is reachable.
     */
     public func startTimeout() {
-        if Reachability.isReachable || !needsInternet {
-            EDQueue.sharedInstance().start()
+        if Reachability.isReachable  {
+            startQueues()
         }
     }
     
     public func applicationWillResignActive() {
-        EDQueue.sharedInstance().stop()
+        stopQueues()
     }
     
     public func applicationDidBecomeActive() {
-        EDQueue.sharedInstance().delegate = self
-        EDQueue.sharedInstance().retryLimit = UInt.max
         scheduleStart(delay: false)
+    }
+    
+    public func clearQueues() {
+        for queue in queues {
+            queue.empty()
+        }
     }
     
     

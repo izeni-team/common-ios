@@ -16,7 +16,7 @@ extension UITableViewCell {
     
     :returns: The recommended height of the cell (Finds the lowest point in any view contained in the cell)
     */
-    func calculateHeight() -> CGFloat {
+    public func calculateHeight() -> CGFloat {
         let views = self.contentView.subviews as! [UIView]
         var bottom: CGFloat = 0
         for view in views {

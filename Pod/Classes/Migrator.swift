@@ -1,5 +1,5 @@
 //
-//  AppMigrator.swift
+//  Migrator.swift
 //  Pods
 //
 //  Created by Taylor Allred on 7/16/15.
@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 import EDQueue
 
-public class AppMigrator {
-    public static var realmVersion: Int = 1
-    public static var migrationHandler = { (migration: Migration!, oldSchemaVersion: UInt64) -> Void in }
+public class Migrator {
+    public static var succeeded = false
+    public static var realmVersion: UInt64 = 0
     public class func appVersion() -> Int {
         let info = NSBundle.mainBundle().infoDictionary!
         return (info[kCFBundleVersionKey] as! String).toInt()!
@@ -20,13 +20,13 @@ public class AppMigrator {
     
     public class func clearAllData(#migration: Migration?, deleteDataBaseFile: Bool) {
         Preferences.clearAll()
-        EDQueue.sharedInstance().empty()
+        EDQueueActuator.singleton.clearQueues()
         
         if deleteDataBaseFile {
             NSFileManager.defaultManager().removeItemAtPath(Realm.defaultPath, error: nil)
-        } else if migration != nil {
-            for schema in migration!.oldSchema.objectSchema {
-                migration!.deleteData(schema.className)
+        } else if let migration = migration {
+            for schema in migration.oldSchema.objectSchema {
+                migration.deleteData(schema.className)
             }
         } else {
             let realm = Realm()
@@ -36,15 +36,18 @@ public class AppMigrator {
         }
     }
     
-    public class func migrate() -> Bool {
+    public class func migrate(migrationHandler: (migration: Migration!, oldSchemaVersion: UInt64) -> Void) -> Bool {
+        succeeded = _migrate(migrationHandler)
+        return succeeded
+    }
+    
+    private class func _migrate(migrationHandler: (migration: Migration!, oldSchemaVersion: UInt64) -> Void) -> Bool {
         let oldAppVersion = Preferences.get(Key.previousAppVersion, type: Int.self)
-        let oldRealmVersion = Preferences.get(Key.previousSchemaVersion, type: Int.self)
+        let oldRealmVersion = Preferences.get(Key.previousSchemaVersion, type: UInt64.self) ?? 0
         Preferences.set(Key.previousAppVersion, appVersion())
         Preferences.set(Key.previousSchemaVersion, Int(realmVersion))
         
-        setDefaultRealmSchemaVersion(UInt64(realmVersion)) { migration, oldSchemaVersion in
-            self.migrationHandler(migration, oldSchemaVersion)
-        }
+        setDefaultRealmSchemaVersion(realmVersion, migrationHandler)
         
         if oldRealmVersion > realmVersion {
             // The user has downgraded their app; the database is not usable
