@@ -37,11 +37,11 @@ public class IzeniAlert: NSObject {
     let action: String
     let title: String
     var soundName = UILocalNotificationDefaultSoundName
-    static var delegate: IzeniAlertDelegate!
+    public static var delegate: IzeniAlertDelegate!
     private static let IzeniAlertID = NSUUID()
-    var customizations = IZNotificationCustomizations()
+    public var customizations = IZNotificationCustomizations()
     
-    init(data: [String:AnyObject], title: String, action: String) {
+    public init(data: [String:AnyObject], title: String, action: String) {
         self.data = data
         self.title = title
         self.action = action

@@ -9,6 +9,10 @@
 import Foundation
 
 public struct IZNotificationCustomizations {
+    
+    public init() {
+    }
+    
     //Background
     
     public var backgroundColor = UIColor.clearColor()
