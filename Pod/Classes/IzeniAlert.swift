@@ -36,6 +36,7 @@ public class IzeniAlert: NSObject {
     public static var soundName = UILocalNotificationDefaultSoundName
     public static var delegate: IzeniAlertDelegate!
     private static let IzeniAlertID = NSUUID()
+    public static var collapseDuplicates = false
     
     /**
     Displays the IZNotification or UILocalNotification, depending on applicationState.
@@ -57,7 +58,7 @@ public class IzeniAlert: NSObject {
             notification.soundName = soundName
             app.presentLocalNotificationNow(notification)
         } else {
-            IZNotification.show(title, duration: 3, withCollapseDuplicates: true, customization: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
+            IZNotification.show(title, duration: 3, withCollapseDuplicates: false, customization: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
                 IzeniAlert.delegate.alertHandled(data)
             })
         }
