@@ -43,7 +43,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     :param: popoverSource For iPad: The UIView that defines where the popover will be placed.
     :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
     */
-    class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, withAspectRatio aspectRatio: CGFloat? = nil) {
+    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, withAspectRatio aspectRatio: CGFloat? = nil) {
         
         assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
         
