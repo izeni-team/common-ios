@@ -33,42 +33,38 @@ IzeniAlert.application(application, didReceiveLocalNotification: notification)
 }
 */
 public class IzeniAlert: NSObject {
-    let data: [String:AnyObject]
-    let action: String
-    let title: String
-    var soundName = UILocalNotificationDefaultSoundName
+    public static var soundName = UILocalNotificationDefaultSoundName
     public static var delegate: IzeniAlertDelegate!
     private static let IzeniAlertID = NSUUID()
-    public var customizations = IZNotificationCustomizations()
+    public static var collapseDuplicates = false
     
-    public init(data: [String:AnyObject], title: String, action: String) {
-        self.data = data
-        self.title = title
-        self.action = action
-    }
     /**
     Displays the IZNotification or UILocalNotification, depending on applicationState.
     */
-    public func show() {
+    public static func show(title: String, action: String, data: [String:AnyObject], delegate: IzeniAlertDelegate, customizations: IZNotificationCustomizations?) {
+        
+        self.delegate = delegate
+        
         let app = UIApplication.sharedApplication()
+        
         if app.applicationState == .Background {
             let notification = UILocalNotification()
             notification.userInfo = [
                 "IzeniAlertID": IzeniAlert.IzeniAlertID,
-                "data": data,
+                "data": data
             ]
             notification.alertBody = title
             notification.alertAction = action
             notification.soundName = soundName
             app.presentLocalNotificationNow(notification)
         } else {
-            IZNotification.show(title, duration: 3, withCollapseDuplicates: true, customization: customizations, onTap: { () -> Void in
-                IzeniAlert.delegate.alertHandled(self.data)
+            IZNotification.show(title, duration: 3, withCollapseDuplicates: false, customization: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
+                IzeniAlert.delegate.alertHandled(data)
             })
         }
     }
     
-    class func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    public class func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         if let userInfo = notification.userInfo where userInfo["IzeniAlertID"] as? NSUUID == IzeniAlertID {
             IzeniAlert.delegate.alertHandled(notification.userInfo!["data"] as! [String:AnyObject])
         }

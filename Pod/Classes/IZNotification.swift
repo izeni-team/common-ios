@@ -90,9 +90,11 @@ public class IZNotificationView: UIView {
         
         titleLabel.text = title
         titleLabel.font = appearance.titleFont
+        titleLabel.textColor = appearance.titleColor
         if !appearance.closeButtonHidden {
             closeLabel.text = appearance.closeButtonText
             closeLabel.font = appearance.closeButtonFont
+            closeLabel.textColor = appearance.closeButtonColor
             closeButton.addTarget(self, action: "closeButtonTapped", forControlEvents: .TouchUpInside)
             
             backgroundView.contentView.addSubview(closeLabel)
