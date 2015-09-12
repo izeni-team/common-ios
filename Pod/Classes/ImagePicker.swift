@@ -49,7 +49,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
     */
     public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
-        _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: 1) // Defaults to a square
+        _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: 1, preferFrontCamera: false) // Defaults to a square
     }
     
     /**
@@ -61,10 +61,14 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     :param: aspectRatio the aspect ratio you wish to lock cropping to. Specify 1 for a square, nil to let the user decide.
     */
     public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?) {
-        _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: aspectRatio)
+        _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: aspectRatio, preferFrontCamera: false)
     }
     
-    class func _pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?) {
+    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
+        _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: aspectRatio, preferFrontCamera: preferFrontCamera)
+    }
+    
+    class func _pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
         assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
         
         singleton.parentVC = from
@@ -94,12 +98,12 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
             let alert = UIAlertController()
             if allowTakingPhoto && UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 alert.addAction(UIAlertAction(title: takePhotoTitle, style: .Default) { _ in
-                    self.singleton.pickImage(.Camera)
+                    self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
                     })
             }
             if allowChoosingFromLibrary && UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
                 alert.addAction(UIAlertAction(title: chooseFromLibraryTitle, style: .Default) { _ in
-                    self.singleton.pickImage(.PhotoLibrary)
+                    self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
                     })
             }
             if alert.actions.isEmpty {
@@ -121,10 +125,13 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
         }
     }
     
-    public func pickImage(type: UIImagePickerControllerSourceType) {
+    public func pickImage(type: UIImagePickerControllerSourceType, preferFrontCamera: Bool) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = type
+        if preferFrontCamera && picker.sourceType == .Camera && UIImagePickerController.isCameraDeviceAvailable(.Front) {
+            picker.cameraDevice = UIImagePickerControllerCameraDevice.Front;
+        }
         show(picker)
     }
     
