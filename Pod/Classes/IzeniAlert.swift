@@ -58,7 +58,7 @@ public class IzeniAlert: NSObject {
             notification.soundName = soundName
             app.presentLocalNotificationNow(notification)
         } else {
-            IZNotification.show(title, duration: 3, withCollapseDuplicates: false, customization: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
+            IZNotification.show(title, duration: 3, collapseDuplicates: false, customization: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
                 IzeniAlert.delegate.alertHandled(data)
             })
         }
