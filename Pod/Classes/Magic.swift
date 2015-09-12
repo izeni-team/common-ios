@@ -28,9 +28,6 @@ public extension CGRect {
     
     public var x: CGFloat {
         get {
-            let str:String! = ""
-            println(str.toInt())
-            
             return origin.x
         }
         set {

@@ -10,6 +10,11 @@ import Foundation
 
 public struct Key {
     public let name: String
+    
+    public init(name: String) {
+        self.name = name
+    }
+    
     public func path() -> String {
         return "Key." + name
     }
