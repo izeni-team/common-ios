@@ -147,25 +147,8 @@ public class IZNotification: NSObject {
     
     public static let singleton = IZNotification()
     
-    public class func show(title: String) {
-        show(title, onTap: nil)
-    }
-    public class func show(title: String, onTap: (() -> Void)?) {
-        show(title, duration: 3, onTap: onTap)
-    }
-    public class func show(title: String, duration: NSTimeInterval, onTap: (() -> Void)?) {
-        show(title, duration: duration, withCollapseDuplicates: true, onTap: onTap)
-    }
-    public class func show(title: String, duration: NSTimeInterval, withCollapseDuplicates collapse: Bool, onTap: (() -> Void)?) {
-        show(title, duration: duration, withCollapseDuplicates: collapse, customization: IZNotificationCustomizations(), onTap: onTap)
-    }
-    /**
-    :param: duration Number of seconds to display the notification. Defaults to 3.
-    :param: collapse Whether notifications in the queue with the same title are collapsed into one or shown individually. Defaults to true.
-    :param: customization An instance that defines the desired customizations to the Notification appearance and behavior.
-    */
-    public class func show(title: String, duration: NSTimeInterval, withCollapseDuplicates collapse: Bool, customization: IZNotificationCustomizations, onTap: (() -> Void)?) {
-        if collapse {
+    public class func show(title: String, duration: NSTimeInterval = 3, collapseDuplicates: Bool = true, customization: IZNotificationCustomizations = IZNotificationCustomizations(), onTap: (() -> Void)? = nil) {
+        if collapseDuplicates {
             if contains(singleton.notificationQueue.map { $0.title }, title) {
                 return
             }
