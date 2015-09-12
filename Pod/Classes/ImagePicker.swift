@@ -75,6 +75,8 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
         let appName = NSBundle.mainBundle().infoDictionary!["CFBundleName"] as! String
         let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         
+        println("camera available: \(UIImagePickerController.isSourceTypeAvailable(.Camera))")
+        
         switch status {
         case .Restricted:
             let authAlert = UIAlertController(title: "Camera is Restricted", message: "\(appName) could not access the camera on this device.", preferredStyle: .Alert)
@@ -87,10 +89,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
             }))
             self.singleton.show(authAlert)
         case AVAuthorizationStatus.NotDetermined:
-            let authAlert = UIAlertController(title: "\(appName) Would Like to Access Your Camera", message: "\(appName) does not have access to your camera. You can enable access in privacy settings.", preferredStyle: .Alert)
-            authAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in
-            }))
-            self.singleton.show(authAlert)
+            fallthrough
         case AVAuthorizationStatus.Authorized:
             let alert = UIAlertController()
             if allowTakingPhoto && UIImagePickerController.isSourceTypeAvailable(.Camera) {
