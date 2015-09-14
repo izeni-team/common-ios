@@ -56,7 +56,7 @@ public class Preferences {
         Key.pushToken,
         Key.previousAppVersion,
         Key.previousSchemaVersion,
-        key.hasShownOnboard
+        Key.hasShownOnboard
     ]
     
     public class func clearAll() {
