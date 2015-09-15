@@ -11,7 +11,7 @@
 @interface NibView : UIView
 
 + (NSString *)nameOfClass:(Class)c;
-+ (void)loadNib:(NSString *)nib owner:(UIView *)owner addToView:(UIView *)addToView; // Assigns result to property named "nibView"
++ (void)loadNib:(NSString *)nib owner:(NSObject *)owner addToView:(UIView *)addToView; // Assigns result to property named "nibView"
 
 @property (nonatomic, assign, readonly) NSString *nib;
 @property (nonatomic, strong) UIView *nibView;

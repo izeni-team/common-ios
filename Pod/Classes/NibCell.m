@@ -11,6 +11,12 @@
 
 @implementation NibCell
 
+- (id)init {
+    self = [super init];
+    [self setup];
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     [self setup];

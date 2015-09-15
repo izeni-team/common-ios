@@ -35,7 +35,14 @@ public class Preferences {
     
     public class func set(key: Key, _ value: Int) {
         set(key, NSNumber(integer: value))
-        defaults.synchronize()
+    }
+    
+    public class func set(key: Key, _ value: Bool) {
+        set(key, NSNumber(bool: value))
+    }
+    
+    public class func set(key: Key, _ value: String) {
+        set(key, value as NSString)
     }
     
     public class func set<T: AnyObject>(key: Key, _ value: T) {
