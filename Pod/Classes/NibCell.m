@@ -29,6 +29,12 @@
     return self;
 }
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self setup];
+    return self;
+}
+
 - (NSString *)nib {
     return [NibView nameOfClass:self.class];
 }
