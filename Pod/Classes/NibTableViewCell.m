@@ -1,15 +1,15 @@
 //
-//  NibCell.m
+//  NibTableViewCell.m
 //  Izeni
 //
 //  Created by Christopher Bryan Henderson on 9/12/15.
 //  Copyright (c) 2015 Izeni. All rights reserved.
 //
 
-#import "NibCell.h"
+#import "NibTableViewCell.h"
 #import "NibView.h"
 
-@implementation NibCell
+@implementation NibTableViewCell
 
 - (id)init {
     self = [super init];
