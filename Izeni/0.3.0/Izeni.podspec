@@ -33,7 +33,6 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'SwiftyJSON'
   s.dependency 'EDQueue'
-  s.dependency 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa', :branch => 'swift-2.0'
   s.dependency 'PEPhotoCropEditor'
   s.dependency 'SCNetworkReachability'
 end

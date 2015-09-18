@@ -67,7 +67,7 @@ public extension String {
     }
     /// :retuns: A string where every occurrence of the regular express 'regex' (using the given case sensitivity) is replaced with 'with'
     public func replace(regex regex: String, with: String, caseInsensitive: Bool) -> String {
-        let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : []).union(.RegularExpressionSearch)
+        let options: NSStringCompareOptions = [.RegularExpressionSearch] + (caseInsensitive ? .CaseInsensitiveSearch : [])
         return stringByReplacingOccurrencesOfString(regex, withString: with, options: options)
     }
     /// - returns: A string where every occurrence of 'string' is removed.
