@@ -79,7 +79,7 @@ public class IZNotificationView: UIView {
         
         let vibrancyView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: blurView))
         vibrancyView.frame = backgroundView.bounds
-        vibrancyView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        vibrancyView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         backgroundView.contentView.addSubview(vibrancyView)
         backgroundView.backgroundColor = appearance.backgroundColor
@@ -104,7 +104,7 @@ public class IZNotificationView: UIView {
         addSubview(backgroundView)
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -149,7 +149,7 @@ public class IZNotification: NSObject {
     
     public class func show(title: String, duration: NSTimeInterval = 3, collapseDuplicates: Bool = true, customization: IZNotificationCustomizations = IZNotificationCustomizations(), onTap: (() -> Void)? = nil) {
         if collapseDuplicates {
-            if contains(singleton.notificationQueue.map { $0.title }, title) {
+            if singleton.notificationQueue.map({ $0.title }).contains(title) {
                 return
             }
         }

@@ -24,7 +24,7 @@ public class SpinnerVC: UIViewController {
     /**
     Show a spinner view over the current context. Use in association with the class function "dismissFromVC."
     
-    :param: vc The UIViewController that will present the spinner view.
+    - parameter vc: The UIViewController that will present the spinner view.
     */
     public func presentOnVC(vc: UIViewController, completion: (() -> Void)) {
         self.modalPresentationStyle = .OverCurrentContext

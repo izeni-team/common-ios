@@ -22,7 +22,7 @@ public extension NSDateFormatter {
             if dateStyle != .NoStyle && now.daysSince(date) < 7 && now.daysSince(date) > 1 {
                 Static.formatter.dateStyle = .NoStyle
                 
-                var weekday = NSDateFormatter.getWeekday(date)
+                let weekday = NSDateFormatter.getWeekday(date)
                 if dateStyle == .MediumStyle {
                     return weekday + ", " + Static.formatter.stringFromDate(date)
                 } else if dateStyle == .ShortStyle {

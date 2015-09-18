@@ -14,7 +14,7 @@ import AVFoundation
     /**
     imagePicked() is called when the user has finished selecting and cropping an image.
     
-    :param: image The resulting image after being cropped.
+    - parameter image: The resulting image after being cropped.
     */
     func imagePicked(image: UIImage)
     
@@ -44,32 +44,32 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     Opens a popover from which the user may select an image from their photo library or take a new picture.
     Cropping aspect ratio defaults to a square.
     
-    :param: from The UIViewController that will present the popover alert.
-    :param: popoverSource For iPad: The UIView that defines where the popover will be placed.
-    :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
+    - parameter from: The UIViewController that will present the popover alert.
+    - parameter popoverSource: For iPad: The UIView that defines where the popover will be placed.
+    - parameter delegate: the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
     */
-    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
+    public class func pickImage(from from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate) {
         _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: 1, preferFrontCamera: false) // Defaults to a square
     }
     
     /**
     Opens a popover from which the user may select an image from their photo library or take a new picture.
     
-    :param: from The UIViewController that will present the popover alert.
-    :param: popoverSource For iPad: The UIView that defines where the popover will be placed.
-    :param: delegate the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
-    :param: aspectRatio the aspect ratio you wish to lock cropping to. Specify 1 for a square, nil to let the user decide.
+    - parameter from: The UIViewController that will present the popover alert.
+    - parameter popoverSource: For iPad: The UIView that defines where the popover will be placed.
+    - parameter delegate: the ImagePickerDelegate that will receive calls to imagePicked() and, if implemeneted, imagePickCancelled().
+    - parameter aspectRatio: the aspect ratio you wish to lock cropping to. Specify 1 for a square, nil to let the user decide.
     */
-    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?) {
+    public class func pickImage(from from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?) {
         _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: aspectRatio, preferFrontCamera: false)
     }
     
-    public class func pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
+    public class func pickImage(from from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
         _pickImage(from: from, popoverSource: popoverSource, delegate: delegate, aspectRatio: aspectRatio, preferFrontCamera: preferFrontCamera)
     }
     
-    class func _pickImage(#from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
-        assert(contains(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }, "PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
+    class func _pickImage(from from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
+        assert(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }.contains("PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
         
         singleton.parentVC = from
         singleton.popoverSource = popoverSource
@@ -79,7 +79,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
         let appName = NSBundle.mainBundle().infoDictionary!["CFBundleName"] as! String
         let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         
-        println("camera available: \(UIImagePickerController.isSourceTypeAvailable(.Camera))")
+        print("camera available: \(UIImagePickerController.isSourceTypeAvailable(.Camera))")
         
         switch status {
         case .Restricted:

@@ -58,8 +58,8 @@ public class Preferences {
         let dictionary = defaults.dictionaryRepresentation()
         let keep = self.keep.map { $0.path() }
         for key in dictionary.keys {
-            if !contains(keep, key as! String) {
-                defaults.removeObjectForKey(key as! String)
+            if !keep.contains(key) {
+                defaults.removeObjectForKey(key)
             }
         }
         defaults.synchronize()

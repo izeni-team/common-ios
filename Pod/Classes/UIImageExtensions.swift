@@ -32,7 +32,7 @@ public extension UIImage {
             
             let outputImage = filter.valueForKey("outputImage") as! _CIImage
             let context = CIContext(options: nil)
-            let scaledImage = UIImage(CGImage: context.createCGImage(outputImage, fromRect: outputImage.extent()))
+            let scaledImage = UIImage(CGImage: context.createCGImage(outputImage, fromRect: outputImage.extent))
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 callback(image: scaledImage!)

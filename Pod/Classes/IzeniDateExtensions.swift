@@ -33,18 +33,18 @@ public extension NSDate {
     }
     
     public func day() -> Int {
-        return component(NSCalendarUnit.CalendarUnitDay)
+        return component(.Day)
     }
     
     public func month() -> Int {
-        return component(.CalendarUnitMonth)
+        return component(.Month)
     }
     
     public func weekOfMonth() -> Int {
-        return component(NSCalendarUnit.CalendarUnitWeekOfMonth)
+        return component(.WeekOfMonth)
     }
     
-    public func weekOfMonth(#startOfWeek: Weekday) -> Int {
+    public func weekOfMonth(startOfWeek startOfWeek: Weekday) -> Int {
         let weekdayOfFirst = self.beginningOfMonth().weekday
         let converted = NSDate.convertWeekday(weekdayOfFirst, toStartOfWeek: startOfWeek)
         let day = self.day() + converted
@@ -52,12 +52,12 @@ public extension NSDate {
     }
     
     public func year() -> Int {
-        return component(.CalendarUnitYear)
+        return component(.Year)
     }
     
     // NOTE: NSCalendar is 1 indexed, but this Weekday enum is ZERO INDEXED!
     public var weekday: Weekday {
-        return Weekday(rawValue: component(.CalendarUnitWeekday) - 1)!
+        return Weekday(rawValue: component(.Weekday) - 1)!
     }
     
     public convenience init(weekday: Weekday, withStartOfWeek: Weekday) {
@@ -83,33 +83,33 @@ public extension NSDate {
     }
     
     public func daysSince(date: NSDate) -> Int {
-        var fromDate = date.strippedTime()
-        var toDate = self.strippedTime()
-        let difference = NSDate.calendar.components(.CalendarUnitDay, fromDate:fromDate, toDate: toDate, options: .allZeros)
+        let fromDate = date.strippedTime()
+        let toDate = self.strippedTime()
+        let difference = NSDate.calendar.components(.Day, fromDate:fromDate, toDate: toDate, options: [])
         return difference.day
     }
     
     public func yearsSince(date: NSDate) -> Int {
-        var fromDate = date.strippedTime()
-        var toDate = self.strippedTime()
-        let difference = NSDate.calendar.components(.CalendarUnitYear, fromDate: fromDate, toDate: toDate, options: .allZeros)
+        let fromDate = date.strippedTime()
+        let toDate = self.strippedTime()
+        let difference = NSDate.calendar.components(.Year, fromDate: fromDate, toDate: toDate, options: [])
         return difference.year
     }
     
     public func addWeeks(weeks: Int) -> NSDate {
-        return NSDate.calendar.dateByAddingUnit(.CalendarUnitWeekOfYear, value: weeks, toDate: self, options: .allZeros)!
+        return NSDate.calendar.dateByAddingUnit(.WeekOfYear, value: weeks, toDate: self, options: [])!
     }
     
     public func addDays(days: Int) -> NSDate {
         let components = NSDateComponents()
         components.day = days
-        return NSDate.calendar.dateByAddingComponents(components, toDate: self, options: .allZeros)!
+        return NSDate.calendar.dateByAddingComponents(components, toDate: self, options: [])!
     }
     
     public func addMonths(months: Int) -> NSDate {
         let components = NSDateComponents()
         components.month = months
-        return NSDate.calendar.dateByAddingComponents(components, toDate: self, options: .allZeros)!
+        return NSDate.calendar.dateByAddingComponents(components, toDate: self, options: [])!
     }
     
     public class func convertWeekday(weekday: Weekday, toStartOfWeek: Weekday) -> Int {
@@ -142,7 +142,7 @@ public extension NSDate {
         return self.daysSince(NSDate()) == 1
     }
     
-    public func isThisWeek(#startOfWeek: Weekday) -> Bool {
+    public func isThisWeek(startOfWeek startOfWeek: Weekday) -> Bool {
         let start = NSDate(weekday: startOfWeek, withStartOfWeek: startOfWeek)
         let end = start.addWeeks(1)
         return self >= start && self < end
@@ -156,7 +156,7 @@ public extension NSDate {
     
     public func strippedTime() -> NSDate {
         var stripped: NSDate?
-        NSDate.calendar.rangeOfUnit(.CalendarUnitDay, startDate:&stripped, interval: nil, forDate: self)
+        NSDate.calendar.rangeOfUnit(.Day, startDate:&stripped, interval: nil, forDate: self)
         return stripped!
     }
 }

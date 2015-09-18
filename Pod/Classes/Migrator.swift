@@ -15,10 +15,10 @@ public class Migrator {
     public static var realmVersion: UInt64 = 0
     public class func appVersion() -> Int {
         let info = NSBundle.mainBundle().infoDictionary!
-        return (info[kCFBundleVersionKey] as! String).toInt()!
+        return Int((info[kCFBundleVersionKey] as! String))!
     }
     
-    public class func clearAllData(#migration: Migration?, deleteDataBaseFile: Bool) {
+    public class func clearAllData(migration migration: Migration?, deleteDataBaseFile: Bool) {
         Preferences.clearAll()
         EDQueueActuator.singleton.clearQueues()
         

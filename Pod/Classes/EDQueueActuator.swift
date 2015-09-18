@@ -24,10 +24,10 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
     /**
     Call this before beginning to use the Queues.
     
-    :param: additionalQueues An array of supplementary queues that will be processed with the default queue.
-    :param: process The function called when a job will be processed.
+    - parameter additionalQueues: An array of supplementary queues that will be processed with the default queue.
+    - parameter process: The function called when a job will be processed.
     */
-    public class func start(#additionalQueues: [EDQueue], process: (queue: EDQueue, processJob: [String:AnyObject], completion: EDQueueCompletionBlock) -> Void) {
+    public class func start(additionalQueues additionalQueues: [EDQueue], process: (queue: EDQueue, processJob: [String:AnyObject], completion: EDQueueCompletionBlock) -> Void) {
         singleton.queues = [EDQueue.sharedInstance()] + additionalQueues
         singleton.processJob = process
         if Reachability.isReachable {
@@ -56,10 +56,10 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
     public func reachabilityChanged(reachable: NSNumber) {
         if reachable.boolValue {
             startQueues()
-            println("reachable")
+            print("reachable")
         } else {
             stopQueues()
-            println("not reachable")
+            print("not reachable")
         }
     }
     
@@ -78,9 +78,9 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
     /**
     This function is called when a task reaches the front of the queue. It must be overridden.
     
-    :param: queue The EDQueue with the task
-    :param: job The dictionary of values that was passed into the queue when the task was created.
-    :param: block Options are .Success, .Fail (Job will be retried), and .Critical (Job will not be retried).
+    - parameter queue: The EDQueue with the task
+    - parameter job: The dictionary of values that was passed into the queue when the task was created.
+    - parameter block: Options are .Success, .Fail (Job will be retried), and .Critical (Job will not be retried).
     */
     public func queue(queue: EDQueue!, processJob job: [NSObject : AnyObject]!, completion block: EDQueueCompletionBlock!) {
         let overriddenBlock = { (result: EDQueueResult) -> Void in
@@ -101,9 +101,9 @@ public class EDQueueActuator: NSObject, EDQueueDelegate {
     /**
     Start the queue
     
-    :param: delay if true, start the queue after the interval in the stored property delayTime. If false, start immediately.
+    - parameter delay: if true, start the queue after the interval in the stored property delayTime. If false, start immediately.
     */
-    public func scheduleStart(#delay: Bool) {
+    public func scheduleStart(delay delay: Bool) {
         resumeTimer?.invalidate()
         if delay {
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(delayTime, target: self, selector: "startTimeout", userInfo: nil, repeats: false )

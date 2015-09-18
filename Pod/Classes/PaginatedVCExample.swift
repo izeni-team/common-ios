@@ -34,16 +34,16 @@ public class PaginatedVCExample: PaginatedTableViewController, PaginatedTableVie
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 let statusCode = (response as? NSHTTPURLResponse)?.statusCode ?? 0
-                println("\(statusCode) \(url)")
+                print("\(statusCode) \(url)")
                 if statusCode == 200 {
-                    let serialized = NSJSONSerialization.JSONObjectWithData(data!, options: .allZeros, error: nil) as! [String:AnyObject]
+                    let serialized = (try! NSJSONSerialization.JSONObjectWithData(data!, options: [])) as! [String:AnyObject]
                     success(serializedResponse: serialized)
                 } else {
                     failure()
                 }
             })
         })
-        println("GET \(url)")
+        print("GET \(url)")
         task.resume()
         return task
     }
@@ -61,7 +61,7 @@ public class PaginatedVCExample: PaginatedTableViewController, PaginatedTableVie
         let response = serializedResponse as! [String:AnyObject]
         for result in response["results"] as? [[String:AnyObject]] ?? [] {
             let id = result["id"] as! String
-            assert(!contains(data, id))
+            assert(!data.contains(id))
             data.append(id)
         }
         tableView.reloadData()

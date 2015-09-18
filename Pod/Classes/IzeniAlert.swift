@@ -15,8 +15,8 @@ The IzeniAlertDelegate will receive calls to alertHandled when the user taps an 
 */
 public protocol IzeniAlertDelegate: class {
     /**
-    :param: data: The data passed into the IzeniAlert Object
-    :param: actionIdentifier: the identifier of the action tapped
+    - parameter data:: The data passed into the IzeniAlert Object
+    - parameter actionIdentifier:: the identifier of the action tapped
     */
     func alertHandled(data: [String:AnyObject])
 }

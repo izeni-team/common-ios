@@ -12,8 +12,8 @@ extension UIViewController {
     /**
      Sets up an action sheet for iPad using the direction 'up' or 'down,' depending on the space available.
     
-     :param: alert The UIAlertController to be presented as an action sheet.
-     :param: source The source view from which the popover will be presented.
+     - parameter alert: The UIAlertController to be presented as an action sheet.
+     - parameter source: The source view from which the popover will be presented.
     */
     public func setPopoverPresentation(alert: UIAlertController, source: UIView) {
         alert.popoverPresentationController?.sourceView = source

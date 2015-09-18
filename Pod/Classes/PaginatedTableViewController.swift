@@ -84,7 +84,7 @@ public class PaginatedTableViewController: UITableViewController {
             self.delegate.appendPageData(data)
             
             if self.delegate.isLastPage(data) {
-                println("Last page")
+                print("Last page")
                 self.page = 0
                 self.endReached = true
             } else {
