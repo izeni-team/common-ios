@@ -72,7 +72,7 @@ public class PaginatedVCExample: PaginatedTableViewController, PaginatedTableVie
     }
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
         cell.textLabel!.text = data[indexPath.row]
         return cell
     }

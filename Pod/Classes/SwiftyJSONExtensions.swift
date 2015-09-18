@@ -29,6 +29,6 @@ public extension JSON {
     }
     
     public func rawStringMinified() -> String? {
-        return self.rawString(options: .allZeros)
+        return self.rawString(options: [])
     }
 }

@@ -67,7 +67,7 @@ public extension String {
     }
     /// :retuns: A string where every occurrence of the regular express 'regex' (using the given case sensitivity) is replaced with 'with'
     public func replace(regex regex: String, with: String, caseInsensitive: Bool) -> String {
-        let options: NSStringCompareOptions = [.RegularExpressionSearch] + (caseInsensitive ? .CaseInsensitiveSearch : [])
+        let options = NSStringCompareOptions.RegularExpressionSearch.union(caseInsensitive ? .CaseInsensitiveSearch : [])
         return stringByReplacingOccurrencesOfString(regex, withString: with, options: options)
     }
     /// - returns: A string where every occurrence of 'string' is removed.
@@ -84,7 +84,7 @@ public extension String {
     }
     /// - returns: A string where every occurrence of the regular expression 'regex' (using the given case sensitivity) is removed.
     public func remove(regex regex: String, caseInsensitive: Bool) -> String {
-        let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : []).union(.RegularExpressionSearch)
+        let options = NSStringCompareOptions.RegularExpressionSearch.union(caseInsensitive ? .CaseInsensitiveSearch : [])
         return stringByReplacingOccurrencesOfString(regex, withString: "", options: options)
     }
     /**
@@ -141,7 +141,7 @@ public extension String {
     }
     /// - returns: True if the regular expression is contained in the string (using the given case sensitivity), False otherwise.
     public func contains(regex regex: String, caseInsensitive: Bool) -> Bool {
-        let options: NSStringCompareOptions = (caseInsensitive ? .CaseInsensitiveSearch : []).union(.RegularExpressionSearch)
+        let options = NSStringCompareOptions.RegularExpressionSearch.union(caseInsensitive ? .CaseInsensitiveSearch : [])
         return rangeOfString(regex, options: options) != nil
     }
     

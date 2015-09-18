@@ -14,6 +14,6 @@ public extension UIStoryboard {
     }
     
     public class func instantiateInitial(from: String) -> UIViewController {
-        return UIStoryboard(name: from, bundle: nil).instantiateInitialViewController() as! UIViewController
+        return UIStoryboard(name: from, bundle: nil).instantiateInitialViewController()!
     }
 }

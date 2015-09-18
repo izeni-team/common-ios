@@ -21,9 +21,9 @@ public extension UIImage {
             // The idea here is that we'll crop off the side that is too long by using
             // imageView.contentMode = .ScaleAspectFill
             let scale: Float = size / Float(min(self.size.height, self.size.width))
-            let image = _CIImage(CGImage: self.CGImage)
+            let image = _CIImage(CGImage: self.CGImage!)
             
-            let filter = CIFilter(name: "CILanczosScaleTransform")
+            let filter = CIFilter(name: "CILanczosScaleTransform")!
             filter.setValue(image, forKey: "inputImage")
             filter.setValue(scale, forKey: "inputScale")
             filter.setValue(1, forKey: "inputAspectRatio")
@@ -35,7 +35,7 @@ public extension UIImage {
             let scaledImage = UIImage(CGImage: context.createCGImage(outputImage, fromRect: outputImage.extent))
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                callback(image: scaledImage!)
+                callback(image: scaledImage)
             })
         })
     }
