@@ -15,7 +15,8 @@ public class Migrator {
     public static var realmVersion: UInt64 = 0
     public class func appVersion() -> Int {
         let info = NSBundle.mainBundle().infoDictionary!
-        return Int((info[kCFBundleVersionKey] as! String))!
+        let version = String(info[String(kCFBundleVersionKey)])
+        return Int(version)!
     }
     
     public class func clearAllData(migration migration: Migration?, deleteDataBaseFile: Bool) {
@@ -23,7 +24,7 @@ public class Migrator {
         EDQueueActuator.singleton.clearQueues()
         
         if deleteDataBaseFile {
-            NSFileManager.defaultManager().removeItemAtPath(Realm.defaultPath, error: nil)
+            _ = try? NSFileManager.defaultManager().removeItemAtPath(Realm.Configuration.defaultConfiguration.path!)
         } else if let migration = migration {
             for schema in migration.oldSchema.objectSchema {
                 migration.deleteData(schema.className)
