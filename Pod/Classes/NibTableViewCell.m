@@ -40,11 +40,12 @@
 }
 
 - (void)setup {
-    [NibView loadNib:self.nib owner:self addToView:self.contentView];
+    [NibView loadNib:self.nib owner:self];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self.contentView addSubview:self.nibView];
     self.nibView.frame = self.contentView.bounds;
 }
 

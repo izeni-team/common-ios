@@ -21,17 +21,16 @@
     return className;
 }
 
-+ (void)loadNib:(NSString *)nib owner:(NSObject *)owner addToView:(UIView *)addToView {
++ (void)loadNib:(NSString *)nib owner:(NSObject *)owner {
     UIView *loaded = (UIView *)[[NSBundle mainBundle] loadNibNamed:nib owner:owner options:nil].firstObject;
     [owner setValue:loaded forKey:@"nibView"];
-    [addToView addSubview:loaded];
 }
 
 - (id)init {
     self = [super init];
     [self setup];
     return self;
-}
+~}
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -50,11 +49,12 @@
 }
 
 - (void)setup {
-    [NibView loadNib:self.nib owner:self addToView:self];
+    [NibView loadNib:self.nib owner:self];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self addSubview:self.nibView];
     self.nibView.frame = self.bounds;
 }
 
