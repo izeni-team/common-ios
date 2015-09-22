@@ -15,7 +15,7 @@ public struct Key {
         self.name = name
     }
     
-    public func path() -> String {
+    public var path: String {
         return "Key." + name
     }
     
@@ -30,21 +30,61 @@ public class Preferences {
     public static let defaults = NSUserDefaults.standardUserDefaults()
     
     public class func clear(key: Key) {
-        defaults.removeObjectForKey(key.path())
+        defaults.removeObjectForKey(key.path)
         defaults.synchronize()
     }
     
-    public class func set<T: NSObject>(key: Key, _ value: T) {
-        defaults.setObject(value, forKey: key.path())
+    public class func isSet(key: Key) -> Bool {
+        return defaults.objectForKey(key.path) != nil
+    }
+    
+    public class func set(key: Key, _ boolean: Bool?) {
+        _set(key, boolean != nil ? NSNumber(bool: boolean!) : nil)
+    }
+    
+    public class func get(key: Key) -> Bool {
+        return _get(key, NSNumber.self)?.boolValue ?? false
+    }
+    
+    public class func get(key: Key, defaultsTo: Bool) -> Bool {
+        return _get(key, NSNumber.self)?.boolValue ?? defaultsTo
+    }
+    
+    public class func set(key: Key, _ integer: Int?) {
+        _set(key, integer != nil ? NSNumber(integer: integer!) : nil)
+    }
+    
+    public class func get(key: Key) -> Int {
+        return _get(key, NSNumber.self)?.integerValue ?? 0
+    }
+    
+    public class func set(key: Key, _ string: String?) {
+        _set(key, string)
+    }
+    
+    public class func get(key: Key) -> String? {
+        return _get(key, NSString.self) as? String
+    }
+    
+    public class func set(key: Key, _ data: NSData?) {
+        _set(key, data)
+    }
+    
+    public class func get(key: Key) -> NSData? {
+        return _get(key, NSData.self)
+    }
+    
+    private class func _set(key: Key, _ object: NSObject?) {
+        if let object = object {
+            defaults.setObject(object, forKey: key.path)
+        } else {
+            defaults.removeObjectForKey(key.path)
+        }
         defaults.synchronize()
     }
     
-    public class func get(key: Key, type: Bool.Type) -> Bool {
-        return defaults.boolForKey(key.path())
-    }
-    
-    public class func get<T>(key: Key, type: T.Type) -> T? {
-        return defaults.objectForKey(key.path()) as? T
+    private class func _get<T: NSObject>(key: Key, _ type: T.Type) -> T? {
+        return defaults.objectForKey(key.path) as? T
     }
     
     public static var keep = [
@@ -56,7 +96,7 @@ public class Preferences {
     
     public class func clearAll() {
         let dictionary = defaults.dictionaryRepresentation()
-        let keep = self.keep.map { $0.path() }
+        let keep = self.keep.map { $0.path }
         for key in dictionary.keys {
             if !keep.contains(key) {
                 defaults.removeObjectForKey(key)
