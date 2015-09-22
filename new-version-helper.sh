@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$#" -ne 3 ]; then
-    echo "Requires two arguments: OLD_VERSION and NEW_VERSION and COMMIT_MESSAGE"
+    echo "Requires three arguments: OLD_VERSION and NEW_VERSION and COMMIT_MESSAGE"
     exit 1
 fi
 
