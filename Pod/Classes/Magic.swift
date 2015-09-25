@@ -26,6 +26,10 @@ public extension CGRect {
         self.init(centerX: center.x, centerY: center.y, width: width, height: height)
     }
     
+    public init(x: CGFloat, y: CGFloat, right: CGFloat, height: CGFloat) {
+        self.init(x: x, y: y, width: right - x, height: height)
+    }
+    
     public var x: CGFloat {
         get {
             return origin.x
