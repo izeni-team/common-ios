@@ -22,6 +22,10 @@ public extension CGRect {
         self.init(x: x, y: centerY - height / 2, width: width, height: height)
     }
     
+    public init(x: CGFloat, centerY: CGFloat, right: CGFloat, height: CGFloat) {
+        self.init(x: x, y: centerY - height / 2, width: right - x, height: height)
+    }
+    
     public init(center: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(centerX: center.x, centerY: center.y, width: width, height: height)
     }
