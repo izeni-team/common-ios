@@ -35,7 +35,7 @@ IzeniAlert.application(application, didReceiveLocalNotification: notification)
 public class IzeniAlert: NSObject {
     public static var soundName = UILocalNotificationDefaultSoundName
     public static var delegate: IzeniAlertDelegate!
-    private static let IzeniAlertID = NSUUID()
+    private static let IzeniAlertID = "64a9c192-62e6-48fc-8fae-a6af68f77015"
     public static var collapseDuplicates = false
     
     /**
@@ -65,7 +65,7 @@ public class IzeniAlert: NSObject {
     }
     
     public class func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        if let userInfo = notification.userInfo where userInfo["IzeniAlertID"] as? NSUUID == IzeniAlertID {
+        if let userInfo = notification.userInfo where userInfo["IzeniAlertID"] as? String == IzeniAlertID {
             IzeniAlert.delegate.alertHandled(notification.userInfo!["data"] as! [String:AnyObject])
         }
     }
