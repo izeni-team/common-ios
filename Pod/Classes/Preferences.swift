@@ -19,6 +19,7 @@ public struct Key {
         return "Key." + name
     }
     
+    public static let loginToken = Key(name: "loginToken")
     public static let previousSchemaVersion = Key(name: "previousSchemaVersion")
     public static let previousAppVersion = Key(name: "previousAppVersion")
     public static let loginSuccessful = Key(name: "loginSuccessful")
