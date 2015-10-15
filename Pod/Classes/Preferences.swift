@@ -18,7 +18,8 @@ public struct Key {
     public var path: String {
         return "Key." + name
     }
-    
+   
+    public static let apiHost = Key(name: "apiHost")
     public static let loginToken = Key(name: "loginToken")
     public static let previousSchemaVersion = Key(name: "previousSchemaVersion")
     public static let previousAppVersion = Key(name: "previousAppVersion")
