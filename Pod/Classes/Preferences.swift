@@ -93,7 +93,8 @@ public class Preferences {
         Key.pushToken,
         Key.previousAppVersion,
         Key.previousSchemaVersion,
-        Key.hasShownOnboard
+        Key.hasShownOnboard,
+        Key.apiHost
     ]
     
     public class func clearAll() {
