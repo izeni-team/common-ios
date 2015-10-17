@@ -1,0 +1,60 @@
+//
+//  IzeniNetwork.swift
+//  Izeni
+//
+//  Created by Christopher Bryan Henderson on 10/17/15.
+//  Copyright © 2015 Izeni. All rights reserved.
+//
+
+import Foundation
+import Alamofire
+import Izeni
+import SwiftyJSON
+
+// Subclass to change host, headers, etc.
+// TODO: Add multipart upload
+class IzeniNetwork {
+    struct Broadcasts {
+        static let gotHTTP401 = NSUUID()
+    }
+    
+    // Subclass and override to change
+    static let defaultApiHost = "https://www.google.com/"
+    
+    class func getApiHost() -> String {
+        return Preferences.get(.apiHost) ?? defaultApiHost
+    }
+    
+    // Subclass and override to change
+    static func getJSONHeaders() -> [String:String] {
+        var headers = [String:String]()
+        headers["Content-Type"] = "application/json"
+        if let token: String = Preferences.get(.loginToken) {
+            headers["Authorization"] = "Token " + token
+        }
+        return headers
+    }
+    
+    typealias Method = Alamofire.Method
+    
+    class func makeRequest(method: Method, endpoint: String, json: JSON?, headers: [String:AnyObject], success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
+        let request = Alamofire.request(method, getApiHost() + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
+        request.responseJSON { response in
+            var jsonResponse: JSON?
+            if let value = response.result.value where value is [AnyObject] || value is [String:AnyObject] {
+                jsonResponse = JSON(value)
+            }
+            
+            switch response.response?.statusCode {
+            case .Some(let status) where (200..<300).contains(status):
+                success(json: jsonResponse)
+            case let status where status == 401:
+                Broadcast.emit(Broadcasts.gotHTTP401)
+                fallthrough
+            default:
+                failure(status: response.response?.statusCode, json: jsonResponse)
+            }
+        }
+        return request.task
+    }
+}
