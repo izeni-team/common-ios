@@ -8,25 +8,24 @@
 
 import Foundation
 import Alamofire
-import Izeni
 import SwiftyJSON
 
 // Subclass to change host, headers, etc.
 // TODO: Add multipart upload
-class IzeniNetwork {
-    struct Broadcasts {
-        static let gotHTTP401 = NSUUID()
+public class IzeniNetwork {
+    public struct Broadcasts {
+        public static let gotHTTP401 = NSUUID()
     }
     
     // Subclass and override to change
-    static let defaultApiHost = "https://www.google.com/"
+    public static let defaultApiHost = "https://www.google.com/"
     
-    class func getApiHost() -> String {
+    public class func getApiHost() -> String {
         return Preferences.get(.apiHost) ?? defaultApiHost
     }
     
     // Subclass and override to change
-    static func getJSONHeaders() -> [String:String] {
+    public static func getJSONHeaders() -> [String:String] {
         var headers = [String:String]()
         headers["Content-Type"] = "application/json"
         if let token: String = Preferences.get(.loginToken) {
@@ -35,9 +34,9 @@ class IzeniNetwork {
         return headers
     }
     
-    typealias Method = Alamofire.Method
+    public typealias Method = Alamofire.Method
     
-    class func makeRequest(method: Method, endpoint: String, json: JSON?, headers: [String:AnyObject], success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
+    public class func makeRequest(method: Method, endpoint: String, json: JSON?, headers: [String:AnyObject], success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
         let request = Alamofire.request(method, getApiHost() + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
         request.responseJSON { response in
             var jsonResponse: JSON?
