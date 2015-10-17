@@ -18,7 +18,9 @@ public class IzeniNetwork {
     }
     
     // Subclass and override to change
-    public static let defaultApiHost = "https://www.google.com/"
+    public class var defaultApiHost: String {
+        return "https://www.google.com/"
+    }
     
     public class func getApiHost() -> String {
         return Preferences.get(.apiHost) ?? defaultApiHost
