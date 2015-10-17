@@ -17,13 +17,8 @@ public class IzeniNetwork {
         public static let gotHTTP401 = NSUUID()
     }
     
-    // Subclass and override to change
-    public class var defaultApiHost: String {
-        return "https://www.google.com/"
-    }
-    
     public class func getApiHost() -> String {
-        return Preferences.get(.apiHost) ?? defaultApiHost
+        return Preferences.get(.apiHost)!
     }
     
     // Subclass and override to change
@@ -38,7 +33,7 @@ public class IzeniNetwork {
     
     public typealias Method = Alamofire.Method
     
-    public class func makeRequest(method: Method, endpoint: String, json: JSON?, headers: [String:AnyObject], success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
+    public class func makeRequest(method: Method, endpoint: String, json: JSON?, success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
         let request = Alamofire.request(method, getApiHost() + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
         request.responseJSON { response in
             var jsonResponse: JSON?
