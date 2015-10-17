@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
   s.license          = 'MIT'
   s.author           = { "bhenderson@izeni.com" => "bhenderson@izeni.com" }
-  s.source           = { :git => "https://dev.izeni.net/tallred/IOS-Common-Private-Pod.git", :tag => "0.3.4" }
+  s.source           = { :git => "https://dev.izeni.net/tallred/IOS-Common-Private-Pod.git" }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
@@ -35,4 +35,5 @@ Pod::Spec.new do |s|
   s.dependency 'EDQueue'
   s.dependency 'PEPhotoCropEditor'
   s.dependency 'SCNetworkReachability'
+  s.dependency 'Alamofire'
 end

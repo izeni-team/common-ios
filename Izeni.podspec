@@ -35,4 +35,5 @@ Pod::Spec.new do |s|
   s.dependency 'EDQueue'
   s.dependency 'PEPhotoCropEditor'
   s.dependency 'SCNetworkReachability'
+  s.dependency 'Alamofire'
 end
