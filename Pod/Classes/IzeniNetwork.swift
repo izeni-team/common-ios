@@ -30,11 +30,19 @@ public class IzeniNetwork {
         }
         return headers
     }
+
+
     
     public typealias Method = Alamofire.Method
     
-    public class func makeRequest(method: Method, endpoint: String, json: JSON?, success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
-        let request = Alamofire.request(method, getApiHost() + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
+    public class func makeRequest(method: Method, endpoint: String, json: JSON?, manager: Alamofire.Manager? = nil, success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
+        var requestManager:Alamofire.Manager
+        if manager != nil {
+            requestManager = manager!
+        } else {
+            requestManager = Alamofire.Manager.sharedInstance
+        }
+        let request = requestManager.request(method, getApiHost() + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
         request.responseJSON { response in
             var jsonResponse: JSON?
             if let value = response.result.value where value is [AnyObject] || value is [String:AnyObject] {
@@ -53,4 +61,5 @@ public class IzeniNetwork {
         }
         return request.task
     }
+    
 }
