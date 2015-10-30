@@ -30,23 +30,36 @@ public class IzeniNetwork {
         }
         return headers
     }
+    
+    private static var manager: Manager?
 
-
+    public class func createManager() -> Manager {
+        return Manager.sharedInstance
+    }
+    
+    private class func getManager() -> Manager {
+        if manager == nil {
+            manager = createManager()
+        }
+        return manager!
+    }
     
     public typealias Method = Alamofire.Method
     
-    public class func makeRequest(method: Method, endpoint: String, json: JSON?, manager: Alamofire.Manager? = nil, success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
-        var requestManager:Alamofire.Manager
-        if manager != nil {
-            requestManager = manager!
-        } else {
-            requestManager = Alamofire.Manager.sharedInstance
-        }
+    public class func makeRequest(method: Method, endpoint: String, json: JSON?, success: (json: JSON?) -> Void, failure: (status: Int?, json: JSON?) -> Void) -> NSURLSessionTask {
+        print(method.rawValue + " " + endpoint)
+        
+        let requestManager = getManager()
         let request = requestManager.request(method, getApiHost() + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
         request.responseJSON { response in
             var jsonResponse: JSON?
+            print("\(response.response?.statusCode ?? 0) \(endpoint)")
             if let value = response.result.value where value is [AnyObject] || value is [String:AnyObject] {
+                print(jsonResponse)
                 jsonResponse = JSON(value)
+            } else if let error = response.result.error {
+                print(error)
+            } else {
             }
             
             switch response.response?.statusCode {

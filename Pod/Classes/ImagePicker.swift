@@ -106,13 +106,21 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
                     self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
                     })
             }
-            if alert.actions.isEmpty {
-                let alert = UIAlertController(title: "Photos Unavailable", message: "Your device does not appear to have either a camera or photo library.", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in }))
-                from.presentViewController(alert, animated: true, completion: nil)
+            if alert.actions.count == 1 {
+                if allowTakingPhoto {
+                    self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
+                } else {
+                    self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
+                }
+            } else {
+                if alert.actions.isEmpty {
+                    let alert = UIAlertController(title: "Photos Unavailable", message: "Your device does not appear to have either a camera or photo library.", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in }))
+                    from.presentViewController(alert, animated: true, completion: nil)
+                }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in }))
+                singleton.show(alert)
             }
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in }))
-            singleton.show(alert)
         }
     }
 
