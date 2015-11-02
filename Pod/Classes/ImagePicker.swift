@@ -107,7 +107,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
                     })
             }
             if alert.actions.count == 1 {
-                if allowTakingPhoto {
+                if allowTakingPhoto && UIImagePickerController.isSourceTypeAvailable(.Camera) {
                     self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
                 } else {
                     self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
