@@ -29,36 +29,45 @@ A custom user notification Object that will display IZNotifications if the appli
 The AppDelegate must implement didRecieveLocalNotification in the appDelegate like this:
 
 func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-IzeniAlert.application(application, didReceiveLocalNotification: notification)
+  IzeniAlert.application(application, didReceiveLocalNotification: notification)
 }
 */
 public class IzeniAlert: NSObject {
     public static var soundName = UILocalNotificationDefaultSoundName
     public static var delegate: IzeniAlertDelegate!
     private static let IzeniAlertID = "64a9c192-62e6-48fc-8fae-a6af68f77015"
-    public static var collapseDuplicates = false
     
     /**
     Displays the IZNotification or UILocalNotification, depending on applicationState.
     */
-    public static func show(title: String, action: String, data: [String:AnyObject], delegate: IzeniAlertDelegate, customizations: IZNotificationCustomizations?) {
+    public static func show(title: String? = nil, subtitle: String? = nil, action: String = "View", data: [String: AnyObject], delegate: IzeniAlertDelegate, customizations: IZNotificationCustomizations? = nil) {
         
         self.delegate = delegate
+        
+        if title == nil && subtitle == nil {
+            print("IzeniAlert Error: Title and subtitle cannot be nil; that doesn't make sense")
+            return
+        }
         
         let app = UIApplication.sharedApplication()
         
         if app.applicationState == .Background {
+            print("BACKGROUND")
             let notification = UILocalNotification()
             notification.userInfo = [
                 "IzeniAlertID": IzeniAlert.IzeniAlertID,
                 "data": data
             ]
-            notification.alertBody = title
+            if #available(iOS 8.2, *) {
+                notification.alertTitle = title
+            }
+            notification.alertBody = subtitle
             notification.alertAction = action
             notification.soundName = soundName
-            app.presentLocalNotificationNow(notification)
+            notification.fireDate = NSDate(timeIntervalSinceNow: 30)
+            app.scheduleLocalNotification(notification)
         } else {
-            IZNotification.show(title, duration: 3, collapseDuplicates: false, customization: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
+            IZNotification.show(title, subtitle: subtitle, duration: 5, customizations: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
                 IzeniAlert.delegate.alertHandled(data)
             })
         }
