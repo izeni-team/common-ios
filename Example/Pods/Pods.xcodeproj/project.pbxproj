@@ -87,7 +87,6 @@
 		946139BAB5FB313DDC60973F472C01A1 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AC81BA5D0DF6F961D92BCA70190BA0 /* UIImage+PECrop.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		947B1C83E0E12E5941C757AB2A6F0D1E /* SCReachabilityFlagsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF27757C2C2DE4F04C5AA0A486632D /* SCReachabilityFlagsParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		96D99D0C2472535A169DED65CB231CD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996C050321D2D8ABB49A8B2D7A2B589F /* Foundation.framework */; };
-		9845AFF1C50A0223A6C62E51BA77E24C /* IzeniAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CDEEFFBFC0F05F73B1D53F6B530DD9 /* IzeniAlert.swift */; };
 		99BE0B69BA0D4626BE72E14BCAB10147 /* NSTimer+Nonretained.m in Sources */ = {isa = PBXBuildFile; fileRef = D30EF3AD4DA55BFF3E6C94F80809EC7F /* NSTimer+Nonretained.m */; };
 		99F26276C3C368BA41894936987F3FB0 /* NSLocale+Magic.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2941CE79B5F3755B41230904E090FA /* NSLocale+Magic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9A36764B205BEA8416E58693A40FD630 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557708E4A55CB5D792CF8F58B616976 /* UIKit.framework */; };
@@ -270,7 +269,6 @@
 		17DBD8357C7840EFCA3D23C56FAD094E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AD73131A8FB8B41D3112D11A2B91DF7 /* EDQueue-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EDQueue-prefix.pch"; sourceTree = "<group>"; };
 		1D6617A40EE408BA184EA1340EFBE146 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
-		20CDEEFFBFC0F05F73B1D53F6B530DD9 /* IzeniAlert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IzeniAlert.swift; sourceTree = "<group>"; };
 		223141527F645DC0C4A5019C2134081F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		22A4A81FB68B67B4F405D016AFF675D3 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2302F69E43E8810862301FDD5C7EF192 /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
@@ -588,7 +586,6 @@
 				FE9D5765E6593AE33BAF4EEFDE35CEED /* DistanceFormatter.m */,
 				BF7DD0818F75751B46BCEFF66C59500B /* EDQueueActuator.swift */,
 				D8CC75D2D237E7B9143299B443EA873E /* ImagePicker.swift */,
-				20CDEEFFBFC0F05F73B1D53F6B530DD9 /* IzeniAlert.swift */,
 				3BB7AACD4811963CB2FE0A35E40D6C6B /* IzeniDateExtensions.swift */,
 				8BB77CC27E94EC50677F76671B2C3E1E /* IzeniDateFormatterExtensions.swift */,
 				7903EA9ED1AFAA33FA3640BEE522A69E /* IzeniDispatch.swift */,
@@ -1268,7 +1265,6 @@
 				0782341437D2175B103F10128159DCD2 /* EDQueueActuator.swift in Sources */,
 				51951BD8E9B0E67BF89DEC3B36FA3979 /* ImagePicker.swift in Sources */,
 				8A84BD89D6314107880D89D15F525437 /* Izeni-dummy.m in Sources */,
-				9845AFF1C50A0223A6C62E51BA77E24C /* IzeniAlert.swift in Sources */,
 				DD1E2C1750F4B58A853E90096DD0D077 /* IzeniDateExtensions.swift in Sources */,
 				00D36D6EF55B9E77B917F0E7576EA561 /* IzeniDateFormatterExtensions.swift in Sources */,
 				DF46F2C6A7530ECFF62C2606A44700CB /* IzeniDispatch.swift in Sources */,
@@ -1444,116 +1440,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		09871EC077CBF8E46ED058A24BB09BB7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2780A9B04491D1B1C2E55C7C8DA78E37 /* PEPhotoCropEditor.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PEPhotoCropEditor/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = PEPhotoCropEditor;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3D3A50736061589C79C3E3F0CE2A2BC2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 177E988A4DCBCF609A54A10AA761CC4A /* SwiftyJSON.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		4514129CF6C443CED580BF78FBA7CD8B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B6E9CBE732723A5CAEC09B57D1FAAC8 /* Alamofire.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Alamofire;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		48527F1D1D1C94A665D82CE1DDCC8414 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC8F0A9AEE9CC3609B063262689F57B6 /* SCNetworkReachability.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SCNetworkReachability/SCNetworkReachability-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SCNetworkReachability/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SCNetworkReachability/SCNetworkReachability.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SCNetworkReachability;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		50CEB71966600F99C02AE897FCF815AD /* Debug */ = {
+		2762F978C4AD2AB976529285E9B9237E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 76CABC4D3F056120AED72DF7B0FDF9C6 /* FMDB.xcconfig */;
 			buildSettings = {
@@ -1567,10 +1454,10 @@
 				GCC_PREFIX_HEADER = "Target Support Files/FMDB/FMDB-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FMDB/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/FMDB/FMDB.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = FMDB;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1578,7 +1465,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		50E57D06611AC8CB9405DBF3D54E6C31 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1592,65 +1479,7 @@
 			};
 			name = Release;
 		};
-		589E297C0497510A856D967CD189D15A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CB2AE21113AEBDE2D25562CACB8E80B /* Pods-IZExample.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-IZExample/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-IZExample/Pods-IZExample.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_IZExample;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6C8BC20C14C515857B683B1358ECC703 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C3A8FE25DE8B18F57B9CC5CFE23F649 /* Izeni.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Izeni/Izeni-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Izeni/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Izeni/Izeni.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Izeni;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		7F84FB92168F236B2648A6CC3836AC8D /* Release */ = {
+		5516F64DAFAEE4E8887BFD9310100B32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E310B5964F42E831B8217B3331FE1DCA /* Pods-IZExample.release.xcconfig */;
 			buildSettings = {
@@ -1663,7 +1492,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-IZExample/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-IZExample/Pods-IZExample.modulemap";
@@ -1680,9 +1509,9 @@
 			};
 			name = Release;
 		};
-		87CEDBA3D527E80CE05CB11AB7E320E7 /* Debug */ = {
+		5D86DCD33747F5C810998932859B2F48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C3A8FE25DE8B18F57B9CC5CFE23F649 /* Izeni.xcconfig */;
+			baseConfigurationReference = 2780A9B04491D1B1C2E55C7C8DA78E37 /* PEPhotoCropEditor.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1691,14 +1520,44 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Izeni/Izeni-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Izeni/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PEPhotoCropEditor/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Izeni/Izeni.modulemap";
+				MODULEMAP_FILE = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Izeni;
+				PRODUCT_NAME = PEPhotoCropEditor;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		63B5FD7610FA06901EAADF1C0DC97F48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CB2AE21113AEBDE2D25562CACB8E80B /* Pods-IZExample.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-IZExample/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-IZExample/Pods-IZExample.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_IZExample;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1708,9 +1567,9 @@
 			};
 			name = Debug;
 		};
-		8EF3E9798D624ABA6B202DEB8B5DF9C1 /* Release */ = {
+		6AD11922A24FFD8B808E86E9AB1E1FED /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76CABC4D3F056120AED72DF7B0FDF9C6 /* FMDB.xcconfig */;
+			baseConfigurationReference = 177E988A4DCBCF609A54A10AA761CC4A /* SwiftyJSON.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1719,14 +1578,42 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FMDB/FMDB-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FMDB/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FMDB/FMDB.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6FAA2F9A36C8D0D9ADEBB5B086A65DEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 177E988A4DCBCF609A54A10AA761CC4A /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = FMDB;
+				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1735,19 +1622,34 @@
 			};
 			name = Release;
 		};
-		A206A2F2FBAAAEB809B5BA4F51B4D717 /* Debug */ = {
+		7AC3F601FAFF7E2EDD6D4C0D48EBECB5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C3A8FE25DE8B18F57B9CC5CFE23F649 /* Izeni.xcconfig */;
+			baseConfigurationReference = FC8F0A9AEE9CC3609B063262689F57B6 /* SCNetworkReachability.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = Izeni;
+				GCC_PREFIX_HEADER = "Target Support Files/SCNetworkReachability/SCNetworkReachability-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SCNetworkReachability/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SCNetworkReachability/SCNetworkReachability.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SCNetworkReachability;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		B7ACD5A2A2BC7B1CF28530D239CF78D0 /* Debug */ = {
+		83FCA5FBB430627AC8F451E846D550BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9640BA3CEECCC5DCF848EA5E560E6EFA /* EDQueue.xcconfig */;
 			buildSettings = {
@@ -1761,7 +1663,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/EDQueue/EDQueue-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/EDQueue/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/EDQueue/EDQueue.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1774,7 +1676,73 @@
 			};
 			name = Debug;
 		};
-		C074F63C9EE7CB4D8C618390A32CEC35 /* Debug */ = {
+		8B7F96CC244FF486271D396E698B8F47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76CABC4D3F056120AED72DF7B0FDF9C6 /* FMDB.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FMDB/FMDB-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FMDB/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FMDB/FMDB.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FMDB;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A206A2F2FBAAAEB809B5BA4F51B4D717 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C3A8FE25DE8B18F57B9CC5CFE23F649 /* Izeni.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = Izeni;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		A3427C918F24207B5FD3A44958345D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B6E9CBE732723A5CAEC09B57D1FAAC8 /* Alamofire.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1806,14 +1774,68 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		D7C3EAACF31A1D6536B6948D580E10E1 /* Debug */ = {
+		BC45D76DFC99736CE4CFBDA8AFB0D5CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C3A8FE25DE8B18F57B9CC5CFE23F649 /* Izeni.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Izeni/Izeni-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Izeni/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Izeni/Izeni.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Izeni;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C800916DC78C54AAE35EE4E443C95DED /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2780A9B04491D1B1C2E55C7C8DA78E37 /* PEPhotoCropEditor.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PEPhotoCropEditor/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PEPhotoCropEditor;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C993D8405F342C8E23BAD4EDF32D79E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9B6E9CBE732723A5CAEC09B57D1FAAC8 /* Alamofire.xcconfig */;
 			buildSettings = {
@@ -1827,7 +1849,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1841,7 +1863,89 @@
 			};
 			name = Debug;
 		};
-		E43846B588E1892F3093F3B7082B6DFB /* Release */ = {
+		CC0322A3A475CC1C38E207C59065A480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9640BA3CEECCC5DCF848EA5E560E6EFA /* EDQueue.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EDQueue/EDQueue-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EDQueue/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EDQueue/EDQueue.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = EDQueue;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E3ABA0B0BA300FC01EA7FBF37F69D6C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC8F0A9AEE9CC3609B063262689F57B6 /* SCNetworkReachability.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SCNetworkReachability/SCNetworkReachability-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SCNetworkReachability/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SCNetworkReachability/SCNetworkReachability.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SCNetworkReachability;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F520BC711584BFF2DACD20C29425DDED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C3A8FE25DE8B18F57B9CC5CFE23F649 /* Izeni.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Izeni/Izeni-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Izeni/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Izeni/Izeni.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Izeni;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1868,118 +1972,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E60DB5D78778849901823A06EBCCE1EE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 177E988A4DCBCF609A54A10AA761CC4A /* SwiftyJSON.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		EF0B599412D5A1FE474B0C5D461E5BA9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC8F0A9AEE9CC3609B063262689F57B6 /* SCNetworkReachability.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SCNetworkReachability/SCNetworkReachability-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SCNetworkReachability/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SCNetworkReachability/SCNetworkReachability.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SCNetworkReachability;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F1F90755966D7AB4BB5AE574F443ED7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9640BA3CEECCC5DCF848EA5E560E6EFA /* EDQueue.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EDQueue/EDQueue-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EDQueue/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EDQueue/EDQueue.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EDQueue;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F92054CD1254C9D79DD89BD36F4ACE53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2780A9B04491D1B1C2E55C7C8DA78E37 /* PEPhotoCropEditor.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PEPhotoCropEditor/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PEPhotoCropEditor/PEPhotoCropEditor.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = PEPhotoCropEditor;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1989,8 +1985,8 @@
 		0972EAEE8C5CDA1A75FD4CE149226C9B /* Build configuration list for PBXNativeTarget "SCNetworkReachability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EF0B599412D5A1FE474B0C5D461E5BA9 /* Debug */,
-				48527F1D1D1C94A665D82CE1DDCC8414 /* Release */,
+				E3ABA0B0BA300FC01EA7FBF37F69D6C5 /* Debug */,
+				7AC3F601FAFF7E2EDD6D4C0D48EBECB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1998,8 +1994,8 @@
 		0A40CFF44D7C04EAC489644014922ED7 /* Build configuration list for PBXNativeTarget "FMDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				50CEB71966600F99C02AE897FCF815AD /* Debug */,
-				8EF3E9798D624ABA6B202DEB8B5DF9C1 /* Release */,
+				8B7F96CC244FF486271D396E698B8F47 /* Debug */,
+				2762F978C4AD2AB976529285E9B9237E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2007,8 +2003,8 @@
 		19137CC7E5EDDCECC8C6B37042C45F87 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D3A50736061589C79C3E3F0CE2A2BC2 /* Debug */,
-				E60DB5D78778849901823A06EBCCE1EE /* Release */,
+				6AD11922A24FFD8B808E86E9AB1E1FED /* Debug */,
+				6FAA2F9A36C8D0D9ADEBB5B086A65DEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2016,8 +2012,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C074F63C9EE7CB4D8C618390A32CEC35 /* Debug */,
-				E43846B588E1892F3093F3B7082B6DFB /* Release */,
+				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
+				FB45FFD90572718D82AB9092B750F0CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2025,8 +2021,8 @@
 		5CF678655140D2005183134A8AC458E0 /* Build configuration list for PBXNativeTarget "PEPhotoCropEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				09871EC077CBF8E46ED058A24BB09BB7 /* Debug */,
-				F92054CD1254C9D79DD89BD36F4ACE53 /* Release */,
+				5D86DCD33747F5C810998932859B2F48 /* Debug */,
+				C800916DC78C54AAE35EE4E443C95DED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2043,8 +2039,8 @@
 		8B2B2DA2F7F80D41B1FDB5FACFA4B3DE /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D7C3EAACF31A1D6536B6948D580E10E1 /* Debug */,
-				4514129CF6C443CED580BF78FBA7CD8B /* Release */,
+				C993D8405F342C8E23BAD4EDF32D79E0 /* Debug */,
+				A3427C918F24207B5FD3A44958345D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2052,8 +2048,8 @@
 		BC12BBA222A6B00613D0743E4B20961F /* Build configuration list for PBXNativeTarget "Izeni" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87CEDBA3D527E80CE05CB11AB7E320E7 /* Debug */,
-				6C8BC20C14C515857B683B1358ECC703 /* Release */,
+				F520BC711584BFF2DACD20C29425DDED /* Debug */,
+				BC45D76DFC99736CE4CFBDA8AFB0D5CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2061,8 +2057,8 @@
 		C4FD2330AE76DC21F1ACBD3F26489C09 /* Build configuration list for PBXNativeTarget "Pods-IZExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				589E297C0497510A856D967CD189D15A /* Debug */,
-				7F84FB92168F236B2648A6CC3836AC8D /* Release */,
+				63B5FD7610FA06901EAADF1C0DC97F48 /* Debug */,
+				5516F64DAFAEE4E8887BFD9310100B32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2070,8 +2066,8 @@
 		FAC610C6C18E74B20F0A587A8D289FDD /* Build configuration list for PBXNativeTarget "EDQueue" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B7ACD5A2A2BC7B1CF28530D239CF78D0 /* Debug */,
-				F1F90755966D7AB4BB5AE574F443ED7A /* Release */,
+				83FCA5FBB430627AC8F451E846D550BB /* Debug */,
+				CC0322A3A475CC1C38E207C59065A480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

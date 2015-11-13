@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Izeni
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationDelegate {
 
     var window: UIWindow?
-
+    
+    func notificationHandled(data: [String : AnyObject]) {
+        print("handled: \(data)")
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -20,18 +24,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let types: UIUserNotificationType = [.Badge, .Sound, .Alert]
         let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+
+        IZNotification.unifiedDelegate = self
         
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        IZNotification.application(application, didReceiveLocalNotification: notification)
     }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
+        
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "doThing", userInfo: nil, repeats: false)
+        task = application.beginBackgroundTaskWithExpirationHandler { () -> Void in
+            
+        }
+    }
+    
+    var task = UIBackgroundTaskInvalid
+
+    func applicationDidEnterBackground(application: UIApplication) {
+
+    }
+
+    func doThing() {
+        print("SHOW")
+        IZNotification.showUnified("Title?", subtitle: "Subtitle?", data: ["String": "hello world"])
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

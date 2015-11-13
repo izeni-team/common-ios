@@ -27,9 +27,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showTitle() {
-        IZNotification.show("This is a Title", subtitle: nil, onTap: {
-            print("onTap")
-        })
+        IZNotification.show(nil, subtitle: nil)
+//        IZNotification.showUnified("This is a Title", subtitle: nil, data: ["String": "hello world"])
+//        IZNotification.show("T his is a Title", subtitle: nil, onTap: {
+//            print("onTap")
+//        })
     }
     
     @IBAction func showTitleAndSubtitle() {

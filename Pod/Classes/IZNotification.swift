@@ -69,16 +69,7 @@ public class IZNotificationView: UIView {
     public let closeButton = UIButton()
     public let separator = UIView()
     
-    public init(var title: String?, var subtitle: String?, duration: NSTimeInterval, customizations: IZNotificationCustomizations, onTap: (() -> Void)? = nil) {
-        
-        // Check if we're missing a title and subtitle
-        let somethingToDisplay = (title == nil || !title!.isEmpty) && (subtitle == nil || !subtitle!.isEmpty)
-        assert(somethingToDisplay, "Both title and subtitle are either nil or empty. Nothing to display.")
-        if !somethingToDisplay { // Will not get here in debug builds, but will in release builds.
-            title = "Notification"
-            subtitle = onTap != nil ? "Tap to view." : nil
-        }
-        
+    public init(title: String?, subtitle: String?, duration: NSTimeInterval, customizations: IZNotificationCustomizations, onTap: (() -> Void)?) {
         self.duration = duration
         super.init(frame: CGRectZero)
         self.customizations = customizations
@@ -100,14 +91,14 @@ public class IZNotificationView: UIView {
         separator.backgroundColor = customizations.separatorColor
         backgroundView.contentView.addSubview(separator)
         
-        if title != nil && !title!.isEmpty {
+        if let title = title where !title.isEmpty {
             titleLabel.text = title
             titleLabel.font = customizations.titleFont
             titleLabel.textColor = customizations.titleColor
             backgroundView.contentView.addSubview(titleLabel)
         }
         
-        if subtitle != nil && !subtitle!.isEmpty {
+        if let subtitle = subtitle where !subtitle.isEmpty {
             subtitleLabel.text = subtitle
             subtitleLabel.font = customizations.subtitleFont
             subtitleLabel.textColor = customizations.subtitleColor
@@ -141,13 +132,13 @@ public class IZNotificationView: UIView {
     
     public func tapped() {
         if customizations.hideNotificationOnTap {
-            IZNotification.singleton.animateOutNotificationView(self)
+            IZNotification.singleton.hideNotificationView(self)
         }
         onTap?()
     }
     
     public func closeButtonTapped() {
-        IZNotification.singleton.animateOutNotificationView(self)
+        IZNotification.singleton.hideNotificationView(self)
     }
     
     public override func layoutSubviews() {
@@ -163,7 +154,6 @@ public class IZNotificationView: UIView {
             titleLabel.frame.size.width = availableTitleWidth
             titleLabel.sizeToFit()
             titleLabel.frame = CGRect(x: customizations.titleXInset, y: customizations.titleYInset, width: availableTitleWidth, height: titleLabel.frame.height)
-            
             bottom = CGRectGetMaxY(titleLabel.frame) + customizations.titleBottomInset
         }
         
@@ -185,7 +175,7 @@ public class IZNotificationView: UIView {
         
         frame = CGRect(x: 0, y: 0, width: frame.width, height: bottom)
         backgroundView.frame = CGRect(x: 0, y: 0, width: frame.width, height: bottom)
-        separator.frame = CGRect(x: 0, y: backgroundView.frame.height - (customizations.separatorThickness), width: backgroundView.frame.width, height: customizations.separatorThickness)
+        separator.frame = CGRect(x: 0, y: backgroundView.frame.height - customizations.separatorThickness, width: backgroundView.frame.width, height: customizations.separatorThickness)
     }
 }
 
@@ -215,7 +205,7 @@ public class IZNotificationWindow: UIWindow {
     // visible.
     public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         let hitTestResult = super.hitTest(point, withEvent: event)
-        if var view: UIView! = hitTestResult {
+        if var view: UIView? = hitTestResult {
             while view != nil {
                 if view is IZNotificationView {
                     return hitTestResult
@@ -223,7 +213,6 @@ public class IZNotificationWindow: UIWindow {
                 view = view!.superview
             }
         }
-        
         return nil
     }
 }
@@ -242,44 +231,30 @@ public class IZNotification: NSObject {
     public static let singleton = IZNotification()
     public var previousKeyWindow: UIWindow?
     
-    public override init() {
-        super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appStateChanged", name: UIApplicationDidEnterBackgroundNotification, object: nil)
-    }
-    
-    public class func show(title: String?, subtitle: String?, var duration: NSTimeInterval? = nil, var customizations: IZNotificationCustomizations? = nil, onTap: (() -> Void)? = nil) {
-        if customizations == nil {
-            customizations = singleton.defaultCustomizations
-        }
-        if duration == nil {
-            duration = singleton.defaultCustomizations.defaultDuration
+    public class func show(title: String?, subtitle: String?, duration: NSTimeInterval = singleton.defaultCustomizations.defaultDuration, customizations: IZNotificationCustomizations = singleton.defaultCustomizations, onTap: (() -> Void)? = nil) {
+        if (title ?? "").characters.count + (subtitle ?? "").characters.count == 0 {
+            return // Nothing to show
         }
         
-        let view = IZNotificationView(title: title, subtitle: subtitle, duration: duration!, customizations: customizations!, onTap: onTap)
+        let view = IZNotificationView(title: title, subtitle: subtitle, duration: duration, customizations: customizations, onTap: onTap)
         singleton.notificationQueue.append(view)
         if singleton.notificationQueue.count == 1 {
-            singleton.presentNextNotification()
+            singleton.showNextNotification()
         }
-    }
-    
-    public func appStateChanged() {
-        print("BACKGROUND")
-        
-        
     }
     
     public class func hideCurrentNotification() {
         if let first = singleton.notificationQueue.first {
-            singleton.animateOutNotificationView(first)
+            singleton.hideNotificationView(first)
         }
     }
     
     public func clearNotificationQueue() {
-        notificationQueue.removeAll(keepCapacity: true)
+        notificationQueue.removeAll()
     }
     
-    public func presentNextNotification() {
-        if self.notificationQueue.isEmpty {
+    public func showNextNotification() {
+        if notificationQueue.isEmpty {
             if let keyWindow = previousKeyWindow {
                 keyWindow.makeKeyAndVisible()
             }
@@ -287,18 +262,17 @@ public class IZNotification: NSObject {
             let keyWindow = UIApplication.sharedApplication().keyWindow
             if keyWindow !== window {
                 previousKeyWindow = keyWindow
-                self.window.makeKeyAndVisible()
+                window.makeKeyAndVisible()
             } else {
                 previousKeyWindow = nil
             }
-            let notification = self.notificationQueue.first!
-            
-            self.window.rootViewController!.view.addSubview(notification)
-            self.animateInNotification(notification)
+            let notification = notificationQueue.first!
+            window.rootViewController!.view.addSubview(notification)
+            showNotificationView(notification)
         }
     }
     
-    public func animateInNotification(notification: IZNotificationView) {
+    public func showNotificationView(notification: IZNotificationView) {
         notification.animating = true
         notification.frame.size.width = window.rootViewController!.view.frame.width
         notification.layoutIfNeeded()
@@ -308,26 +282,77 @@ public class IZNotification: NSObject {
             }) { (finished) -> Void in
                 notification.animating = false
                 self.durationTimer?.invalidate()
-                self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(notification.duration, target: self, selector: "animateOutNotification:", userInfo: notification, repeats: false)
+                self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(notification.duration, target: self, selector: "hideNotificationView:", userInfo: notification, repeats: false)
         }
     }
     
-    public func animateOutNotification(timer: NSTimer) {
-        animateOutNotificationView(timer.userInfo as! IZNotificationView)
+    public func hideNotification(timer: NSTimer) {
+        hideNotificationView(timer.userInfo as! IZNotificationView)
     }
     
-    public func animateOutNotificationView(view: IZNotificationView) {
-        self.durationTimer?.invalidate()
+    public func hideNotificationView(view: IZNotificationView) {
+        durationTimer?.invalidate()
         view.animating = true
-        
         UIView.animateWithDuration(animationDuration, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             view.frame.origin.y = -view.frame.height
             view.alpha = 0
             }) { success in
                 view.animating = false
-                self.notificationQueue.removeFirst()
                 view.removeFromSuperview()
-                self.presentNextNotification()
+                self.notificationQueue.removeFirst()
+                self.showNextNotification()
         }
     }
+    
+    // MARK: The next couple of functions are for handling UILocalNotifications.
+    
+    public static var localNotificationSoundName = UILocalNotificationDefaultSoundName
+    public static var unifiedDelegate: IZNotificationDelegate!
+    private static let unifiedIZNotificationID = "64a9c192-62e6-48fc-8fae-a6af68f77015"
+    
+    /**
+     Displays the IZNotification or UILocalNotification, depending on applicationState.
+     */
+    public static func showUnified(title: String? = nil, subtitle: String? = nil, action: String? = nil, data: [String: AnyObject], customizations: IZNotificationCustomizations? = nil) {
+                
+        if title == nil && subtitle == nil {
+            print("IzeniAlert Error: Title and subtitle cannot be nil; that doesn't make sense")
+            return
+        }
+        
+        let app = UIApplication.sharedApplication()
+        
+        if app.applicationState == .Background {
+            let notification = UILocalNotification()
+            notification.userInfo = [
+                "unified_id": IZNotification.unifiedIZNotificationID,
+                "data": data
+            ]
+            if #available(iOS 8.2, *) {
+                notification.alertTitle = title
+            }
+            notification.alertBody = subtitle
+            notification.alertAction = action
+            notification.soundName = localNotificationSoundName
+            app.presentLocalNotificationNow(notification)
+        } else {
+            IZNotification.show(title, subtitle: subtitle, duration: 5, customizations: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
+                IZNotification.unifiedDelegate.notificationHandled(data)
+            })
+        }
+    }
+    
+    public class func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if let userInfo = notification.userInfo where userInfo["unified_id"] as? String == unifiedIZNotificationID {
+            IZNotification.unifiedDelegate.notificationHandled(notification.userInfo!["data"] as! [String:AnyObject])
+        }
+    }
+}
+
+public protocol IZNotificationDelegate: class {
+    /**
+     - parameter data:: The data passed into the IzeniAlert Object
+     - parameter actionIdentifier:: the identifier of the action tapped
+     */
+    func notificationHandled(data: [String:AnyObject])
 }
