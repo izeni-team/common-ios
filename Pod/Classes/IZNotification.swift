@@ -25,7 +25,7 @@ public struct IZNotificationCustomizations {
     
     // Separator
     
-    public var separatorColor = UIColor(white: 0.7, alpha: 1)
+    public var separatorColor = UIColor(white: 0.5, alpha: 0.5)
     public var separatorThickness: CGFloat = 0.5
     
     // Title/Subtitle
@@ -219,7 +219,7 @@ public class IZNotificationWindow: UIWindow {
 
 public class IZNotification: NSObject {
     public var notificationQueue = [IZNotificationView]()
-    public lazy var window: UIWindow! = {
+    public lazy var window: UIWindow = {
         let window = IZNotificationWindow(frame: UIScreen.mainScreen().bounds)
         window.rootViewController = IZNotificationViewController()
         window.windowLevel = UIWindowLevelStatusBar
@@ -229,8 +229,7 @@ public class IZNotification: NSObject {
     public let animationDuration = NSTimeInterval(0.3)
     public var defaultCustomizations = IZNotificationCustomizations()
     public static let singleton = IZNotification()
-    public var previousKeyWindow: UIWindow?
-    
+
     public class func show(title: String?, subtitle: String?, duration: NSTimeInterval = singleton.defaultCustomizations.defaultDuration, customizations: IZNotificationCustomizations = singleton.defaultCustomizations, onTap: (() -> Void)? = nil) {
         if (title ?? "").characters.count + (subtitle ?? "").characters.count == 0 {
             return // Nothing to show
@@ -255,20 +254,27 @@ public class IZNotification: NSObject {
     
     public func showNextNotification() {
         if notificationQueue.isEmpty {
-            if let keyWindow = previousKeyWindow {
-                keyWindow.makeKeyAndVisible()
-            }
+            animateIn({
+                self.window.hidden = true
+                }, finished: {})
         } else {
-            let keyWindow = UIApplication.sharedApplication().keyWindow
-            if keyWindow !== window {
-                previousKeyWindow = keyWindow
-                window.makeKeyAndVisible()
-            } else {
-                previousKeyWindow = nil
-            }
+            window.hidden = false
+            window.makeKeyAndVisible()
             let notification = notificationQueue.first!
             window.rootViewController!.view.addSubview(notification)
             showNotificationView(notification)
+        }
+    }
+    
+    public func animateIn(animations: () -> Void, finished: () -> Void) {
+        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut, .BeginFromCurrentState], animations: animations) { _ in
+            finished()
+        }
+    }
+    
+    public func animateOut(animations: () -> Void, finished: () -> Void) {
+        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: animations) { _ in
+            finished()
         }
     }
     
@@ -277,13 +283,13 @@ public class IZNotification: NSObject {
         notification.frame.size.width = window.rootViewController!.view.frame.width
         notification.layoutIfNeeded()
         notification.frame.origin.y = -notification.frame.height
-        UIView.animateWithDuration(animationDuration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+        animateIn({
             notification.frame.origin.y = 0
-            }) { (finished) -> Void in
+            }, finished: {
                 notification.animating = false
                 self.durationTimer?.invalidate()
-                self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(notification.duration, target: self, selector: "hideNotificationView:", userInfo: notification, repeats: false)
-        }
+                self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(notification.duration, target: self, selector: "hideNotification:", userInfo: notification, repeats: false)
+            })
     }
     
     public func hideNotification(timer: NSTimer) {
@@ -293,21 +299,21 @@ public class IZNotification: NSObject {
     public func hideNotificationView(view: IZNotificationView) {
         durationTimer?.invalidate()
         view.animating = true
-        UIView.animateWithDuration(animationDuration, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        animateOut({
             view.frame.origin.y = -view.frame.height
             view.alpha = 0
-            }) { success in
+            }, finished: {
                 view.animating = false
                 view.removeFromSuperview()
                 self.notificationQueue.removeFirst()
                 self.showNextNotification()
-        }
+            })
     }
     
     // MARK: The next couple of functions are for handling UILocalNotifications.
     
     public static var localNotificationSoundName = UILocalNotificationDefaultSoundName
-    public static var unifiedDelegate: IZNotificationDelegate!
+    public static var unifiedDelegate: IZNotificationUnifiedDelegate!
     private static let unifiedIZNotificationID = "64a9c192-62e6-48fc-8fae-a6af68f77015"
     
     /**
@@ -349,7 +355,7 @@ public class IZNotification: NSObject {
     }
 }
 
-public protocol IZNotificationDelegate: class {
+public protocol IZNotificationUnifiedDelegate: class {
     /**
      - parameter data:: The data passed into the IzeniAlert Object
      - parameter actionIdentifier:: the identifier of the action tapped
