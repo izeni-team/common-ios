@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Izeni, Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct IZNotificationCustomizations {
     public init() {
@@ -180,22 +180,82 @@ public class IZNotificationView: UIView {
 }
 
 public class IZNotificationViewController: UIViewController {
+    var forceStatusBarHidden: Bool?
+    
     // Resize the notification when rotating.
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        for subview in view.subviews {
-            if subview is IZNotificationView {
-                subview.frame.size.width = size.width
-            }
-        }
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        coordinator.animateAlongsideTransition({ (_) -> Void in
+            for subview in self.view.subviews {
+                if subview is IZNotificationView {
+                    subview.frame.size.width = size.width
+                }
+            }
+            
+            // Assumes that iPhone apps will hide status bar in landscape and show it in portrait.
+            // Could very well be a wrong assumption, but code only executes when rotating the device
+            // *while* the notification is visible, which should reduce risk of guessing wrong.
+            if UI_USER_INTERFACE_IDIOM() == .Phone {
+                self.forceStatusBarHidden = size.width > size.height
+                self.setNeedsStatusBarAppearanceUpdate()
+            } else {
+                self.forceStatusBarHidden = nil
+            }
+            }, completion: { _ in
+        })
     }
     
     public override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIApplication.sharedApplication().statusBarStyle
+        return IZNotification.singleton.statusBarStyle
     }
     
     public override func prefersStatusBarHidden() -> Bool {
-        return UIApplication.sharedApplication().statusBarHidden
+        return forceStatusBarHidden ?? IZNotification.singleton.statusBarHidden
+    }
+    
+    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        if let visible = getVisibleViewController() {
+            return (visible.navigationController ?? visible.tabBarController ?? visible).supportedInterfaceOrientations()
+        } else {
+            return UI_USER_INTERFACE_IDIOM() == .Phone ? .Portrait : .Landscape
+        }
+    }
+    
+    // As far as I'm know, this is the only proper way to get the supported interface orientation of
+    // the window beneath
+    public func getVisibleViewController() -> UIViewController? {
+        // This code to get the UIWindow was adapted from SVProgressHUD
+        var window: UIWindow?
+        for w in UIApplication.sharedApplication().windows {
+            if w.screen == UIScreen.mainScreen() && w.windowLevel == UIWindowLevelNormal && !w.hidden && w.alpha > 0 {
+                window = w
+                break
+            }
+        }
+        
+        if let root = window?.rootViewController {
+            return getVisibleViewController(root)
+        } else {
+            return nil
+        }
+    }
+    
+    // This code was adapted from http://stackoverflow.com/a/20515681/2406857
+    public func getVisibleViewController(from: UIViewController) -> UIViewController {
+        if let nav = from as? UINavigationController, visible = nav.visibleViewController {
+            return getVisibleViewController(visible)
+        } else if let tabbar = from as? UITabBarController, selected = tabbar.selectedViewController {
+            return getVisibleViewController(selected)
+        } else if let presented = from.presentedViewController {
+            return getVisibleViewController(presented)
+        } else {
+            for view in from.view.subviews {
+                if let nextResponder = view.nextResponder() as? UIViewController {
+                    return getVisibleViewController(nextResponder)
+                }
+            }
+            return from
+        }
     }
 }
 
@@ -228,8 +288,12 @@ public class IZNotification: NSObject {
     public var durationTimer: NSTimer?
     public let animationDuration = NSTimeInterval(0.3)
     public var defaultCustomizations = IZNotificationCustomizations()
+    public var supportedInterfaceOrientations: UIInterfaceOrientationMask? // Defaults to guessing by traversing view controller heirarchy
+    public var statusBarStyle: UIStatusBarStyle!
+    public var statusBarHidden: Bool!
+    public let app = UIApplication.sharedApplication()
     public static let singleton = IZNotification()
-
+    
     public class func show(title: String?, subtitle: String?, duration: NSTimeInterval = singleton.defaultCustomizations.defaultDuration, customizations: IZNotificationCustomizations = singleton.defaultCustomizations, onTap: (() -> Void)? = nil) {
         if (title ?? "").characters.count + (subtitle ?? "").characters.count == 0 {
             return // Nothing to show
@@ -253,27 +317,37 @@ public class IZNotification: NSObject {
     }
     
     public func showNextNotification() {
+        // At this point, the dismissal animation is already completed
+        
         if notificationQueue.isEmpty {
             animateIn({
                 self.window.hidden = true
                 }, finished: {})
         } else {
+            window.hidden = true
+            updateStatusBarInfo()
+            window.rootViewController = IZNotificationViewController() // Too hard to update status bar appearance--just create a new one
             window.hidden = false
-            window.makeKeyAndVisible()
             let notification = notificationQueue.first!
             window.rootViewController!.view.addSubview(notification)
             showNotificationView(notification)
         }
     }
     
+    // It's easier to check what the style is before we show our window than after
+    public func updateStatusBarInfo() {
+        self.statusBarStyle = self.app.statusBarStyle
+        self.statusBarHidden = self.app.statusBarHidden
+    }
+    
     public func animateIn(animations: () -> Void, finished: () -> Void) {
-        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut, .BeginFromCurrentState], animations: animations) { _ in
+        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut, .BeginFromCurrentState, .AllowAnimatedContent], animations: animations) { _ in
             finished()
         }
     }
     
     public func animateOut(animations: () -> Void, finished: () -> Void) {
-        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: animations) { _ in
+        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseInOut, .BeginFromCurrentState, .AllowAnimatedContent], animations: animations) { _ in
             finished()
         }
     }
@@ -289,7 +363,7 @@ public class IZNotification: NSObject {
                 notification.animating = false
                 self.durationTimer?.invalidate()
                 self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(notification.duration, target: self, selector: "hideNotification:", userInfo: notification, repeats: false)
-            })
+        })
     }
     
     public func hideNotification(timer: NSTimer) {
@@ -307,20 +381,21 @@ public class IZNotification: NSObject {
                 view.removeFromSuperview()
                 self.notificationQueue.removeFirst()
                 self.showNextNotification()
-            })
+        })
     }
     
     // MARK: The next couple of functions are for handling UILocalNotifications.
     
     public static var localNotificationSoundName = UILocalNotificationDefaultSoundName
     public static var unifiedDelegate: IZNotificationUnifiedDelegate!
-    private static let unifiedIZNotificationID = "64a9c192-62e6-48fc-8fae-a6af68f77015"
+    public static let unifiedIZNotificationID = "64a9c192-62e6-48fc-8fae-a6af68f77015"
     
     /**
      Displays the IZNotification or UILocalNotification, depending on applicationState.
      */
     public static func showUnified(title: String? = nil, subtitle: String? = nil, action: String? = nil, data: [String: AnyObject], customizations: IZNotificationCustomizations? = nil) {
-                
+        assert(unifiedDelegate != nil, "You should set the unifiedDelegate before showing a unified notification")
+        
         if title == nil && subtitle == nil {
             print("IzeniAlert Error: Title and subtitle cannot be nil; that doesn't make sense")
             return
@@ -348,7 +423,7 @@ public class IZNotification: NSObject {
         }
     }
     
-    public class func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    public class func didReceiveLocalNotification(notification: UILocalNotification) {
         if let userInfo = notification.userInfo where userInfo["unified_id"] as? String == unifiedIZNotificationID {
             IZNotification.unifiedDelegate.notificationHandled(notification.userInfo!["data"] as! [String:AnyObject])
         }
