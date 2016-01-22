@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
     'Izeni' => ['Pod/Assets/*.png']
   }
 
-  s.library = 'sqlite3.0'
+  #s.library = 'sqlite3.0'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MapKit'

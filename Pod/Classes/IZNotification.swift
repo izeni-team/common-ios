@@ -417,7 +417,7 @@ public class IZNotification: NSObject {
             notification.soundName = localNotificationSoundName
             app.presentLocalNotificationNow(notification)
         } else {
-            IZNotification.show(title, subtitle: subtitle, duration: 5, customizations: customizations ?? IZNotificationCustomizations(), onTap: { () -> Void in
+            IZNotification.show(title, subtitle: subtitle, customizations: customizations ?? singleton.defaultCustomizations, onTap: { () -> Void in
                 IZNotification.unifiedDelegate.notificationHandled(data)
             })
         }

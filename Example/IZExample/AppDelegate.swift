@@ -10,7 +10,7 @@ import UIKit
 import Izeni
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDelegate {
 
     var window: UIWindow?
     
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        IZNotification.application(application, didReceiveLocalNotification: notification)
+        IZNotification.didReceiveLocalNotification(notification)
     }
 
     func applicationWillResignActive(application: UIApplication) {

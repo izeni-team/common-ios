@@ -10,11 +10,11 @@
 
 @interface NibView : UIView
 
-+ (NSString *)nameOfClass:(Class)c;
-+ (void)loadNib:(NSString *)nib owner:(NSObject *)owner; // Assigns result to property named "nibView"
++ (NSString * _Nonnull)nameOfClass:(Class _Nonnull)c;
++ (void)loadNib:(NSString * _Nonnull)nib owner:(NSObject * _Nonnull)owner; // Assigns result to property named "nibView"
 
-@property (nonatomic, assign, readonly) NSString *nib;
-@property (nonatomic, strong) UIView *nibView;
+@property (nonatomic, assign, readonly, nonnull) NSString *nib;
+@property (nonatomic, strong, nonnull) UIView *nibView;
 - (void)setup;
 
 @end
