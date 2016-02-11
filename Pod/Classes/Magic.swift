@@ -261,8 +261,9 @@ public extension UIColor {
     }
     
     convenience init(hexString: String) {
-        let filteredString = "0x" + hexString.stringByReplacingOccurrencesOfString("#", withString: "").stringByReplacingOccurrencesOfString("0x", withString: "")
-        let rgb = UIColor.rgbFromHex(UInt32(Int(filteredString)!))
+        let filteredString = hexString.stringByReplacingOccurrencesOfString("#", withString: "").stringByReplacingOccurrencesOfString("0x", withString: "")
+        let hexNum = UInt32(filteredString, radix: 16)
+        let rgb = UIColor.rgbFromHex(hexNum!)
         self.init(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
     }
 }
