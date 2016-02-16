@@ -75,7 +75,7 @@ use_frameworks!
 
 ## Credits
 
-bhenderson@izeni.com, tbrimhall@izeni.com, jovard@izeni.com, tallred@izeni.com, ssmith@izeni.com
+Bryan Henderson, Thane Brimhall, Jacob Ovard, Taylor Allred, Skyler Smith, Matthew Bailey
 
 ## License
 
