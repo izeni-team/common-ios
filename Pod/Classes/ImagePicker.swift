@@ -153,7 +153,8 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     }
     
     public func show(vc: UIViewController) {
-        if iPad {
+        let alert = vc as? UIAlertController
+        if iPad && alert?.preferredStyle == .ActionSheet {
             let popover = UIPopoverController(contentViewController: vc)
             popover.presentPopoverFromRect(popoverSource.bounds, inView: popoverSource, permittedArrowDirections: .Any, animated: true)
         } else {

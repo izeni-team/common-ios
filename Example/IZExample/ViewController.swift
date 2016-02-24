@@ -9,9 +9,14 @@
 import UIKit
 import Izeni
 
-class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+class ViewController: UIViewController, ImagePickerDelegate {
+    @IBOutlet var openImagePickerButton: UIButton!
+    
+    @IBAction func openImagePicker() {
+        ImagePicker.pickImage(from: self, popoverSource: openImagePickerButton, delegate: self)
+    }
+    
+    func imagePicked(image: UIImage) {
+        print("Got image")
     }
 }
