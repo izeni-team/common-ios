@@ -8,7 +8,6 @@
 ## Usage
 
 This project contains several miscellaneous utilities.
-The example project isn't being maintained as of August 2015. Please take a peek at the individual source files or read below to learn more.
 
 #### IzeniBroadcast
 - Easier to use than NSNotificationCenter
@@ -75,7 +74,7 @@ use_frameworks!
 
 ## Credits
 
-bhenderson@izeni.com, tbrimhall@izeni.com, jovard@izeni.com, tallred@izeni.com, ssmith@izeni.com
+Bryan Henderson, Thane Brimhall, Jacob Ovard, Taylor Allred, Skyler Smith, Matthew Bailey
 
 ## License
 

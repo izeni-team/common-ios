@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		143CC3AD3C5AD4AEFF12F6EE /* Pods_IZExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FC007EB200AAEB8332453D /* Pods_IZExample.framework */; };
+		1AE8C6471C7E26C600B84C0F /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1AE8C6461C7E26C600B84C0F /* PEPhotoCropEditor.bundle */; };
 		349A34AB1BF54EE100725CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A34AA1BF54EE100725CB2 /* AppDelegate.swift */; };
 		349A34AD1BF54EE100725CB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A34AC1BF54EE100725CB2 /* ViewController.swift */; };
 		349A34B01BF54EE100725CB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349A34AE1BF54EE100725CB2 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		1575EAD6467C6F100AC7B290 /* Pods-IZExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IZExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IZExample/Pods-IZExample.debug.xcconfig"; sourceTree = "<group>"; };
 		15FC007EB200AAEB8332453D /* Pods_IZExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IZExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AE8C6461C7E26C600B84C0F /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PEPhotoCropEditor.bundle; path = Pods/PEPhotoCropEditor/Resources/PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
 		2542A61A09787DD4E04F6DF5 /* Pods-IZExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IZExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IZExample/Pods-IZExample.release.xcconfig"; sourceTree = "<group>"; };
 		349A34A71BF54EE100725CB2 /* IZExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IZExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349A34AA1BF54EE100725CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		349A349E1BF54EE100725CB2 = {
 			isa = PBXGroup;
 			children = (
+				1AE8C6461C7E26C600B84C0F /* PEPhotoCropEditor.bundle */,
 				349A34A91BF54EE100725CB2 /* IZExample */,
 				349A34C11BF54F6500725CB2 /* IZExampleTests */,
 				349A34A81BF54EE100725CB2 /* Products */,
@@ -206,6 +209,7 @@
 			files = (
 				349A34B51BF54EE100725CB2 /* LaunchScreen.storyboard in Resources */,
 				349A34B21BF54EE100725CB2 /* Assets.xcassets in Resources */,
+				1AE8C6471C7E26C600B84C0F /* PEPhotoCropEditor.bundle in Resources */,
 				349A34B01BF54EE100725CB2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
