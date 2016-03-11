@@ -263,7 +263,17 @@ public extension UIColor {
     convenience init(hexString: String) {
         let filteredString = hexString.stringByReplacingOccurrencesOfString("#", withString: "").stringByReplacingOccurrencesOfString("0x", withString: "")
         let hexNum = UInt32(filteredString, radix: 16)
-        let rgb = UIColor.rgbFromHex(hexNum!)
+        let rgb = UIColor.rgbFromHex(hexNum ?? UInt32(0))
         self.init(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
+    }
+
+    public func hexString() -> String {
+        let color = UIKit.CIColor(color: self)
+        
+        let redValue = String(format: "%.2x", UInt(color.red * CGFloat(255.0)))
+        let blueValue = String(format: "%.2x", UInt(color.blue * CGFloat(255.0)))
+        let greenValue = String(format: "%.2x", UInt(color.green * CGFloat(255.0)))
+        
+        return redValue + greenValue + blueValue
     }
 }
