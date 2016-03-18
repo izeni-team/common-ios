@@ -255,18 +255,25 @@ public extension UIColor {
         ]
     }
     
-    convenience init(hex: UInt32) {
+    public convenience init?(hex: UInt32) {
+        guard hex == hex & 0xFFFFFF else {
+            return nil
+        }
         let rgb = UIColor.rgbFromHex(hex)
         self.init(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
     }
     
-    convenience init(hexString: String) {
-        let filteredString = hexString.stringByReplacingOccurrencesOfString("#", withString: "").stringByReplacingOccurrencesOfString("0x", withString: "")
-        let hexNum = UInt32(filteredString, radix: 16)
-        let rgb = UIColor.rgbFromHex(hexNum ?? UInt32(0))
+    public convenience init?(hexString: String) {
+        var filtered = hexString.stringByReplacingOccurrencesOfString("#", withString: "")
+        filtered = filtered.stringByReplacingOccurrencesOfString("0x", withString: "")
+        filtered = filtered.stringByReplacingOccurrencesOfString("\\s+", withString: "", options: .RegularExpressionSearch)
+        guard let hexNum = UInt32(filtered, radix: 16) where filtered.characters.count == 6 else {
+            return nil
+        }
+        let rgb = UIColor.rgbFromHex(hexNum)
         self.init(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
     }
-
+    
     public func hexString() -> String {
         let color = UIKit.CIColor(color: self)
         
@@ -276,4 +283,5 @@ public extension UIColor {
         
         return redValue + greenValue + blueValue
     }
+}
 }
