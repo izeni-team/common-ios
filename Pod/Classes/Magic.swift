@@ -284,4 +284,3 @@ public extension UIColor {
         return redValue + greenValue + blueValue
     }
 }
-}
