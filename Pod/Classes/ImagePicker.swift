@@ -99,6 +99,8 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
             
             self.singleton.show(authAlert)
         case AVAuthorizationStatus.NotDetermined:
+            allowTakingPhoto = false
+            allowChoosingFromLibrary = false
             fallthrough
         case AVAuthorizationStatus.Authorized:
             let cam = allowTakingPhoto
@@ -130,7 +132,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
             } else { //the following section is an exhaustive check to show the appropriate error message for all possibilities
                 if cam && !camYes && lib && !libYes {
                     //SHOW error("Neither avaiable")
-                    let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavaible.", preferredStyle: .Alert)
+                    let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavailable.", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
                     from.presentViewController(alert, animated: true, completion: nil)
                 } else if cam && !camYes && !lib {
@@ -143,9 +145,14 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
                     let alert = UIAlertController(title: "Could not access Photo Library", message: "The Photo Library is currently unavailable.", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
                     from.presentViewController(alert, animated: true, completion: nil)
+                } else if !cam && !lib {
+                    //SHOW error("Neither avaiable")
+                    let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavailable.", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
+                    from.presentViewController(alert, animated: true, completion: nil)
                 } else {
                     //SHOW TO CONSOLE - developer error (print error to console, then do nothing--return early) - developer has not allows camera or library
-                    print("*****ERROR: SELECTING MEDIA FROM USER HAS BEEN DISABLED - Developer has choosen not to allow user to select images or video from their camera or photo library.")
+                    print("*****ERROR: SELECTING MEDIA FROM USER HAS BEEN DISABLED - Developer has chosen not to allow user to select images or video from their camera or photo library.")
                     return
                 }
             }
