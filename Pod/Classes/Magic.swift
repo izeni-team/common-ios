@@ -255,15 +255,17 @@ public extension UIColor {
         ]
     }
     
-    public convenience init?(hex: UInt32) {
+    // TODO: Make this a failable initializer after https://bugs.swift.org/browse/SR-704 is fixed.
+    public class func fromHex(hex: UInt32) -> UIColor? {
         guard hex == hex & 0xFFFFFF else {
             return nil
         }
         let rgb = UIColor.rgbFromHex(hex)
-        self.init(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
+        return UIColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
     }
     
-    public convenience init?(hexString: String) {
+    // TODO: Make this a failable initializer after https://bugs.swift.org/browse/SR-704 is fixed.
+    public class func fromHexString(hexString: String) -> UIColor? {
         var filtered = hexString.stringByReplacingOccurrencesOfString("#", withString: "")
         filtered = filtered.stringByReplacingOccurrencesOfString("0x", withString: "")
         filtered = filtered.stringByReplacingOccurrencesOfString("\\s+", withString: "", options: .RegularExpressionSearch)
@@ -271,7 +273,7 @@ public extension UIColor {
             return nil
         }
         let rgb = UIColor.rgbFromHex(hexNum)
-        self.init(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
+        return UIColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
     }
     
     public func hexString() -> String {
