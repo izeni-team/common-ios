@@ -27,6 +27,8 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     private var cameraPermissionGranted: Bool = false
     private var libraryPermissionGranted: Bool = false
     
+    private var permissionsRequested: Bool = false
+    
     private var isCameraAvailable: Bool {
         return UIImagePickerController.isSourceTypeAvailable(.Camera)
     }
@@ -49,10 +51,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         self.delegate = delegate
         self.parentVC = vc
         
-        getPermissions()
-        if canUseCamera() || canUseLibrary() {
-            showPickerSourceAlert()
-        }
+        showPickerSourceAlert()
     }
     
     
@@ -83,37 +82,36 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     // MARK: - Camera Actions
     
     private func takePhoto() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .Camera // Defaults to .PhotoLibrary
-        if preferFrontCamera &&
-            UIImagePickerController.isCameraDeviceAvailable(.Front) {
-            picker.cameraDevice = .Front
+        if cameraPermissionGranted {
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .Camera // Defaults to .PhotoLibrary
+            if preferFrontCamera &&
+                UIImagePickerController.isCameraDeviceAvailable(.Front) {
+                picker.cameraDevice = .Front
+            }
+            show(picker)
+        } else {
+            requestCameraPermission()
         }
-        show(picker)
     }
     
     // MARK: - Library Actions
     
     private func pickLibraryPhoto() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .PhotoLibrary
-        show(picker)
+        if libraryPermissionGranted {
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .PhotoLibrary
+            show(picker)
+        } else {
+            requestLibraryPermission()
+        }
     }
     
     // MARK: - Permissions
     
-    private func getPermissions() {
-        if isCameraAvailable {
-            hasCameraPermission()
-        }
-        if isLibraryAvailable {
-            hasLibraryPermission()
-        }
-    }
-    
-    private func hasCameraPermission() {
+    private func requestCameraPermission() {
         cameraPermissionGranted = false
         let authorization = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         // https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/#//apple_ref/swift/enum/c:@E@AVAuthorizationStatus
@@ -134,13 +132,14 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         case .NotDetermined:
             // Explicit user permission is required for media capture, but the user has not yet granted or denied such permission.
             AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (allow) in
-                self.pickImage(delegate: self.delegate, vc: self.parentVC)
+                self.cameraPermissionGranted = allow
+                self.takePhoto()
             })
             break
         }
     }
     
-    private func hasLibraryPermission() {
+    private func requestLibraryPermission() {
         libraryPermissionGranted = false
         let authorization = PHPhotoLibrary.authorizationStatus()
         // https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/#//apple_ref/swift/enum/c:@E@PHAuthorizationStatus
@@ -161,7 +160,8 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         case .NotDetermined:
             // Explicit user permission is required for media capture, but the user has not yet granted or denied such permission.
             PHPhotoLibrary.requestAuthorization { (allow) in
-                self.pickImage(delegate: self.delegate, vc: self.parentVC)
+                self.libraryPermissionGranted = (allow == .Authorized)
+                self.pickLibraryPhoto()
             }
             break
         }
@@ -227,25 +227,25 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     
     private func showPickerSourceAlert() {
         let alert = UIAlertController()
-        if canUseCamera() {
+        if isCameraAvailable {
             alert.addAction(UIAlertAction(title: "Take Photo", style: .Default) { _ in
                 self.takePhoto()
                 })
         }
-        if canUseLibrary() {
+        if isLibraryAvailable {
             alert.addAction(UIAlertAction(title: "Choose From Library", style: .Default) { _ in
                 self.pickLibraryPhoto()
                 })
         }
         if alert.actions.count == 1 {
-            if canUseCamera() {
+            if isCameraAvailable {
                 takePhoto()
             }
-            if canUseLibrary() {
+            if isLibraryAvailable {
                 pickLibraryPhoto()
             }
         } else if alert.actions.count == 2 {
-            alert.addAction(UIAlertAction(title: "Cancle", style: .Cancel, handler: { _ in }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in }))
             show(alert)
         } else {
             print("[WARN]\tIZImagePicker - No Access given for Camera or Photo Library")
