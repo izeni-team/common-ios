@@ -83,7 +83,9 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         print("IZImagePicker - takePhoto()")
         let picker = UIImagePickerController()
         picker.delegate = self
-        if preferFrontCamera && UIImagePickerController.isCameraDeviceAvailable(.Front) {
+        picker.sourceType = .Camera // Defaults to .PhotoLibrary
+        if preferFrontCamera &&
+            UIImagePickerController.isCameraDeviceAvailable(.Front) {
             picker.cameraDevice = .Front
         }
         show(picker)
