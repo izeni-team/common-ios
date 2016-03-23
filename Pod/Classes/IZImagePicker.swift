@@ -22,6 +22,10 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     private var aspectRatio: CGFloat? = 1
     private var preferFrontCamera: Bool = false
     
+    private var cameraEnabled: Bool = true
+    private var libraryEnabled: Bool = true
+    
+    
     public var popoverSource: UIView! // iPad
     
     private var cameraPermissionGranted: Bool {
@@ -79,6 +83,14 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     
     public func setPreferFrontCamera(preferFrontCamera: Bool) {
         self.preferFrontCamera = preferFrontCamera
+    }
+    
+    public func setCameraEnabled(enabled: Bool) {
+        cameraEnabled = enabled
+    }
+    
+    public func setLibraryEnabled(enabled: Bool) {
+        libraryEnabled = enabled
     }
     
     // MARK: - Camera Actions
@@ -225,21 +237,21 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     
     private func showPickerSourceAlert() {
         let alert = UIAlertController()
-        if isCameraAvailable {
+        if isCameraAvailable && cameraEnabled {
             alert.addAction(UIAlertAction(title: "Take Photo", style: .Default) { _ in
                 self.takePhoto()
                 })
         }
-        if isLibraryAvailable {
+        if isLibraryAvailable && libraryEnabled {
             alert.addAction(UIAlertAction(title: "Choose From Library", style: .Default) { _ in
                 self.pickLibraryPhoto()
                 })
         }
         if alert.actions.count == 1 {
-            if isCameraAvailable {
+            if cameraEnabled {
                 takePhoto()
             }
-            if isLibraryAvailable {
+            if libraryEnabled {
                 pickLibraryPhoto()
             }
         } else if alert.actions.count == 2 {
@@ -247,7 +259,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
             show(alert)
         } else {
             print("[WARN]\tIZImagePicker - No Access given for Camera or Photo Library")
-            deniedAlert("Camera and Photo Library")
+            restrictedAlert("Camera and Photo Library")
         }
     }
     

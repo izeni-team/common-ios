@@ -9,11 +9,11 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.6.8"
+  s.version          = "0.6.9"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
-                       Most Recent Change (0.6.8) - IZImagePicker - Fixed issue when rights already given but IZImagePicker does not know permissions are granted. Setting camera and library permissions to default to == .Authorized
+                       Most Recent Change (0.6.9) - IZImagePicker - Added Camera / Library = Enabled / Disabled functionality
                        DESC
   s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
   s.license          = 'MIT'
