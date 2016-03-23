@@ -18,8 +18,6 @@ class ViewController: UIViewController, IZImagePickerDelegate {
         if picker.isIpad {
             picker.setPopoverSourceForIPad(openImagePickerButton)
         }
-        picker.setCameraEnabled(false)
-        picker.setLibraryEnabled(false)
         picker.pickImage(delegate: self, vc: self)
         
         
