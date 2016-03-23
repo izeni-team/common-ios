@@ -24,10 +24,13 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     
     public var popoverSource: UIView! // iPad
     
-    private var cameraPermissionGranted: Bool = false
-    private var libraryPermissionGranted: Bool = false
+    private var cameraPermissionGranted: Bool {
+        return AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) == .Authorized
+    }
     
-    private var permissionsRequested: Bool = false
+    private var libraryPermissionGranted: Bool {
+        return PHPhotoLibrary.authorizationStatus() == .Authorized
+    }
     
     private var isCameraAvailable: Bool {
         return UIImagePickerController.isSourceTypeAvailable(.Camera)
@@ -50,7 +53,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         
         self.delegate = delegate
         self.parentVC = vc
-        
         showPickerSourceAlert()
     }
     
@@ -112,14 +114,12 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     // MARK: - Permissions
     
     private func requestCameraPermission() {
-        cameraPermissionGranted = false
         let authorization = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         // https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/#//apple_ref/swift/enum/c:@E@AVAuthorizationStatus
         print("\tCamera Permission: \(getAuthorizationType(authorization))")
         switch authorization {
         case .Authorized:
             // The user has explicitly granted permission for media capture, or explicit user permission is not necessary for the media type in question.
-            cameraPermissionGranted = true
             break
         case .Restricted:
             // The user is not allowed to access media capture devices.
@@ -132,7 +132,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         case .NotDetermined:
             // Explicit user permission is required for media capture, but the user has not yet granted or denied such permission.
             AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (allow) in
-                self.cameraPermissionGranted = allow
                 self.takePhoto()
             })
             break
@@ -140,14 +139,12 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     }
     
     private func requestLibraryPermission() {
-        libraryPermissionGranted = false
         let authorization = PHPhotoLibrary.authorizationStatus()
         // https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/#//apple_ref/swift/enum/c:@E@PHAuthorizationStatus
         print("\tLibrary Permission: \(getAuthorizationType(authorization))")
         switch authorization {
         case .Authorized:
             // The user has explicitly granted permission for media capture, or explicit user permission is not necessary for the media type in question.
-            libraryPermissionGranted = true
             break
         case .Restricted:
             // The user is not allowed to access media capture devices.
@@ -160,7 +157,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         case .NotDetermined:
             // Explicit user permission is required for media capture, but the user has not yet granted or denied such permission.
             PHPhotoLibrary.requestAuthorization { (allow) in
-                self.libraryPermissionGranted = (allow == .Authorized)
                 self.pickLibraryPhoto()
             }
             break
