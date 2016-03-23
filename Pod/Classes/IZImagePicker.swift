@@ -17,8 +17,6 @@ import Photos
 }
 
 public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
-    
-    static let instance = IZImagePicker()
     private var parentVC: UIViewController!
     private var delegate: IZImagePickerDelegate!
     private var aspectRatio: CGFloat? = 1
@@ -42,6 +40,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     }
     
     private override init() {}
+    public static let instance = IZImagePicker()
     
     // MARK: - User Allowed Functions
     public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController) {
