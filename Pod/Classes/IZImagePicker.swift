@@ -216,13 +216,15 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     // MARK: - Alerts
     
     private func show(vc: UIViewController) {
-        let alert = vc as? UIAlertController
-        if isIpad && alert?.preferredStyle == .ActionSheet {
-            let popover = UIPopoverController(contentViewController: vc)
-            popover.presentPopoverFromRect(popoverSource.bounds, inView: popoverSource, permittedArrowDirections: .Any, animated: true)
-        } else {
-            parentVC.presentViewController(vc, animated: true, completion: nil)
-        }
+        dispatch_async(dispatch_get_main_queue(), {
+            let alert = vc as? UIAlertController
+            if self.isIpad && alert?.preferredStyle == .ActionSheet {
+                let popover = UIPopoverController(contentViewController: vc)
+                popover.presentPopoverFromRect(self.popoverSource.bounds, inView: self.popoverSource, permittedArrowDirections: .Any, animated: true)
+            } else {
+                self.parentVC.presentViewController(vc, animated: true, completion: nil)
+            }
+        })
     }
     
     private func showPickerSourceAlert() {

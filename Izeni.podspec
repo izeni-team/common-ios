@@ -9,11 +9,11 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.6.6"
+  s.version          = "0.6.7"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
-                       Most Recent Change (0.6.6) - IZImagePicker - Asynchronous problem on getting first time to ask camera or library fixed. Also, small spelling error.
+                       Most Recent Change (0.6.7) - IZImagePicker - Asynchronous problem on getting first time to ask camera or library fixed. On Deny access, need to show alert on main thread, otherwise crash happens
                        DESC
   s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
   s.license          = 'MIT'
