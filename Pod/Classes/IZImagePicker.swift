@@ -44,7 +44,8 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     
     // MARK: - User Allowed Functions
     public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController) {
-        print("IZImagePicker - pickImage()")
+        assert(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }.contains("PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
+        
         self.delegate = delegate
         self.parentVC = vc
         
@@ -80,7 +81,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     // MARK: - Camera Actions
     
     private func takePhoto() {
-        print("IZImagePicker - takePhoto()")
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .Camera // Defaults to .PhotoLibrary
@@ -94,7 +94,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     // MARK: - Library Actions
     
     private func pickLibraryPhoto() {
-        print("IZImagePicker - pickLibraryPhoto()")
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .PhotoLibrary
