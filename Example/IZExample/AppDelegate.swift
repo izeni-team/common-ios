@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDele
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "doThing", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(AppDelegate.doThing), userInfo: nil, repeats: false)
         task = application.beginBackgroundTaskWithExpirationHandler { () -> Void in
             
         }
@@ -54,8 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDele
     }
 
     func doThing() {
-        print("SHOW")
-        IZNotification.showUnified("Title?", subtitle: "Subtitle?", data: ["String": "hello world"])
+//        print("SHOW")
+//        IZNotification.showUnified("Title?", subtitle: "Subtitle?", data: ["String": "hello world"])
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

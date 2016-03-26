@@ -15,6 +15,7 @@
 		349A34B21BF54EE100725CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349A34B11BF54EE100725CB2 /* Assets.xcassets */; };
 		349A34B51BF54EE100725CB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349A34B31BF54EE100725CB2 /* LaunchScreen.storyboard */; };
 		349A34C31BF54F6500725CB2 /* IZExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A34C21BF54F6500725CB2 /* IZExampleTests.swift */; };
+		F3B9BFFE1CA2F8AB00114961 /* IZImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B9BFFD1CA2F8AB00114961 /* IZImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		349A34C01BF54F6500725CB2 /* IZExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IZExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		349A34C21BF54F6500725CB2 /* IZExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZExampleTests.swift; sourceTree = "<group>"; };
 		349A34C41BF54F6500725CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B9BFFD1CA2F8AB00114961 /* IZImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IZImagePicker.swift; path = ../../Pod/Classes/IZImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				349A34AA1BF54EE100725CB2 /* AppDelegate.swift */,
 				349A34AC1BF54EE100725CB2 /* ViewController.swift */,
+				F3B9BFFD1CA2F8AB00114961 /* IZImagePicker.swift */,
 				349A34AE1BF54EE100725CB2 /* Main.storyboard */,
 				349A34B11BF54EE100725CB2 /* Assets.xcassets */,
 				349A34B31BF54EE100725CB2 /* LaunchScreen.storyboard */,
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3B9BFFE1CA2F8AB00114961 /* IZImagePicker.swift in Sources */,
 				349A34AD1BF54EE100725CB2 /* ViewController.swift in Sources */,
 				349A34AB1BF54EE100725CB2 /* AppDelegate.swift in Sources */,
 			);

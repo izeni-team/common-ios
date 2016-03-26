@@ -9,14 +9,26 @@
 import UIKit
 import Izeni
 
-class ViewController: UIViewController, ImagePickerDelegate {
+class ViewController: UIViewController, IZImagePickerDelegate {
     @IBOutlet var openImagePickerButton: UIButton!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBAction func openImagePicker() {
-        ImagePicker.pickImage(from: self, popoverSource: openImagePickerButton, delegate: self)
+        let picker = IZImagePicker.instance
+        if picker.isIpad {
+            picker.setPopoverSourceForIPad(openImagePickerButton)
+        }
+        picker.pickImage(delegate: self, vc: self)
+        
+        
+//                ImagePicker.pickImage(from: self, popoverSource: openImagePickerButton, delegate: self)
     }
     
     func imagePicked(image: UIImage) {
-        print("Got image")
+        backgroundImage.image = image
+    }
+    
+    func imagePickCancelled() {
+        print("Cancelled image pick")
     }
 }

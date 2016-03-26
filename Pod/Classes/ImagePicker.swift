@@ -9,6 +9,7 @@
 import UIKit
 import PEPhotoCropEditor
 import AVFoundation
+import Photos
 
 @objc public protocol ImagePickerDelegate: class {
     /**
@@ -69,6 +70,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     }
     
     class func _pickImage(from from: UIViewController, popoverSource: UIView, delegate: ImagePickerDelegate, aspectRatio: CGFloat?, preferFrontCamera: Bool) {
+        print("[DEPRECATED] - ImagePicker.pickImage(). Use IZImagePicker.pickImage()")
         assert(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }.contains("PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
         
         singleton.parentVC = from
@@ -88,75 +90,94 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
             }))
             self.singleton.show(authAlert)
         case .Denied:
-            let authAlert = UIAlertController(title: "Camera Access is Disabled", message: "\(appName) does not have access to your camera. You can enable access in privacy settings.", preferredStyle: .Alert)
-            
-            authAlert.addAction(UIAlertAction(title: "Settings", style: .Cancel, handler: { (action) -> Void in
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
-            }))
-            
-            authAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in
-            }))
-            
-            self.singleton.show(authAlert)
+           _showCameraSettingsDeniedAlert(appName)
         case AVAuthorizationStatus.NotDetermined:
-            allowTakingPhoto = false
-            allowChoosingFromLibrary = false
-            fallthrough
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (allow) in
+                print("[DEBUG]\tAllow Video: \(allow)")
+                self.allowTakingPhoto = allow
+                if allow {
+                   _cameraAllowedAction(from, preferFrontCamera: preferFrontCamera)
+                } else {
+                    _showCameraSettingsDeniedAlert(appName)
+                }
+            })
         case AVAuthorizationStatus.Authorized:
-            let cam = allowTakingPhoto
-            let camYes = UIImagePickerController.isSourceTypeAvailable(.Camera)
-            let lib = allowChoosingFromLibrary
-            let libYes = UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
-            
-            let alert = UIAlertController()
-            
-            if cam && camYes {
-                alert.addAction(UIAlertAction(title: takePhotoTitle, style: .Default) { _ in
-                    self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
-                    })
+            _cameraAllowedAction(from, preferFrontCamera: preferFrontCamera)
+        }
+    }
+    
+    class func _cameraAllowedAction(from: UIViewController, preferFrontCamera: Bool) {
+        let cam = allowTakingPhoto
+        let camYes = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        
+        if cam && !camYes {
+            allowChoosingFromLibrary = PHPhotoLibrary.authorizationStatus() == .Authorized
+        }
+        
+        let lib = allowChoosingFromLibrary
+        let libYes = UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
+        
+        let alert = UIAlertController()
+        
+        if cam && camYes {
+            alert.addAction(UIAlertAction(title: takePhotoTitle, style: .Default) { _ in
+                self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
+                })
+        }
+        if lib && libYes {
+            alert.addAction(UIAlertAction(title: chooseFromLibraryTitle, style: .Default) { _ in
+                self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
+                })
+        }
+        if alert.actions.count == 1 {
+            if cam {
+                self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
+            } else {
+                self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
             }
-            if lib && libYes {
-                alert.addAction(UIAlertAction(title: chooseFromLibraryTitle, style: .Default) { _ in
-                    self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
-                    })
-            }
-            if alert.actions.count == 1 {
-                if cam {
-                    self.singleton.pickImage(.Camera, preferFrontCamera: preferFrontCamera)
-                } else {
-                    self.singleton.pickImage(.PhotoLibrary, preferFrontCamera: preferFrontCamera)
-                }
-            } else if alert.actions.count == 2 {
-                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in }))
-                singleton.show(alert)
-            } else { //the following section is an exhaustive check to show the appropriate error message for all possibilities
-                if cam && !camYes && lib && !libYes {
-                    //SHOW error("Neither avaiable")
-                    let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavailable.", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
-                    from.presentViewController(alert, animated: true, completion: nil)
-                } else if cam && !camYes && !lib {
-                    //SHOW error("Camera not avaiable")
-                    let alert = UIAlertController(title: "Could not access Camera", message: "The Camera is currently unavailable.", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
-                    from.presentViewController(alert, animated: true, completion: nil)
-                } else if !cam && lib && !libYes {
-                    //SHOW error("Library not avaiable")
-                    let alert = UIAlertController(title: "Could not access Photo Library", message: "The Photo Library is currently unavailable.", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
-                    from.presentViewController(alert, animated: true, completion: nil)
-                } else if !cam && !lib {
-                    //SHOW error("Neither avaiable")
-                    let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavailable.", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
-                    from.presentViewController(alert, animated: true, completion: nil)
-                } else {
-                    //SHOW TO CONSOLE - developer error (print error to console, then do nothing--return early) - developer has not allows camera or library
-                    print("*****ERROR: SELECTING MEDIA FROM USER HAS BEEN DISABLED - Developer has chosen not to allow user to select images or video from their camera or photo library.")
-                    return
-                }
+        } else if alert.actions.count == 2 {
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in }))
+            singleton.show(alert)
+        } else { //the following section is an exhaustive check to show the appropriate error message for all possibilities
+            if cam && !camYes && lib && !libYes {
+                //SHOW error("Neither avaiable")
+                let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavailable.", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
+                from.presentViewController(alert, animated: true, completion: nil)
+            } else if cam && !camYes && !lib {
+                //SHOW error("Camera not avaiable")
+                let alert = UIAlertController(title: "Could not access Camera", message: "The Camera is currently unavailable.", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
+                from.presentViewController(alert, animated: true, completion: nil)
+            } else if !cam && lib && !libYes {
+                //SHOW error("Library not avaiable")
+                let alert = UIAlertController(title: "Could not access Photo Library", message: "The Photo Library is currently unavailable.", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
+                from.presentViewController(alert, animated: true, completion: nil)
+            } else if !cam && !lib {
+                //SHOW error("Neither avaiable")
+                let alert = UIAlertController(title: "Could not access Camera or Photo Library", message: "The Camera and Photo Library are currently unavailable.", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { _ in }))
+                from.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                //SHOW TO CONSOLE - developer error (print error to console, then do nothing--return early) - developer has not allows camera or library
+                print("*****ERROR: SELECTING MEDIA FROM USER HAS BEEN DISABLED - Developer has chosen not to allow user to select images or video from their camera or photo library.")
+                return
             }
         }
+    }
+    
+    class func _showCameraSettingsDeniedAlert(appName: String) {
+        let authAlert = UIAlertController(title: "Camera Access is Disabled", message: "\(appName) does not have access to your camera. You can enable access in privacy settings.", preferredStyle: .Alert)
+        
+        authAlert.addAction(UIAlertAction(title: "Settings", style: .Cancel, handler: { (action) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        }))
+        
+        authAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in
+        }))
+        
+        self.singleton.show(authAlert)
     }
     
     public func show(vc: UIViewController) {
@@ -172,7 +193,6 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewC
     public func pickImage(type: UIImagePickerControllerSourceType, preferFrontCamera: Bool) {
         let picker = UIImagePickerController()
         picker.delegate = self
-        picker.sourceType = type
         if preferFrontCamera && picker.sourceType == .Camera && UIImagePickerController.isCameraDeviceAvailable(.Front) {
             picker.cameraDevice = UIImagePickerControllerCameraDevice.Front
         }
