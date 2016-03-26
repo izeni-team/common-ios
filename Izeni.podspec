@@ -9,11 +9,11 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.6.0"
+  s.version          = "0.6.1"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
-                       Most Recent Change (0.6.0) - IZImagePicker replacing ImagePicker
+                       Most Recent Change (0.6.1) - IZImagePicker replacing ImagePicker - bug fix with singleton pattern
                        DESC
   s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
   s.license          = 'MIT'

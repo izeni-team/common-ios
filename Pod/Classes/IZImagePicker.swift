@@ -16,20 +16,15 @@ import Photos
     optional func imagePickCancelled()
 }
 
-private let _instance = IZImagePicker()
-
 public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropViewControllerDelegate, UINavigationControllerDelegate {
     
+    static let instance = IZImagePicker()
     private var parentVC: UIViewController!
     private var delegate: IZImagePickerDelegate!
     private var aspectRatio: CGFloat? = 1
     private var preferFrontCamera: Bool = false
     
     public var popoverSource: UIView! // iPad
-    
-    class var instance: IZImagePicker {
-        return _instance
-    }
     
     private var cameraPermissionGranted: Bool = false
     private var libraryPermissionGranted: Bool = false
@@ -45,8 +40,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     public var isIpad: Bool {
         return UIDevice.currentDevice().userInterfaceIdiom == .Pad
     }
-    
-    
     
     private override init() {}
     
