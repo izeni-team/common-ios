@@ -126,7 +126,10 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     // MARK: - Permissions
     
     private func requestCameraPermission() {
-        let authorization = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        var authorization = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        if !isCameraAvailable {
+            authorization = .Restricted
+        }
         // https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/#//apple_ref/swift/enum/c:@E@AVAuthorizationStatus
         print("\tCamera Permission: \(getAuthorizationType(authorization))")
         switch authorization {
@@ -135,7 +138,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
             break
         case .Restricted:
             // The user is not allowed to access media capture devices.
-            restrictedAlert("Camera")
+//            restrictedAlert("Camera")
             break
         case .Denied:
             // The user has explicitly denied permission for media capture.
@@ -151,7 +154,10 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     }
     
     private func requestLibraryPermission() {
-        let authorization = PHPhotoLibrary.authorizationStatus()
+        var authorization = PHPhotoLibrary.authorizationStatus()
+        if !isLibraryAvailable {
+            authorization = .Restricted
+        }
         // https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/#//apple_ref/swift/enum/c:@E@PHAuthorizationStatus
         print("\tLibrary Permission: \(getAuthorizationType(authorization))")
         switch authorization {
@@ -160,7 +166,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
             break
         case .Restricted:
             // The user is not allowed to access media capture devices.
-            restrictedAlert("Photo Library")
+//            restrictedAlert("Photo Library")
             break
         case .Denied:
             // The user has explicitly denied permission for media capture.

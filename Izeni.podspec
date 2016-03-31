@@ -9,11 +9,11 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.6.9"
+  s.version          = "0.6.10"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
-                       Most Recent Change (0.6.9) - IZImagePicker - Added Camera / Library = Enabled / Disabled functionality
+                       Most Recent Change (0.6.10) - IZImagePicker - Fixed no camera available issue to be restricted on simulator, it was going to NotDetermined instead of Restricted as default.
                        DESC
   s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
   s.license          = 'MIT'
