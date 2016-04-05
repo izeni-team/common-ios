@@ -60,7 +60,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         showPickerSourceAlert()
     }
     
-    
     public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController, aspectRatio: CGFloat?) {
         self.aspectRatio = aspectRatio
         pickImage(delegate: delegate, vc: vc)
@@ -75,6 +74,31 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         self.preferFrontCamera = preferFrontCamera
         self.aspectRatio = aspectRatio
         pickImage(delegate: delegate, vc: vc)
+    }
+    
+    public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController, useCamera: Bool, useLibrary: Bool) {
+        setCameraEnabled(useCamera)
+        setLibraryEnabled(useLibrary)
+        pickImage(delegate: delegate, vc: vc)
+    }
+    
+    public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController, useCamera: Bool, useLibrary: Bool, preferFrontCamera: Bool) {
+        setPreferFrontCamera(preferFrontCamera)
+        pickImage(delegate: delegate, vc: vc, useCamera: useCamera, useLibrary: useLibrary)
+    }
+    
+    public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController, useCamera: Bool, useLibrary: Bool, preferFrontCamera: Bool, iPadPopoverSource: UIView) {
+        setPopoverSourceForIPad(iPadPopoverSource)
+        pickImage(delegate: delegate, vc: vc, useCamera: useCamera, useLibrary: useLibrary, preferFrontCamera: preferFrontCamera)
+    }
+    
+    public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController, useCamera: Bool, useLibrary: Bool, preferFrontCamera: Bool, iPadPopoverSource: UIView, aspectRatio: CGFloat?) {
+        self.aspectRatio = aspectRatio ?? 1
+        pickImage(delegate: delegate, vc: vc, useCamera: useCamera, useLibrary: useLibrary, preferFrontCamera: preferFrontCamera, iPadPopoverSource: iPadPopoverSource)
+    }
+    
+    public static func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController, useCamera: Bool, useLibrary: Bool, preferFrontCamera: Bool, iPadPopoverSource: UIView, aspectRatio: CGFloat?) {
+        instance.pickImage(delegate: delegate, vc: vc, useCamera: useCamera, useLibrary: useLibrary, preferFrontCamera: preferFrontCamera, iPadPopoverSource: iPadPopoverSource, aspectRatio: aspectRatio)
     }
     
     public func setPopoverSourceForIPad(source: UIView) {
@@ -138,7 +162,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
             break
         case .Restricted:
             // The user is not allowed to access media capture devices.
-//            restrictedAlert("Camera")
+            //            restrictedAlert("Camera")
             break
         case .Denied:
             // The user has explicitly denied permission for media capture.
@@ -147,7 +171,9 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         case .NotDetermined:
             // Explicit user permission is required for media capture, but the user has not yet granted or denied such permission.
             AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (allow) in
-                self.takePhoto()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.takePhoto()
+                })
             })
             break
         }
@@ -166,7 +192,7 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
             break
         case .Restricted:
             // The user is not allowed to access media capture devices.
-//            restrictedAlert("Photo Library")
+            //            restrictedAlert("Photo Library")
             break
         case .Denied:
             // The user has explicitly denied permission for media capture.
@@ -175,7 +201,9 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
         case .NotDetermined:
             // Explicit user permission is required for media capture, but the user has not yet granted or denied such permission.
             PHPhotoLibrary.requestAuthorization { (allow) in
-                self.pickLibraryPhoto()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.pickLibraryPhoto()
+                })
             }
             break
         }

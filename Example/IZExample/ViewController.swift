@@ -14,12 +14,16 @@ class ViewController: UIViewController, IZImagePickerDelegate {
     @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBAction func openImagePicker() {
-        let picker = IZImagePicker.instance
-        if picker.isIpad {
-            picker.setPopoverSourceForIPad(openImagePickerButton)
-        }
-        picker.setCameraEnabled(false)
-        picker.pickImage(delegate: self, vc: self)
+//        let picker = IZImagePicker.instance
+//        if picker.isIpad {
+//            picker.setPopoverSourceForIPad(openImagePickerButton)
+//        }
+//        picker.setCameraEnabled(false)
+//        picker.setLibraryEnabled(false)
+//        picker.pickImage(delegate: self, vc: self)
+//        
+//        
+        IZImagePicker.pickImage(delegate: self, vc: self, useCamera: true, useLibrary: true, preferFrontCamera: true, iPadPopoverSource: openImagePickerButton, aspectRatio: 1)
         
         
 //                ImagePicker.pickImage(from: self, popoverSource: openImagePickerButton, delegate: self)
