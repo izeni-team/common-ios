@@ -57,7 +57,7 @@ ios-pod-test is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Izeni', :git => 'https://dev.izeni.net/tallred/IOS-Common-Private-Pod.git'
+pod 'Izeni', :git => 'https://dev.izeni.net/izeni/izcommon.git'
 ```
 
 If you wish to co-develop this pod with your project, add this line to your Podfile instead of the one above:
