@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -28,6 +28,15 @@
                                     <action selector="openImagePicker" destination="BYZ-38-t0r" eventType="touchUpInside" id="nzq-q3-Ass"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xU-zJ-Vje">
+                                <rect key="frame" x="215" y="323" width="171" height="30"/>
+                                <state key="normal" title="Show Infinite Notification">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showInfiniteNotification" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ptv-lG-HPr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -35,8 +44,10 @@
                             <constraint firstItem="J8Q-Ge-hvs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B76-Mz-Yb3"/>
                             <constraint firstItem="xF4-dO-Csh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DhW-7i-lzZ"/>
                             <constraint firstItem="xF4-dO-Csh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Osn-hF-rD5"/>
+                            <constraint firstItem="5xU-zJ-Vje" firstAttribute="top" secondItem="J8Q-Ge-hvs" secondAttribute="bottom" constant="8" id="dQ1-JL-Sh8"/>
                             <constraint firstItem="xF4-dO-Csh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dRZ-HQ-t9g"/>
                             <constraint firstItem="J8Q-Ge-hvs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kAL-ic-PZH"/>
+                            <constraint firstItem="5xU-zJ-Vje" firstAttribute="centerX" secondItem="J8Q-Ge-hvs" secondAttribute="centerX" id="mHN-gu-yn5"/>
                         </constraints>
                     </view>
                     <connections>

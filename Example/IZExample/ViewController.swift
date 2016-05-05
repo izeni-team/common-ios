@@ -29,6 +29,10 @@ class ViewController: UIViewController, IZImagePickerDelegate {
 //                ImagePicker.pickImage(from: self, popoverSource: openImagePickerButton, delegate: self)
     }
     
+    @IBAction func showInfiniteNotification() {
+        IZNotification.showUnified("Title", subtitle: "Subtitle", data: [:], duration: NSTimeInterval.infinity, customizations: nil)
+    }
+    
     func imagePicked(image: UIImage) {
         backgroundImage.image = image
     }

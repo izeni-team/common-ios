@@ -16,7 +16,6 @@ public struct IZNotificationCustomizations {
     public var hideNotificationOnTap = true
     public var hideNotificationOnSwipeUp = true
     public var createUILocalNotificationIfInBackground = true
-    public var defaultDuration = NSTimeInterval(5)
     
     // Background
     
@@ -294,7 +293,7 @@ public class IZNotification: NSObject {
     public let app = UIApplication.sharedApplication()
     public static let singleton = IZNotification()
     
-    public class func show(title: String?, subtitle: String?, duration: NSTimeInterval = singleton.defaultCustomizations.defaultDuration, customizations: IZNotificationCustomizations = singleton.defaultCustomizations, onTap: (() -> Void)? = nil) {
+    public class func show(title: String?, subtitle: String?, duration: NSTimeInterval = 5, customizations: IZNotificationCustomizations = singleton.defaultCustomizations, onTap: (() -> Void)? = nil) {
         if (title ?? "").characters.count + (subtitle ?? "").characters.count == 0 {
             return // Nothing to show
         }
@@ -393,7 +392,7 @@ public class IZNotification: NSObject {
     /**
      Displays the IZNotification or UILocalNotification, depending on applicationState.
      */
-    public static func showUnified(title: String? = nil, subtitle: String? = nil, action: String? = nil, data: [String: AnyObject], customizations: IZNotificationCustomizations? = nil) {
+    public static func showUnified(title: String? = nil, subtitle: String? = nil, action: String? = nil, data: [String: AnyObject], duration: NSTimeInterval = 5, customizations: IZNotificationCustomizations? = nil) {
         assert(unifiedDelegate != nil, "You should set the unifiedDelegate before showing a unified notification")
         
         if title == nil && subtitle == nil {
@@ -417,7 +416,7 @@ public class IZNotification: NSObject {
             notification.soundName = localNotificationSoundName
             app.presentLocalNotificationNow(notification)
         } else {
-            IZNotification.show(title, subtitle: subtitle, customizations: customizations ?? singleton.defaultCustomizations, onTap: { () -> Void in
+            IZNotification.show(title, subtitle: subtitle, duration: duration, customizations: customizations ?? singleton.defaultCustomizations, onTap: { () -> Void in
                 IZNotification.unifiedDelegate.notificationHandled(data)
             })
         }
