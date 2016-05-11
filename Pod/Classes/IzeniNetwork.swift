@@ -43,12 +43,16 @@ public class IzeniNetwork {
         return headers
     }
     
-    public static var disableSSL = false
-    public static var serverURL = "https://www.google.com/"
+    public class var disableSSL: Bool {
+        return false
+    }
+    public class var getAPIHost: String {
+        return "https://www.google.com/"
+    }
     
     public static let manager: Manager = {
         if IzeniNetwork.disableSSL {
-            let url = NSURL(string: IzeniNetwork.serverURL)!
+            let url = NSURL(string: IzeniNetwork.getAPIHost)!
             let policies = [
                 url.host!: ServerTrustPolicy.DisableEvaluation
             ]
@@ -65,7 +69,7 @@ public class IzeniNetwork {
     public class func makeRequest(method: Method, endpoint: String, json: JSON?, completion: (result: JSONRequestResponse) -> Void) -> NSURLSessionTask {
         print("<--- \(method.rawValue) \(endpoint)")
         
-        let request = manager.request(method, serverURL + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
+        let request = manager.request(method, getAPIHost + endpoint, parameters: json?.dictionaryObject, encoding: .JSON, headers: getJSONHeaders())
         request.responseJSON { response in
             if response.result.error?.code == NSURLErrorCancelled {
                 return
