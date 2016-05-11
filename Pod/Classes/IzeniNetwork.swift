@@ -11,11 +11,11 @@ import Alamofire
 import SwiftyJSON
 
 public struct JSONRequestFailureResponse {
-    let status: Int?
-    let result: JSON?
-    let message: String
+    public let status: Int?
+    public let result: JSON?
+    public let message: String
     
-    func showAlert(vc: UIViewController, title: String = "Error") {
+    public func showAlert(vc: UIViewController, title: String = "Error") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(.okAction())
         vc.presentViewController(alert, animated: true, completion: nil)
