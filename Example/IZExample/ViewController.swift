@@ -9,6 +9,17 @@
 import UIKit
 import Izeni
 
+class C: IZCellView, IZCellDynamicHeightProtocol {
+    
+    func populate(data: Bool) {
+        
+    }
+    
+    func cellHeight() -> CGFloat {
+        return 0
+    }
+}
+
 class ViewController: UIViewController, IZImagePickerDelegate {
     @IBOutlet var openImagePickerButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
