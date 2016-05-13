@@ -9,16 +9,15 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.7.2"
+  s.version          = "0.8.0"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
-                       Most Recent Change (0.6.11) - IZImagePicker - Added static call to image picker to create less lines of code. Added asynchronous protection when asking permissions to return to main queue.
                        DESC
-  s.homepage         = "https://dev.izeni.net/bhenderson/ios-common/"
+  s.homepage         = "https://dev.izeni.net/izeni/izcommon"
   s.license          = 'MIT'
   s.author           = { "bhenderson@izeni.com" => "bhenderson@izeni.com" }
-  s.source           = { :git => "https://dev.izeni.net/tallred/IOS-Common-Private-Pod.git" }
+  s.source           = { :git => "https://dev.izeni.net/izeni/izcommon.git" }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
@@ -28,9 +27,6 @@ Pod::Spec.new do |s|
     'Izeni' => ['Pod/Assets/*.png']
   }
 
-  #s.library = 'sqlite3.0'
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'SwiftyJSON'
   s.dependency 'EDQueue'
