@@ -38,7 +38,7 @@ public class IZCollectionViewCell: UICollectionViewCell {
     }
     
     public func commonInit() {
-        <#code#>
+        
     }
 }
 
