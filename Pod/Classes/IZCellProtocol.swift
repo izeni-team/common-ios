@@ -13,15 +13,15 @@ import UIKit
 public class IZTableViewCell: UITableViewCell {
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
+        commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        commonInit()
     }
     
-    public func setup() {
+    public func commonInit() {
         
     }
 }
@@ -29,53 +29,57 @@ public class IZTableViewCell: UITableViewCell {
 public class IZCollectionViewCell: UICollectionViewCell {
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        commonInit()
     }
     
-    public func setup() {
-        
+    public func commonInit() {
+        <#code#>
     }
 }
 
-public class IZCellView: UIView {
+public class IZView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        commonInit()
     }
     
-    public func setup() {
+    public func commonInit() {
         
     }
 }
 
-public protocol IZCellProtocol: class {
+public protocol IZCellDynamicHeight: class {
     associatedtype T
-    static func calculateHeight(data: T, width: CGFloat) -> CGFloat
-    func setup()
     func populate(data: T)
-    func layoutSubviews()
+    
+    // Height calculation
+    static func calculateHeight(data: T, width: CGFloat) -> CGFloat // Has default implementation
+    var frame: CGRect { get set } // Should be provided by UIView
+    init() // Should be provided by UIView
+    func layoutSubviews() // Should be provided by UIView
+    func cellHeight() -> CGFloat // You should implement this
+    func bottommostSubviewMaxY() -> CGFloat // Has default implementation. Useful when used in cellHeight()
 }
 
-public protocol IZCellDynamicHeightProtocol: IZCellProtocol {
-    init()
-    var frame: CGRect { get set }
-    func bottommostSubviewMaxY() -> CGFloat
-    func cellHeight() -> CGFloat
+public protocol IZCellStaticHeight: class {
+    associatedtype T
+    static var height: CGFloat { get }
+    func populate(data: T)
 }
 
 private var cache = [ObjectIdentifier: AnyObject]()
 
-public extension IZCellDynamicHeightProtocol {
+public extension IZCellDynamicHeight {
     static func calculateHeight(data: T, width: CGFloat) -> CGFloat {
         let view: Self
         if let cached = cache[ObjectIdentifier(self)] {
