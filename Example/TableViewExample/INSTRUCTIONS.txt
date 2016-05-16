@@ -1,0 +1,116 @@
+IOS & SWIFT TUTORIAL: UITableViewController
+
+Shows how to:
+- Configure table contents using storyboard
+- Provide section and row content programmatically
+- Show data from Swift array
+- Make the table cells reorderable
+
+CONFIGURE TABLE CONTENTS USING STORYBOARD (Static Cells)
+1. Create a table view controller in storyboard
+	- Drag "Table View Controller" onto the storyboard
+2. Create "Static Cells"
+	- Go to the "Table View Controller" attribute editor
+	- Set "Content" to "Static Cells"
+	- Set "Style" to "Grouped"
+	* NOTE: You can also set the "Sections" number to however many sections you would like
+3. Give table section header/footer
+	- Go to the "Table View Section"
+	* NOTE: The "Table View Section" should be listed directly under the "Table View" with a blue box
+	- Select number of static "Rows" that you want
+	- Give your section a "Header"
+	- OPTIONAL: Give your section a "Footer"
+4. Give cell title
+	- Click on a cell and then go to the attribute inspector
+	- Set the style to Basic - should put a title on the table view cell
+	- Set the title of the cell
+5. Create Segue
+	- Select the "Table View Controller"
+	- Select Editor > Embed In > Navigation Controller
+	- Drag new view controllers onto the storyboard
+	- Ctrl + click and drag from the cell to new view controller
+	- Select "Show" for segue option
+DONE
+
+PROVIDE SECTION AND ROW CONTENT PROGRAMMATICALLY
+1. Create a table view controller in storybaord
+	- Drag "Table View Controller" onto the storybaord
+2. Subclass UITableViewController
+	- Create a new TableViewController class
+	- class should look something like:
+	class SomeClassNameViewController: UITableViewController {}
+	- Ensure the "Table View Controller" in storyboard is set to that class
+3. Customize UITableViewController methods
+	- return number of sections in numberOfSectionsInTableView method override
+	- return number of rows in tableView:numberOfRowsInSection method override
+4. Set Prototype Cell attributes
+	- Select the "Prototype Cell" in the "TableView Controller"
+	- In the attribute editor set the "Identifier" to something like "LabelCell"
+	- Set "Style" to "Basic" to give the cell a "Title" lablel
+5. Set each cell row content
+	- override func tableView:cellForRowAtIndexPath
+	- In that method create a cell variable using tableView.dequeueReusableCellWithIdentifier( "LabelCell", forIndexPath: indexPath)
+	- In the same method set the title with cell.textLabel?.text
+	- Return the cell variable
+6. Set each sections title
+	- override func tableView:titleForHeaderInSection
+	- return correct string for each section.
+DONE
+
+
+SHOW DATA FROM SWIFT ARRAY
+1. Create a table view controller in storybaord
+        - Drag "Table View Controller" onto the storybaord
+2. Subclass UITableViewController
+        - Create a new TableViewController class
+        - class should look something like:
+        class SomeClassNameViewController: UITableViewController {}
+        - Ensure the "Table View Controller" in storyboard is set to that class
+3. Customize UITableViewController methods
+        - return your array size for the number of rows in tableView:numberOfRowsInSection method override
+	* HINT: use something like myArray.count to access the size of your array
+4. Set Prototype Cell attributes
+        - Select the "Prototype Cell" in the "TableView Controller"
+        - In the attribute editor set the "Identifier" to something like "LabelCell"
+        - Set "Style" to "Basic" to give the cell a "Title" lablel
+5. Set each cell row content
+        - override func tableView:cellForRowAtIndexPath
+        - In that method create a cell variable using tableView.dequeueReusableCellWithIdentifier( "LabelCell", forIndexPath: indexPath)
+        - In the same method set the title with cell.textLabel?.text
+	* HINT: set your title to something like myArray[indexPath.row] if your array is an array of strings
+        - Return the cell variable
+DONE
+
+MAKE CELLS REORDERABLE
+1. Create a table view controller in storybaord
+        - Drag "Table View Controller" onto the storybaord
+2. Subclass UITableViewController
+        - Create a new TableViewController class
+        - class should look something like:
+        class SomeClassNameViewController: UITableViewController {}
+        - Ensure the "Table View Controller" in storyboard is set to that class
+3. Customize UITableViewController methods
+        - return your array size for the number of rows in tableView:numberOfRowsInSection method override
+        * HINT: use something like myArray.count to access the size of your array
+4. Set Prototype Cell attributes
+        - Select the "Prototype Cell" in the "TableView Controller"
+        - In the attribute editor set the "Identifier" to something like "LabelCell"
+        - Set "Style" to "Basic" to give the cell a "Title" lablel
+5. Set each cell row content
+        - override func tableView:cellForRowAtIndexPath
+        - In that method create a cell variable using tableView.dequeueReusableCellWithIdentifier( "LabelCell", forIndexPath: indexPath)
+        - In the same method set the title with cell.textLabel?.text
+        * HINT: set your title to something like myArray[indexPath.row] if your array is an array of strings
+        - Return the cell variable
+6. Create an edit button
+	- In viewDidLoad() type self.navigationItem.rightBarButtonItem = self.editButtonItem()
+7. Enable reorder controll
+	- override tableView:moveRowAtIndexPath:toIndexPath
+	- create object to move
+	* Example: let movedObject = self.dataArray[souceIndexPath.row]
+	- Remove old data
+	* Example: dataArray.removeAtIndex(sourceIndexPath.row)
+	- Insert the data back into the array
+	* Example: dataArray.insert(movedObject, atIndex: destinationIndexPath.row)
+
+SEE FULL TUTORIAL AT https://www.ralfebert.de/tutorials/ios-swift-uitableviewcontroller/
