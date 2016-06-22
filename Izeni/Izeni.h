@@ -15,10 +15,6 @@ FOUNDATION_EXPORT double IzeniVersionNumber;
 FOUNDATION_EXPORT const unsigned char IzeniVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Izeni/PublicHeader.h>
-#import <Izeni/DistanceFormatter.h>
-#import <Izeni/NibCollectionViewCell.h>
-#import <Izeni/NibTableViewCell.h>
-#import <Izeni/NibView.h>
 #import <Izeni/NSObject+IzeniBroadcast.h>
 #import <Izeni/NSTimer+Nonretained.h>
 #import <Izeni/UITextField+IzeniExtensions.h>
