@@ -44,6 +44,8 @@
 		342245951D1B480500D3CAE0 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422458B1D1B480500D3CAE0 /* PEResizeControl.m */; };
 		342245961D1B480500D3CAE0 /* UIImage+PECrop.h in Headers */ = {isa = PBXBuildFile; fileRef = 3422458C1D1B480500D3CAE0 /* UIImage+PECrop.h */; };
 		342245971D1B480500D3CAE0 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422458D1D1B480500D3CAE0 /* UIImage+PECrop.m */; };
+		3422459C1D1B4D8300D3CAE0 /* NibView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422459A1D1B4D8300D3CAE0 /* NibView.m */; };
+		3422459D1D1B4D8300D3CAE0 /* NibView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3422459B1D1B4D8300D3CAE0 /* NibView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3459B41B1D1B421A0080F3A1 /* Izeni.h in Headers */ = {isa = PBXBuildFile; fileRef = 3459B41A1D1B421A0080F3A1 /* Izeni.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,8 @@
 		3422458B1D1B480500D3CAE0 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
 		3422458C1D1B480500D3CAE0 /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		3422458D1D1B480500D3CAE0 /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		3422459A1D1B4D8300D3CAE0 /* NibView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NibView.m; path = Pod/Classes/NibView.m; sourceTree = SOURCE_ROOT; };
+		3422459B1D1B4D8300D3CAE0 /* NibView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NibView.h; path = Pod/Classes/NibView.h; sourceTree = SOURCE_ROOT; };
 		3459B4171D1B421A0080F3A1 /* Izeni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Izeni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3459B41A1D1B421A0080F3A1 /* Izeni.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Izeni.h; sourceTree = "<group>"; };
 		3459B41C1D1B421A0080F3A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		3459B4191D1B421A0080F3A1 /* Izeni */ = {
 			isa = PBXGroup;
 			children = (
+				3422459B1D1B4D8300D3CAE0 /* NibView.h */,
+				3422459A1D1B4D8300D3CAE0 /* NibView.m */,
 				342245831D1B480500D3CAE0 /* PEPhotoCropEditor */,
 				3422453E1D1B479700D3CAE0 /* ImagePicker.swift */,
 				3422453F1D1B479700D3CAE0 /* IZImagePicker.swift */,
@@ -183,6 +189,7 @@
 				342245771D1B479700D3CAE0 /* NSTimer+Nonretained.h in Headers */,
 				342245961D1B480500D3CAE0 /* UIImage+PECrop.h in Headers */,
 				342245751D1B479700D3CAE0 /* NSObject+IzeniBroadcast.h in Headers */,
+				3422459D1D1B4D8300D3CAE0 /* NibView.h in Headers */,
 				3422458E1D1B480500D3CAE0 /* PECropRectView.h in Headers */,
 				342245901D1B480500D3CAE0 /* PECropView.h in Headers */,
 				3459B41B1D1B421A0080F3A1 /* Izeni.h in Headers */,
@@ -267,6 +274,7 @@
 				342245621D1B479700D3CAE0 /* IZImagePicker.swift in Sources */,
 				342245671D1B479700D3CAE0 /* IzeniDateExtensions.swift in Sources */,
 				3422458F1D1B480500D3CAE0 /* PECropRectView.m in Sources */,
+				3422459C1D1B4D8300D3CAE0 /* NibView.m in Sources */,
 				342245601D1B479700D3CAE0 /* UITextField+IzeniExtensions.m in Sources */,
 				342245781D1B479700D3CAE0 /* NSTimer+Nonretained.m in Sources */,
 				3422456A1D1B479700D3CAE0 /* IzeniResizingCellExtension.swift in Sources */,

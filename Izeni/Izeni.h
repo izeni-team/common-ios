@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char IzeniVersionString[];
 #import <Izeni/NSTimer+Nonretained.h>
 #import <Izeni/UITextField+IzeniExtensions.h>
 #import <Izeni/PECropViewController.h>
+#import <Izeni/NibView.h>
