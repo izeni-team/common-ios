@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PEPhotoCropEditor
 import AVFoundation
 import Photos
 

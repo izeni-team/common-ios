@@ -7,7 +7,6 @@
 //  Copyright © 2016 Izeni, Inc. All rights reserved.
 //
 
-import PEPhotoCropEditor
 import AVFoundation
 import Photos
 
