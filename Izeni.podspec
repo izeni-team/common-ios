@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.8.1"
+  s.version          = "0.9.0"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
@@ -28,9 +28,5 @@ Pod::Spec.new do |s|
   }
 
   s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'SwiftyJSON'
-  s.dependency 'EDQueue'
   s.dependency 'PEPhotoCropEditor'
-  s.dependency 'SCNetworkReachability'
-  s.dependency 'Alamofire'
 end

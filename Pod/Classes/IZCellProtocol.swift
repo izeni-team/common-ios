@@ -10,54 +10,6 @@
 
 import UIKit
 
-public class IZTableViewCell: UITableViewCell {
-    override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        commonInit()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    public func commonInit() {
-        
-    }
-}
-
-public class IZCollectionViewCell: UICollectionViewCell {
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    public func commonInit() {
-        
-    }
-}
-
-public class IZView: UIView {
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    public func commonInit() {
-        
-    }
-}
-
 public protocol IZCellDynamicHeight: class {
     associatedtype T
     func populate(data: T)
@@ -65,7 +17,7 @@ public protocol IZCellDynamicHeight: class {
     // Height calculation
     static func calculateHeight(data: T, width: CGFloat) -> CGFloat // Has default implementation
     var frame: CGRect { get set } // Should be provided by UIView
-    init() // Should be provided by UIView
+    init(frame: CGRect) // Should be provided by UIView
     func layoutSubviews() // Should be provided by UIView
     func cellHeight() -> CGFloat // You should implement this
     func bottommostSubviewMaxY() -> CGFloat // Has default implementation. Useful when used in cellHeight()
@@ -86,8 +38,7 @@ public extension IZCellDynamicHeight {
             view = cached as! Self
             view.frame.size.width = width
         } else {
-            view = Self()
-            view.frame = CGRect(x: 0, y: 0, width: width, height: 0)
+            view = Self(frame: CGRect(x: 0, y: 0, width: width, height: 0))
             cache[ObjectIdentifier(self)] = view
         }
         view.populate(data)

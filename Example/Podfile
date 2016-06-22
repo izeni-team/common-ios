@@ -1,5 +1,5 @@
 use_frameworks!
 
-target 'IZExample', :exclusive => true do
+target 'IZExample' do
   pod "Izeni", :path => "../"
 end
