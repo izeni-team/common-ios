@@ -46,6 +46,7 @@
 		342245971D1B480500D3CAE0 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422458D1D1B480500D3CAE0 /* UIImage+PECrop.m */; };
 		3422459C1D1B4D8300D3CAE0 /* NibView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422459A1D1B4D8300D3CAE0 /* NibView.m */; };
 		3422459D1D1B4D8300D3CAE0 /* NibView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3422459B1D1B4D8300D3CAE0 /* NibView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		342245CD1D1B586900D3CAE0 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 342245CC1D1B586900D3CAE0 /* PEPhotoCropEditor.bundle */; };
 		3459B41B1D1B421A0080F3A1 /* Izeni.h in Headers */ = {isa = PBXBuildFile; fileRef = 3459B41A1D1B421A0080F3A1 /* Izeni.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		3422458D1D1B480500D3CAE0 /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
 		3422459A1D1B4D8300D3CAE0 /* NibView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NibView.m; path = Pod/Classes/NibView.m; sourceTree = SOURCE_ROOT; };
 		3422459B1D1B4D8300D3CAE0 /* NibView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NibView.h; path = Pod/Classes/NibView.h; sourceTree = SOURCE_ROOT; };
+		342245CC1D1B586900D3CAE0 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PEPhotoCropEditor.bundle; path = PEPhotoCropEditor/PEPhotoCropEditor.bundle; sourceTree = SOURCE_ROOT; };
 		3459B4171D1B421A0080F3A1 /* Izeni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Izeni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3459B41A1D1B421A0080F3A1 /* Izeni.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Izeni.h; sourceTree = "<group>"; };
 		3459B41C1D1B421A0080F3A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		3459B4191D1B421A0080F3A1 /* Izeni */ = {
 			isa = PBXGroup;
 			children = (
+				342245CC1D1B586900D3CAE0 /* PEPhotoCropEditor.bundle */,
 				3422459B1D1B4D8300D3CAE0 /* NibView.h */,
 				3422459A1D1B4D8300D3CAE0 /* NibView.m */,
 				342245831D1B480500D3CAE0 /* PEPhotoCropEditor */,
@@ -254,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				342245CD1D1B586900D3CAE0 /* PEPhotoCropEditor.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

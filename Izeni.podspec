@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
-    'Izeni' => ['Pod/Assets/*.png']
+    'Izeni' => ['Pod/Assets/*.png', 'PEPhotoCropEditor/PEPhotoCropEditor.bundle*']
   }
 
   s.frameworks = 'UIKit', 'MapKit'
