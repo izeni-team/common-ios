@@ -22,11 +22,11 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = ['Pod/Classes/**/*', 'PEPhotoCropEditor/*.{h,m}']
   s.resource_bundles = {
-    'Izeni' => ['Pod/Assets/*.png', 'PEPhotoCropEditor/PEPhotoCropEditor.bundle*']
+    'Izeni' => ['Pod/Assets/*.png'],
+    'PEPhotoCropEditor' => ['PEPhotoCropEditor/PEPhotoCropEditor.bundle/**/*']
   }
 
   s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'PEPhotoCropEditor'
 end

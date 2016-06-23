@@ -9,6 +9,7 @@
 
 import AVFoundation
 import Photos
+import Izeni
 
 @objc public protocol IZImagePickerDelegate: class {
     func imagePicked(image: UIImage)
@@ -52,8 +53,6 @@ public class IZImagePicker: NSObject, UIImagePickerControllerDelegate, PECropVie
     
     // MARK: - User Allowed Functions
     public func pickImage(delegate delegate: IZImagePickerDelegate, vc: UIViewController) {
-        assert(NSBundle.allFrameworks().map { $0.bundleURL.lastPathComponent! }.contains("PEPhotoCropEditor.framework"), "Your project does not contain the PEPhotoCropEditor bundle. Try creating a reference to it in your main project. You can do this by adding the PEPhotoCropEditor.bundle to your main project and uncheck the \"copy\" box.")
-        
         self.delegate = delegate
         self.parentVC = vc
         showPickerSourceAlert()

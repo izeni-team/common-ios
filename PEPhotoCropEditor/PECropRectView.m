@@ -39,7 +39,12 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectInset(self.bounds, -2.0f, -2.0f)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        imageView.image = [[UIImage imageNamed:@"PEPhotoCropEditor.bundle/PEPhotoCropEditorBorder"] resizableImageWithCapInsets:UIEdgeInsetsMake(23.0f, 23.0f, 23.0f, 23.0f)];
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSBundle *classBundle = [NSBundle bundleForClass:[self class]];
+        NSString *imagePath = [[classBundle bundlePath] stringByReplacingOccurrencesOfString:[mainBundle bundlePath] withString:@""];
+        imagePath = [imagePath stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""]; // Remove slash
+        imagePath = [imagePath stringByAppendingPathComponent:@"PEPhotoCropEditor.bundle/PEPhotoCropEditorBorder"];
+        imageView.image = [[UIImage imageNamed:imagePath] resizableImageWithCapInsets:UIEdgeInsetsMake(23.0f, 23.0f, 23.0f, 23.0f)];
         [self addSubview:imageView];
         
         self.topLeftCornerView = [[PEResizeControl alloc] init];
