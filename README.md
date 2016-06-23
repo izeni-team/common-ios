@@ -72,6 +72,12 @@ Be sure that your Podfile has the following line too:
 use_frameworks!
 ```
 
+Or via Carthage:
+
+```
+github "izeni-team/izeni-ios" ~> 0.9
+```
+
 ## Credits
 
 Bryan Henderson, Thane Brimhall, Jacob Ovard, Taylor Allred, Skyler Smith, Matthew Bailey
