@@ -9,7 +9,6 @@
 
 import AVFoundation
 import Photos
-import Izeni
 
 @objc public protocol IZImagePickerDelegate: class {
     func imagePicked(image: UIImage)
