@@ -9,24 +9,23 @@
 
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.9.1"
+  s.version          = "0.10.0"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
                        All of izeni's common code for iOS.
                        DESC
-  s.homepage         = "https://dev.izeni.net/izeni/izcommon"
+  s.homepage         = "https://github.com/izeni-team/izeni-ios"
   s.license          = 'MIT'
   s.author           = { "bhenderson@izeni.com" => "bhenderson@izeni.com" }
-  s.source           = { :git => "https://dev.izeni.net/izeni/izcommon.git" }
+  s.source           = { :git => "https://github.com/izeni-team/izeni-ios.git" }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = ['Pod/Classes/**/*', 'PEPhotoCropEditor/*.{h,m}']
+  s.source_files = ['Pod/Classes/**/*']
   s.resource_bundles = {
-    'Izeni' => ['Pod/Assets/*.png'],
-    'PEPhotoCropEditor' => ['PEPhotoCropEditor/PEPhotoCropEditor.bundle/**/*']
+    'Izeni' => ['Pod/Assets/*.png']
   }
 
-  s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit'
 end

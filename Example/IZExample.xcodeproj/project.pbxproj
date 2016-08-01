@@ -15,7 +15,6 @@
 		349A34C31BF54F6500725CB2 /* IZExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A34C21BF54F6500725CB2 /* IZExampleTests.swift */; };
 		349C52961D1B808B0015D5CE /* Izeni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349C52921D1B7A970015D5CE /* Izeni.framework */; };
 		8952BFBC84E3CB5BC1015646 /* Pods_IZExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFBEBD95B542FC91542896C /* Pods_IZExample.framework */; };
-		F3B9BFFE1CA2F8AB00114961 /* IZImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B9BFFD1CA2F8AB00114961 /* IZImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +41,6 @@
 		349C52921D1B7A970015D5CE /* Izeni.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Izeni.framework; path = Carthage/Build/iOS/Izeni.framework; sourceTree = "<group>"; };
 		8482029412CFB0FE2FEC0B5E /* Pods-IZExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IZExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IZExample/Pods-IZExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C5E367BD269EB8D51276A0EF /* Pods-IZExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IZExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IZExample/Pods-IZExample.release.xcconfig"; sourceTree = "<group>"; };
-		F3B9BFFD1CA2F8AB00114961 /* IZImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IZImagePicker.swift; path = ../../Pod/Classes/IZImagePicker.swift; sourceTree = "<group>"; };
 		FBFBEBD95B542FC91542896C /* Pods_IZExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IZExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -91,7 +89,6 @@
 			children = (
 				349A34AA1BF54EE100725CB2 /* AppDelegate.swift */,
 				349A34AC1BF54EE100725CB2 /* ViewController.swift */,
-				F3B9BFFD1CA2F8AB00114961 /* IZImagePicker.swift */,
 				349A34AE1BF54EE100725CB2 /* Main.storyboard */,
 				349A34B11BF54EE100725CB2 /* Assets.xcassets */,
 				349A34B31BF54EE100725CB2 /* LaunchScreen.storyboard */,
@@ -140,8 +137,6 @@
 				349A34A51BF54EE100725CB2 /* Resources */,
 				B70F54C8C65D40DCFDFBD853 /* [CP] Embed Pods Frameworks */,
 				ADAC934E572BF3AC727253AE /* [CP] Copy Pods Resources */,
-				349C52951D1B7CFE0015D5CE /* ShellScript */,
-				349C52941D1B7A9F0015D5CE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -230,33 +225,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		349C52941D1B7A9F0015D5CE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Izeni.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		349C52951D1B7CFE0015D5CE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#/usr/local/bin/carthage build --platform \"$PLATFORM_NAME\" --project-directory \"$SRCROOT\"";
-		};
 		ADAC934E572BF3AC727253AE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,7 +277,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3B9BFFE1CA2F8AB00114961 /* IZImagePicker.swift in Sources */,
 				349A34AD1BF54EE100725CB2 /* ViewController.swift in Sources */,
 				349A34AB1BF54EE100725CB2 /* AppDelegate.swift in Sources */,
 			);

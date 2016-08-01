@@ -28,35 +28,10 @@ class C: UIView, IZCellDynamicHeight {
     }
 }
 
-class ViewController: UIViewController, IZImagePickerDelegate {
-    @IBOutlet var openImagePickerButton: UIButton!
-    @IBOutlet weak var backgroundImage: UIImageView!
-    
-    @IBAction func openImagePicker() {
-//        let picker = IZImagePicker.instance
-//        if picker.isIpad {
-//            picker.setPopoverSourceForIPad(openImagePickerButton)
-//        }
-//        picker.setCameraEnabled(false)
-//        picker.setLibraryEnabled(false)
-//        picker.pickImage(delegate: self, vc: self)
-//        
-//        
-        IZImagePicker.pickImage(delegate: self, vc: self, useCamera: true, useLibrary: true, preferFrontCamera: true, iPadPopoverSource: openImagePickerButton, aspectRatio: 1)
-        
-        
-//                ImagePicker.pickImage(from: self, popoverSource: openImagePickerButton, delegate: self)
-    }
-    
-    @IBAction func showInfiniteNotification() {
-        IZNotification.showUnified("Title", subtitle: "Subtitle", data: [:], duration: NSTimeInterval.infinity, customizations: nil)
-    }
-    
-    func imagePicked(image: UIImage) {
-        backgroundImage.image = image
-    }
-    
-    func imagePickCancelled() {
-        print("Cancelled image pick")
+class ViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("LOADED")
+        print(UIColor(hex: (0xFFFFFF + 1)))
     }
 }

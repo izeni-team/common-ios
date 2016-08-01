@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,59 +8,10 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="IZExample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Delicatearch1" translatesAutoresizingMaskIntoConstraints="NO" id="xF4-dO-Csh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8Q-Ge-hvs">
-                                <rect key="frame" x="235" y="285" width="130" height="30"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Open Image Picker"/>
-                                <connections>
-                                    <action selector="openImagePicker" destination="BYZ-38-t0r" eventType="touchUpInside" id="nzq-q3-Ass"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xU-zJ-Vje">
-                                <rect key="frame" x="215" y="323" width="171" height="30"/>
-                                <state key="normal" title="Show Infinite Notification">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showInfiniteNotification" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ptv-lG-HPr"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="xF4-dO-Csh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="125-Oe-izd"/>
-                            <constraint firstItem="J8Q-Ge-hvs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B76-Mz-Yb3"/>
-                            <constraint firstItem="xF4-dO-Csh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DhW-7i-lzZ"/>
-                            <constraint firstItem="xF4-dO-Csh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Osn-hF-rD5"/>
-                            <constraint firstItem="5xU-zJ-Vje" firstAttribute="top" secondItem="J8Q-Ge-hvs" secondAttribute="bottom" constant="8" id="dQ1-JL-Sh8"/>
-                            <constraint firstItem="xF4-dO-Csh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dRZ-HQ-t9g"/>
-                            <constraint firstItem="J8Q-Ge-hvs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kAL-ic-PZH"/>
-                            <constraint firstItem="5xU-zJ-Vje" firstAttribute="centerX" secondItem="J8Q-Ge-hvs" secondAttribute="centerX" id="mHN-gu-yn5"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backgroundImage" destination="xF4-dO-Csh" id="eIq-om-0hn"/>
-                        <outlet property="openImagePickerButton" destination="J8Q-Ge-hvs" id="udk-eE-BLr"/>
-                    </connections>
-                </viewController>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="IZExample" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="598" y="325"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Delicatearch1" width="1156" height="1045"/>
-    </resources>
 </document>

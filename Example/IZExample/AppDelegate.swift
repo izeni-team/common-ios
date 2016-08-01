@@ -10,7 +10,7 @@ import UIKit
 import Izeni
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
@@ -20,12 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let types: UIUserNotificationType = [.Badge, .Sound, .Alert]
-        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 
-        IZNotification.unifiedDelegate = self
         
         return true
     }
@@ -40,22 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDele
         
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(AppDelegate.doThing), userInfo: nil, repeats: false)
-        task = application.beginBackgroundTaskWithExpirationHandler { () -> Void in
-            
-        }
+
     }
     
-    var task = UIBackgroundTaskInvalid
 
     func applicationDidEnterBackground(application: UIApplication) {
 
-    }
-
-    func doThing() {
-//        print("SHOW")
-//        IZNotification.showUnified("Title?", subtitle: "Subtitle?", data: ["String": "hello world"])
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -69,7 +54,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IZNotificationUnifiedDele
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-
