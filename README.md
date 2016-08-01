@@ -9,43 +9,6 @@
 
 This project contains several miscellaneous utilities.
 
-#### IzeniBroadcast
-- Easier to use than NSNotificationCenter
-- Objective-C and Swift support
-- Automatic removal of listeners upon dealloc; no need to call removeObserver(self)
-- Events are identified by UUIDs, which are less likely to collide than user-defined keys
-- Events are delivered on the main thread, making GUI updates worry-free
-- Events are delivered asynchronously to guarantee correctness, but there is a synchronous option available for those corner cases
-
-```swift
-class LoginService {
-    static let userDidLogout = NSUUID() // This is the broadcast ID
-    static var userID: String?
-    
-    class func logout() {
-        ...
-        
-        // Will call method on LocationTracker and any other monitoring instances.
-        Broadcast.emit(userDidLogout, value: userID) // Async, main thread delivery
-    }
-}
-...
-class LocationTracker: NSObject {
-    static let singleton = LocationTracker()
-    static func start() {
-        singleton // static let vars are lazy instantiated; this initializes the singleton
-    }
-    
-    init() {
-        ...
-        // The selector must be an instance method, as class/static functions aren't supported.
-        monitorBroadcast(LoginService.userDidLogout, selector: "stop")
-    }
-    
-    func stop() {
-        ...
-    }
-```
 
 ## Requirements
 
