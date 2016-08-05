@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B6h-2P-1hh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--ViewController-->
+        <scene sceneID="4Dd-nl-xjK">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="IZExample" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController title="ViewController" id="B6h-2P-1hh" customClass="ViewController" customModule="IZExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1If-TR-fxp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oqh-99-lK7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AYb-j0-Bo0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xaY-V7-dDi">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xaY-V7-dDi" firstAttribute="leading" secondItem="AYb-j0-Bo0" secondAttribute="leading" id="1AN-Kg-JVS"/>
+                            <constraint firstItem="Oqh-99-lK7" firstAttribute="top" secondItem="xaY-V7-dDi" secondAttribute="bottom" id="9Tx-9f-dCL"/>
+                            <constraint firstItem="xaY-V7-dDi" firstAttribute="top" secondItem="1If-TR-fxp" secondAttribute="bottom" id="JRK-1g-BLt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xaY-V7-dDi" secondAttribute="trailing" constant="-20" id="VvM-Ta-MjL"/>
+                            <constraint firstItem="xaY-V7-dDi" firstAttribute="centerY" secondItem="AYb-j0-Bo0" secondAttribute="centerY" id="h2t-CX-mcU"/>
+                            <constraint firstItem="xaY-V7-dDi" firstAttribute="centerX" secondItem="AYb-j0-Bo0" secondAttribute="centerX" id="tuh-Z8-Dih"/>
+                            <constraint firstItem="xaY-V7-dDi" firstAttribute="leading" secondItem="AYb-j0-Bo0" secondAttribute="leadingMargin" constant="-20" id="uT9-f6-Na5"/>
+                            <constraint firstItem="xaY-V7-dDi" firstAttribute="top" secondItem="AYb-j0-Bo0" secondAttribute="top" id="vgg-Dj-Xhx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1AN-Kg-JVS"/>
+                                <exclude reference="JRK-1g-BLt"/>
+                                <exclude reference="VvM-Ta-MjL"/>
+                                <exclude reference="h2t-CX-mcU"/>
+                                <exclude reference="tuh-Z8-Dih"/>
+                                <exclude reference="uT9-f6-Na5"/>
+                                <exclude reference="vgg-Dj-Xhx"/>
+                                <exclude reference="9Tx-9f-dCL"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="xaY-V7-dDi" id="Cbh-3u-bXB"/>
+                        <outlet property="view" destination="AYb-j0-Bo0" id="aUr-Du-cmf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MaB-gj-kim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="598" y="325"/>
+            <point key="canvasLocation" x="519" y="225"/>
         </scene>
     </scenes>
 </document>

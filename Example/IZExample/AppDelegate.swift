@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        IZNotification.didReceiveLocalNotification(notification)
+
     }
 
     func applicationWillResignActive(application: UIApplication) {
