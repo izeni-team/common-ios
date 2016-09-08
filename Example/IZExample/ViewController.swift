@@ -17,41 +17,16 @@ class ViewController: UIViewController {
         view.backgroundColor = .yellow
         self.containerView.backgroundColor = .black
         
-        let view2 = UIView(frame: CGRectMake(0, 0, 300, 300))
+        let view2 = UIView()
         containerView.addSubview(view2)
-        view2.backgroundColor = .yellow
+        view2.backgroundColor = .cyan
         
-        let view3 = UIView()
-        containerView.addSubview(view3)
-        view3.backgroundColor = .yellow
+        view2.sizeAnchor = CGSizeMake(50, 50)
+        let sizeAnchor = view2.sizeAnchor
+        print(sizeAnchor)
         
-        let view4 = UIView()
-        containerView.addSubview(view4)
-        view4.backgroundColor = .yellow
+        view2.centerAnchor = CGPointMake(100, 100)
         
-        let view5 = UIView()
-        containerView.addSubview(view5)
-        view5.backgroundColor = .yellow
         
-        let view6 = UIView()
-        containerView.addSubview(view6)
-        view6.backgroundColor = .yellow
-        
-        containerView.anchorFill(view: view, offsetLeftBy: -16, offsetRightBy: 16, offsetTopBy: 20, offsetBottomBy: 0)
-
-        view2.anchorCenterTo(view: containerView, offsetBy: CGPointMake(-100, -100))
-        view2.anchorSizeTo(size: CGSizeMake(100, 100))
-        
-        view3.anchorCenterTo(view: view2, offsetBy: CGPointMake(200, 0))
-        view3.anchorSize = CGSizeMake(100, 100)
-        
-        view4.anchorCenterTo(view: containerView, offsetBy: CGPointMake(0, 150))
-        view4.anchorSizeTo(300, 100)
-        
-        view5.anchorCenterXTo(view: containerView, offsetBy: -125)
-        view5.anchorCenterYTo(view: containerView, offsetBy: 75)
-        view5.anchorSizeTo(50, 50)
-        
-        view6.anchorCenterTo(view: containerView, offsetBy: CGPointMake(125, 75), size: CGSizeMake(50, 50))
     }
 }
