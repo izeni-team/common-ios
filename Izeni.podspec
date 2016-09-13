@@ -1,18 +1,9 @@
-#
-# Be sure to run `pod lib lint Izeni.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "Izeni"
-  s.version          = "0.10.0"
+  s.version          = "0.11.0"
   s.summary          = "Izeni's common iOS code."
   s.description      = <<-DESC
-                       All of izeni's common code for iOS.
+                       All of izeni's common code for iOS. Includes extensions and subclasses of base classes.
                        DESC
   s.homepage         = "https://github.com/izeni-team/izeni-ios"
   s.license          = 'MIT'
