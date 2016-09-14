@@ -43,7 +43,7 @@ github "izeni-team/izeni-ios" ~> 0.9
 
 ## Credits
 
-Bryan Henderson, Thane Brimhall, Jacob Ovard, Taylor Allred, Skyler Smith, Matthew Bailey
+Bryan Henderson, Thane Brimhall, Jacob Ovard, Taylor Allred, Skyler Smith, Matthew Bailey, Mitchell Tenney
 
 ## License
 
