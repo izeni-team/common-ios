@@ -41,7 +41,7 @@ public extension IZCellDynamicHeight {
             view = Self(frame: CGRect(x: 0, y: 0, width: width, height: 0))
             cache[ObjectIdentifier(self)] = view
         }
-        view.populate(data)
+        view.populate(data: data)
         view.layoutSubviews()
         return view.cellHeight()
     }
@@ -59,17 +59,17 @@ public extension IZCellDynamicHeight {
         }
         
         var maxY: CGFloat = 0
-        for subview in view.subviews.filter({ !$0.hidden && $0.alpha > 0 }) {
-            maxY = max(CGRectGetMaxY(subview.frame), maxY)
+        for subview in view.subviews.filter({ !$0.isHidden && $0.alpha > 0 }) {
+            maxY = max(subview.frame.maxY, maxY)
         }
         return maxY
     }
 }
 
 public extension UIView {
-    func showMaterialShadow(dpDepth dpDepth: Int) {
+    func showMaterialShadow(dpDepth: Int) {
         layer.masksToBounds = false
-        layer.shadowOffset = CGSizeMake(0, CGFloat(dpDepth))
+        layer.shadowOffset = CGSize(width: 0, height: CGFloat(dpDepth))
         layer.shadowRadius = CGFloat(dpDepth) / 2
         layer.shadowOpacity = 0.28
     }

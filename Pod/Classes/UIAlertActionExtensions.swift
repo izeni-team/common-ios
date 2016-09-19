@@ -26,13 +26,13 @@ public extension UIAlertAction {
     }
     
     public convenience init(title: String, callback: (() -> Void)?) {
-        self.init(title: title, style: .Default, handler: { _ in
+        self.init(title: title, style: .default, handler: { _ in
             callback?()
         })
     }
     
     public convenience init(destructiveTitle: String, callback: (() -> Void)?) {
-        self.init(title: destructiveTitle, style: .Destructive, handler: { _ in
+        self.init(title: destructiveTitle, style: .destructive, handler: { _ in
             callback?()
         })
     }

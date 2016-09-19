@@ -29,7 +29,7 @@ public extension String {
             return self
         }
         
-        return (self as NSString).substringToIndex(n)
+        return (self as NSString).substring(to: n)
     }
     /// - returns: A substring that contains the n rightmost characters of the string. The entire string is returned if n is greater than size() or less than zero.
     public func right(n: Int) -> String {
@@ -38,7 +38,7 @@ public extension String {
             return self
         }
         
-        return (self as NSString).substringFromIndex(self.characters.count - n)
+        return (self as NSString).substring(from: self.characters.count - n)
     }
     /// - returns: A string that contains n characters of this string, starting at the specified position index. Returns an empty string if the position index exceeds the length of the string.  If there are less than n characters available in the string starting at the given position, or if n is -1 (default), the function returns all characters that are available from the specified position.
     public func mid(position: Int, length: Int = -1) -> String {
@@ -51,41 +51,41 @@ public extension String {
         
         let end = self.characters.count - position
         let safeLength = length == -1 ? end : min(length, end)
-        return (self as NSString).substringWithRange(NSMakeRange(position, safeLength))
+        return (self as NSString).substring(with: NSMakeRange(position, safeLength))
     }
     /// - returns: A string where every occurrence of 'before' is replaced with 'with.'
     public func replace(before: String, with: String) -> String {
-        return stringByReplacingOccurrencesOfString(before, withString: with)
+        return replacingOccurrences(of: before, with: with)
     }
     /// - returns: A string where every occurrence of 'before' (using the given case sensitivity) is replaced with 'with.'
     public func replace(before: String, with: String, caseInsensitive: Bool) -> String {
-        return stringByReplacingOccurrencesOfString(before, withString: with, options: caseInsensitive ? .CaseInsensitiveSearch : [])
+        return replacingOccurrences(of: before, with: with, options: caseInsensitive ? .caseInsensitive : [])
     }
     /// :retuns: A string where every occurrence of the regular express 'regex' is replaced with 'with'
-    public func replace(regex regex: String, with: String) -> String {
-        return stringByReplacingOccurrencesOfString(regex, withString: with, options: .RegularExpressionSearch)
+    public func replace(regex: String, with: String) -> String {
+        return replacingOccurrences(of: regex, with: with, options: .regularExpression)
     }
     /// :retuns: A string where every occurrence of the regular express 'regex' (using the given case sensitivity) is replaced with 'with'
-    public func replace(regex regex: String, with: String, caseInsensitive: Bool) -> String {
-        let options = NSStringCompareOptions.RegularExpressionSearch.union(caseInsensitive ? .CaseInsensitiveSearch : [])
-        return stringByReplacingOccurrencesOfString(regex, withString: with, options: options)
+    public func replace(regex: String, with: String, caseInsensitive: Bool) -> String {
+        let options = NSString.CompareOptions.regularExpression.union(caseInsensitive ? .caseInsensitive : [])
+        return replacingOccurrences(of: regex, with: with, options: options)
     }
     /// - returns: A string where every occurrence of 'string' is removed.
     public func remove(string: String) -> String {
-        return stringByReplacingOccurrencesOfString(string, withString: "")
+        return replacingOccurrences(of: string, with: "")
     }
     /// - returns: A string where every occurrence of 'string' (using the given case sensitivity) is removed.
     public func remove(string: String, caseInsensitive: Bool) -> String {
-        return stringByReplacingOccurrencesOfString(string, withString: "", options: caseInsensitive ? .CaseInsensitiveSearch : [])
+        return replacingOccurrences(of: string, with: "", options: caseInsensitive ? .caseInsensitive : [])
     }
     /// - returns: A string where every occurrence of the regular expression 'regex' is removed.
-    public func remove(regex regex: String) -> String {
-        return stringByReplacingOccurrencesOfString(regex, withString: "", options: .RegularExpressionSearch)
+    public func remove(regex: String) -> String {
+        return replacingOccurrences(of: regex, with: "", options: .regularExpression)
     }
     /// - returns: A string where every occurrence of the regular expression 'regex' (using the given case sensitivity) is removed.
-    public func remove(regex regex: String, caseInsensitive: Bool) -> String {
-        let options = NSStringCompareOptions.RegularExpressionSearch.union(caseInsensitive ? .CaseInsensitiveSearch : [])
-        return stringByReplacingOccurrencesOfString(regex, withString: "", options: options)
+    public func remove(regex: String, caseInsensitive: Bool) -> String {
+        let options = NSString.CompareOptions.regularExpression.union(caseInsensitive ? .caseInsensitive : [])
+        return replacingOccurrences(of: regex, with: "", options: options)
     }
     /**
     - parameter position: The index of the first character to be removed. Must be non-negative
@@ -103,7 +103,7 @@ public extension String {
         let end = self.characters.count - position
         let safeLength = length == -1 ? end : min(length, end)
         let range = NSMakeRange(position, safeLength)
-        return (self as NSString).stringByReplacingCharactersInRange(range, withString: "")
+        return (self as NSString).replacingCharacters(in: range, with: "")
     }
     /// - returns: True if the string starts with the given string, False otherwise
     public func startsWith(string: String) -> Bool {
@@ -111,7 +111,7 @@ public extension String {
     }
     /// - returns: True if the string starts with the given string (using the given case sensitivity), False otherwise.
     public func startsWith(string: String, caseInsensitive: Bool) -> Bool {
-        return rangeOfString(string, options: caseInsensitive ? .CaseInsensitiveSearch : [])?.startIndex == startIndex
+        return range(of: string, options: caseInsensitive ? .caseInsensitive : [])?.lowerBound == startIndex
     }
     /// - returns: True if the string ends with the given string, False otherwise
     public func endsWith(string: String) -> Bool {
@@ -120,34 +120,34 @@ public extension String {
     /// - returns: True if the string ends with the given string (using the given case sensitivity), False otherwise.
     public func endsWith(string: String, caseInsensitive: Bool) -> Bool {
         if caseInsensitive {
-            return lowercaseString.hasSuffix(string.lowercaseString)
+            return lowercased().hasSuffix(string.lowercased())
         } else {
             return hasSuffix(string)
         }
     }
     /// - returns: True if the given string is contained in the string, False otherwise.
     public func contains(string: String) -> Bool {
-        return rangeOfString(string) != nil
+        return range(of: string) != nil
     }
     /// - returns: True if the given string is contained in the string (using the given case sensitivity), False otherwise.
     public func contains(string: String, caseInsensitive: Bool) -> Bool {
-        return rangeOfString(string, options: caseInsensitive ? .CaseInsensitiveSearch : []) != nil
+        return range(of: string, options: caseInsensitive ? .caseInsensitive : []) != nil
     }
     /** The dot (".") in iOS does not match the newline character by default, whereas in Qt the dot will match any character, including the newline character.
         - returns: True if the regular expression is contained in the string, False otherwise.
     */
-    public func contains(regex regex: String) -> Bool {
-        return rangeOfString(regex, options: .RegularExpressionSearch) != nil
+    public func contains(regex: String) -> Bool {
+        return range(of: regex, options: .regularExpression) != nil
     }
     /// - returns: True if the regular expression is contained in the string (using the given case sensitivity), False otherwise.
-    public func contains(regex regex: String, caseInsensitive: Bool) -> Bool {
-        let options = NSStringCompareOptions.RegularExpressionSearch.union(caseInsensitive ? .CaseInsensitiveSearch : [])
-        return rangeOfString(regex, options: options) != nil
+    public func contains(regex: String, caseInsensitive: Bool) -> Bool {
+        let options = NSString.CompareOptions.regularExpression.union(caseInsensitive ? .caseInsensitive : [])
+        return range(of: regex, options: options) != nil
     }
     
     /// - returns: If the string is found, the index of its first character, -1 otherwise.
     public func indexOf(string: String) -> Int {
-        let index = (self as NSString).rangeOfString(string).location
+        let index = (self as NSString).range(of: string).location
         if index == NSNotFound {
             return -1
         } else {

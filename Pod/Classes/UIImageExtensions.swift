@@ -11,17 +11,17 @@ import UIKit
 typealias _CIImage = CIImage
 
 public extension UIImage {
-    public func resizeImage(size: Float, callback: (image: UIImage) -> Void) {
+    public func resizeImage(size: Float, callback: @escaping (_ image: UIImage) -> Void) {
         
-        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
-        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        let qualityOfServiceClass = DispatchQoS.QoSClass.background
+        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
         
-        dispatch_async(backgroundQueue, {
+        backgroundQueue.async(execute: {
             // Size is the smaller of height and width
             // The idea here is that we'll crop off the side that is too long by using
             // imageView.contentMode = .ScaleAspectFill
             let scale: Float = size / Float(min(self.size.height, self.size.width))
-            let image = _CIImage(CGImage: self.CGImage!)
+            let image = _CIImage(cgImage: self.cgImage!)
             
             let filter = CIFilter(name: "CILanczosScaleTransform")!
             filter.setValue(image, forKey: "inputImage")
@@ -30,12 +30,12 @@ public extension UIImage {
             
             
             
-            let outputImage = filter.valueForKey("outputImage") as! _CIImage
+            let outputImage = filter.value(forKey: "outputImage") as! _CIImage
             let context = CIContext(options: nil)
-            let scaledImage = UIImage(CGImage: context.createCGImage(outputImage, fromRect: outputImage.extent))
+            let scaledImage = UIImage(cgImage: context.createCGImage(outputImage, from: outputImage.extent)!)
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                callback(image: scaledImage)
+            DispatchQueue.main.async(execute: { () -> Void in
+                callback(scaledImage)
             })
         })
     }

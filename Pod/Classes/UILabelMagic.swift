@@ -15,8 +15,8 @@ public extension UILabel {
         let attributes = [
             NSFontAttributeName: self.font
         ]
-        let constraints = CGSize(width: self.w, height: CGFloat.max)
-        let size = text.boundingRectWithSize(constraints, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil)
+        let constraints = CGSize(width: self.w, height: CGFloat.greatestFiniteMagnitude)
+        let size = text.boundingRect(with: constraints, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil)
         self.h = size.height
     }
     

@@ -20,16 +20,16 @@ extension UIViewController {
         var targetPoint = source.frame.origin
         var view = source
         while let superView = view.superview, let superSuperView = superView.superview {
-            targetPoint = superSuperView.convertPoint(targetPoint, fromCoordinateSpace: superView)
+            targetPoint = superSuperView.convert(targetPoint, from: superView)
             view = superView
         }
         
         if targetPoint.y > self.view.frame.height - targetPoint.y {
-            alert.popoverPresentationController?.permittedArrowDirections = .Down
-            alert.popoverPresentationController?.sourceRect = CGRectMake(source.frame.width / 2.0, 0, 1, 1)
+            alert.popoverPresentationController?.permittedArrowDirections = .down
+            alert.popoverPresentationController?.sourceRect = CGRect(x: source.frame.width / 2.0, y: 0, width: 1, height: 1)
         } else {
-            alert.popoverPresentationController?.permittedArrowDirections = .Up
-            alert.popoverPresentationController?.sourceRect = CGRectMake(source.frame.width / 2.0, source.frame.height, 1, 1)
+            alert.popoverPresentationController?.permittedArrowDirections = .up
+            alert.popoverPresentationController?.sourceRect = CGRect(x: source.frame.width / 2.0, y: source.frame.height, width: 1, height: 1)
         }
     }
 }
