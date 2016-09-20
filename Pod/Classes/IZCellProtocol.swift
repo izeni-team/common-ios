@@ -12,10 +12,10 @@ import UIKit
 
 public protocol IZCellDynamicHeight: class {
     associatedtype T
-    func populate(data: T)
+    func populate(_ data: T)
     
     // Height calculation
-    static func calculateHeight(data: T, width: CGFloat) -> CGFloat // Has default implementation
+    static func calculateHeight(_ data: T, width: CGFloat) -> CGFloat // Has default implementation
     var frame: CGRect { get set } // Should be provided by UIView
     init(frame: CGRect) // Should be provided by UIView
     func layoutSubviews() // Should be provided by UIView
@@ -26,13 +26,13 @@ public protocol IZCellDynamicHeight: class {
 public protocol IZCellStaticHeight: class {
     associatedtype T
     static var height: CGFloat { get }
-    func populate(data: T)
+    func populate(_ data: T)
 }
 
 private var cache = [ObjectIdentifier: AnyObject]()
 
 public extension IZCellDynamicHeight {
-    static func calculateHeight(data: T, width: CGFloat) -> CGFloat {
+    static func calculateHeight(_ data: T, width: CGFloat) -> CGFloat {
         let view: Self
         if let cached = cache[ObjectIdentifier(self)] {
             view = cached as! Self
@@ -41,7 +41,7 @@ public extension IZCellDynamicHeight {
             view = Self(frame: CGRect(x: 0, y: 0, width: width, height: 0))
             cache[ObjectIdentifier(self)] = view
         }
-        view.populate(data: data)
+        view.populate(data)
         view.layoutSubviews()
         return view.cellHeight()
     }
@@ -67,7 +67,7 @@ public extension IZCellDynamicHeight {
 }
 
 public extension UIView {
-    func showMaterialShadow(dpDepth: Int) {
+    func showMaterialShadow(_ dpDepth: Int) {
         layer.masksToBounds = false
         layer.shadowOffset = CGSize(width: 0, height: CGFloat(dpDepth))
         layer.shadowRadius = CGFloat(dpDepth) / 2

@@ -11,7 +11,7 @@ import UIKit
 typealias _CIImage = CIImage
 
 public extension UIImage {
-    public func resizeImage(size: Float, callback: @escaping (_ image: UIImage) -> Void) {
+    public func resizeImage(_ size: Float, callback: @escaping (_ image: UIImage) -> Void) {
         
         let qualityOfServiceClass = DispatchQoS.QoSClass.background
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)

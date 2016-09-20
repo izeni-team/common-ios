@@ -146,7 +146,7 @@ public extension String {
     }
     
     /// - returns: If the string is found, the index of its first character, -1 otherwise.
-    public func indexOf(string: String) -> Int {
+    public func indexOf(_ string: String) -> Int {
         let index = (self as NSString).range(of: string).location
         if index == NSNotFound {
             return -1

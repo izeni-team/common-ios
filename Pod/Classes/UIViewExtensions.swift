@@ -136,30 +136,30 @@ public extension UIView {
     // Fill Screen
     
     @available(iOS 9.0, *)
-    public func anchorFill(view: UIView) {
+    public func anchorFill(_ view: UIView) {
         let margins = view.layoutMarginsGuide
-        anchorLeadTo(anchor: margins.leadingAnchor)
-        anchorTrailTo(anchor: margins.trailingAnchor)
-        anchorTopTo(anchor: margins.topAnchor)
-        anchorBottomTo(anchor: margins.bottomAnchor)
+        anchorLeadTo(margins.leadingAnchor)
+        anchorTrailTo(margins.trailingAnchor)
+        anchorTopTo(margins.topAnchor)
+        anchorBottomTo(margins.bottomAnchor)
     }
     
     @available(iOS 9.0, *)
-    public func anchorFill(view: UIView, offsetBy: CGSize) {
+    public func anchorFill(_ view: UIView, offsetBy: CGSize) {
         let margins = view.layoutMarginsGuide
-        anchorLeadTo(anchor: margins.leadingAnchor, offsetBy: offsetBy.width)
-        anchorTrailTo(anchor: margins.trailingAnchor, offsetBy: -offsetBy.width)
-        anchorTopTo(anchor: margins.topAnchor, offsetBy: offsetBy.height)
-        anchorBottomTo(anchor: margins.bottomAnchor, offsetBy: -offsetBy.height)
+        anchorLeadTo(margins.leadingAnchor, offsetBy: offsetBy.width)
+        anchorTrailTo(margins.trailingAnchor, offsetBy: -offsetBy.width)
+        anchorTopTo(margins.topAnchor, offsetBy: offsetBy.height)
+        anchorBottomTo(margins.bottomAnchor, offsetBy: -offsetBy.height)
     }
     
     @available(iOS 9.0, *)
-    public func anchorFill(view: UIView, offsetLeftBy: CGFloat = 0, offsetRightBy: CGFloat = 0, offsetTopBy: CGFloat = 0, offsetBottomBy: CGFloat = 0) {
+    public func anchorFill(_ view: UIView, offsetLeftBy: CGFloat = 0, offsetRightBy: CGFloat = 0, offsetTopBy: CGFloat = 0, offsetBottomBy: CGFloat = 0) {
         let margins = view.layoutMarginsGuide
-        anchorLeadTo(anchor: margins.leadingAnchor, offsetBy: offsetLeftBy)
-        anchorTrailTo(anchor: margins.trailingAnchor, offsetBy: offsetRightBy)
-        anchorTopTo(anchor: margins.topAnchor, offsetBy: offsetTopBy)
-        anchorBottomTo(anchor: margins.bottomAnchor, offsetBy: offsetBottomBy)
+        anchorLeadTo(margins.leadingAnchor, offsetBy: offsetLeftBy)
+        anchorTrailTo(margins.trailingAnchor, offsetBy: offsetRightBy)
+        anchorTopTo(margins.topAnchor, offsetBy: offsetTopBy)
+        anchorBottomTo(margins.bottomAnchor, offsetBy: offsetBottomBy)
     }
     
     // Center Anchor
@@ -177,21 +177,21 @@ public extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterTo(view: UIView) {
+    public func anchorCenterTo(_ view: UIView) {
         enableAnchorContraints()
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterTo(view: UIView, offsetBy: CGPoint) {
+    public func anchorCenterTo(_ view: UIView, offsetBy: CGPoint) {
         enableAnchorContraints()
         centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: offsetBy.x).isActive = true
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: offsetBy.y).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterTo(view: UIView, size: CGSize) {
+    public func anchorCenterTo(_ view: UIView, size: CGSize) {
         enableAnchorContraints()
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -199,7 +199,7 @@ public extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterTo(view: UIView, offsetBy: CGPoint, size: CGSize) {
+    public func anchorCenterTo(_ view: UIView, offsetBy: CGPoint, size: CGSize) {
         enableAnchorContraints()
         centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: offsetBy.x).isActive = true
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: offsetBy.y).isActive = true
@@ -207,25 +207,25 @@ public extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterXTo(view: UIView) {
+    public func anchorCenterXTo(_ view: UIView) {
         enableAnchorContraints()
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterXTo(view: UIView, offsetBy: CGFloat) {
+    public func anchorCenterXTo(_ view: UIView, offsetBy: CGFloat) {
         enableAnchorContraints()
         centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: offsetBy).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterYTo(view: UIView) {
+    public func anchorCenterYTo(_ view: UIView) {
         enableAnchorContraints()
         centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorCenterYTo(view: UIView, offsetBy: CGFloat) {
+    public func anchorCenterYTo(_ view: UIView, offsetBy: CGFloat) {
         enableAnchorContraints()
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: offsetBy).isActive = true
     }
@@ -246,7 +246,7 @@ public extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func anchorSizeTo(size: CGSize) {
+    public func anchorSizeTo(_ size: CGSize) {
         anchorSize = size
     }
     
@@ -258,25 +258,25 @@ public extension UIView {
     // Top / Bottom Anchors
     
     @available(iOS 9.0, *)
-    public func anchorTopTo(anchor: NSLayoutYAxisAnchor) {
+    public func anchorTopTo(_ anchor: NSLayoutYAxisAnchor) {
         enableAnchorContraints()
         topAnchor.constraint(equalTo: anchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorTopTo(anchor: NSLayoutYAxisAnchor, offsetBy: CGFloat) {
+    public func anchorTopTo(_ anchor: NSLayoutYAxisAnchor, offsetBy: CGFloat) {
         enableAnchorContraints()
         topAnchor.constraint(equalTo: anchor, constant: offsetBy).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorBottomTo(anchor: NSLayoutYAxisAnchor) {
+    public func anchorBottomTo(_ anchor: NSLayoutYAxisAnchor) {
         enableAnchorContraints()
         bottomAnchor.constraint(equalTo: anchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorBottomTo(anchor: NSLayoutYAxisAnchor, offsetBy: CGFloat) {
+    public func anchorBottomTo(_ anchor: NSLayoutYAxisAnchor, offsetBy: CGFloat) {
         enableAnchorContraints()
         bottomAnchor.constraint(equalTo: anchor, constant: offsetBy).isActive = true
     }
@@ -284,25 +284,25 @@ public extension UIView {
     // Leading / Trailing Anchors
     
     @available(iOS 9.0, *)
-    public func anchorLeadTo(anchor: NSLayoutXAxisAnchor) {
+    public func anchorLeadTo(_ anchor: NSLayoutXAxisAnchor) {
         enableAnchorContraints()
         leadingAnchor.constraint(equalTo: anchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorLeadTo(anchor: NSLayoutXAxisAnchor, offsetBy: CGFloat) {
+    public func anchorLeadTo(_ anchor: NSLayoutXAxisAnchor, offsetBy: CGFloat) {
         enableAnchorContraints()
         leadingAnchor.constraint(equalTo: anchor, constant: offsetBy).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorTrailTo(anchor: NSLayoutXAxisAnchor) {
+    public func anchorTrailTo(_ anchor: NSLayoutXAxisAnchor) {
         enableAnchorContraints()
         trailingAnchor.constraint(equalTo: anchor).isActive = true
     }
     
     @available(iOS 9.0, *)
-    public func anchorTrailTo(anchor: NSLayoutXAxisAnchor, offsetBy: CGFloat) {
+    public func anchorTrailTo(_ anchor: NSLayoutXAxisAnchor, offsetBy: CGFloat) {
         enableAnchorContraints()
         trailingAnchor.constraint(equalTo: anchor, constant: offsetBy).isActive = true
     }

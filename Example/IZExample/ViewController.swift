@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .yellow
         self.containerView.backgroundColor = .black
         
-        let view2 = UIView(frame: CGRectMake(0, 0, 300, 300))
+        let view2 = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
         containerView.addSubview(view2)
         view2.backgroundColor = .yellow
         
@@ -37,21 +37,22 @@ class ViewController: UIViewController {
         containerView.addSubview(view6)
         view6.backgroundColor = .yellow
         
-        containerView.anchorFill(view: view, offsetLeftBy: -16, offsetRightBy: 16, offsetTopBy: 20, offsetBottomBy: 0)
+        containerView.anchorFill(view, offsetLeftBy: -16, offsetRightBy: 16, offsetTopBy: 20, offsetBottomBy: 0)
+        
 
-        view2.anchorCenterTo(view: containerView, offsetBy: CGPointMake(-100, -100))
-        view2.anchorSizeTo(size: CGSizeMake(100, 100))
+        view2.anchorCenterTo(containerView, offsetBy: CGPoint(x: -100, y: -100))
+        view2.anchorSizeTo(CGSize(width: 100, height: 100))
         
-        view3.anchorCenterTo(view: view2, offsetBy: CGPointMake(200, 0))
-        view3.anchorSize = CGSizeMake(100, 100)
+        view3.anchorCenterTo(view2, offsetBy: CGPoint(x: 200, y: 0))
+        view3.anchorSize = CGSize(width: 100, height: 100)
         
-        view4.anchorCenterTo(view: containerView, offsetBy: CGPointMake(0, 150))
+        view4.anchorCenterTo(containerView, offsetBy: CGPoint(x: 0, y: 150))
         view4.anchorSizeTo(300, 100)
         
-        view5.anchorCenterXTo(view: containerView, offsetBy: -125)
-        view5.anchorCenterYTo(view: containerView, offsetBy: 75)
+        view5.anchorCenterXTo(containerView, offsetBy: -125)
+        view5.anchorCenterYTo(containerView, offsetBy: 75)
         view5.anchorSizeTo(50, 50)
         
-        view6.anchorCenterTo(view: containerView, offsetBy: CGPointMake(125, 75), size: CGSizeMake(50, 50))
+        view6.anchorCenterTo(containerView, offsetBy: CGPoint(x: 125, y: 75), size: CGSize(width: 50, height: 50))
     }
 }

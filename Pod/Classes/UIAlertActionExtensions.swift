@@ -13,7 +13,7 @@ public extension UIAlertAction {
         return UIAlertAction(title: "Cancel", callback: nil)
     }
     
-    public class func cancelAction(callback: (() -> Void)?) -> UIAlertAction {
+    public class func cancelAction(_ callback: (() -> Void)?) -> UIAlertAction {
         return UIAlertAction(title: "Cancel", callback: callback)
     }
     
@@ -21,7 +21,7 @@ public extension UIAlertAction {
         return UIAlertAction(title: "OK", callback: nil)
     }
     
-    public class func okAction(callback: (() -> Void)?) -> UIAlertAction {
+    public class func okAction(_ callback: (() -> Void)?) -> UIAlertAction {
         return UIAlertAction(title: "OK", callback: callback)
     }
     

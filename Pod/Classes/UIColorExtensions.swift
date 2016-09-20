@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIColor {
     
-    private class func rgbFromHex(hex: UInt32) -> [CGFloat] {
+    fileprivate class func rgbFromHex(_ hex: UInt32) -> [CGFloat] {
         return [
             CGFloat((hex >> 16) & 0xFF) / 255,
             CGFloat((hex >> 8) & 0xFF) / 255,
@@ -29,10 +29,10 @@ public extension UIColor {
     }
     
     public convenience init?(hexString: String) {
-        var filtered = hexString.stringByReplacingOccurrencesOfString("#", withString: "")
-        filtered = filtered.stringByReplacingOccurrencesOfString("0x", withString: "")
-        filtered = filtered.stringByReplacingOccurrencesOfString("\\s+", withString: "", options: .RegularExpressionSearch)
-        guard let hexNum = UInt32(filtered, radix: 16) where filtered.characters.count == 6 else {
+        var filtered = hexString.replacingOccurrences(of: "#", with: "")
+        filtered = filtered.replacingOccurrences(of: "0x", with: "")
+        filtered = filtered.replacingOccurrences(of: "\\s+", with: "", options: .regularExpression)
+        guard let hexNum = UInt32(filtered, radix: 16) , filtered.characters.count == 6 else {
             return nil
         }
         let rgb = UIColor.rgbFromHex(hexNum)
@@ -46,99 +46,4 @@ public extension UIColor {
         let greenValue = String(format: "%.2x", UInt(color.green * CGFloat(255.0)))
         return redValue + greenValue + blueValue
     }
-    
-    public class var black: UIColor {
-        get {
-            return .blackColor()
-        }
-    }
-    
-    public class var darkGray: UIColor {
-        get {
-            return .darkGrayColor()
-        }
-    }
-    
-    public class var lightGray: UIColor {
-        get {
-            return .lightGrayColor()
-        }
-    }
-    
-    public class var white: UIColor {
-        get {
-            return .whiteColor()
-        }
-    }
-    
-    public class var gray: UIColor {
-        get {
-            return .grayColor()
-        }
-    }
-    
-    
-    // Cannot use red, green, blue for shorthand
-//    public class var red: UIColor {
-//        get {
-//            return .redColor()
-//        }
-//    }
-//    
-//    public class var green: UIColor {
-//        get {
-//            return .greenColor()
-//        }
-//    }
-//    
-//    public class var blue: UIColor {
-//        get {
-//            return .blueColor()
-//        }
-//    }
-    
-    public class var cyan: UIColor {
-        get {
-            return .cyanColor()
-        }
-    }
-    
-    public class var yellow: UIColor {
-        get {
-            return .yellowColor()
-        }
-    }
-    
-    public class var magenta: UIColor {
-        get {
-            return .magentaColor()
-        }
-    }
-    
-    public class var orange: UIColor {
-        get {
-            return .orangeColor()
-        }
-    }
-    
-    public class var purple: UIColor {
-        get {
-            return .purpleColor()
-        }
-    }
-    
-    public class var brown: UIColor {
-        get {
-            return .brownColor()
-        }
-    }
-    
-    public class var clear: UIColor {
-        get {
-            return .clearColor()
-        }
-    }
-    
-    
-    
 }

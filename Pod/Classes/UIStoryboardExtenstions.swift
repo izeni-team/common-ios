@@ -9,11 +9,11 @@
 import UIKit
 
 public extension UIStoryboard {
-    public class func instantiate(from: String, id: String) -> UIViewController {
+    public class func instantiate(_ from: String, id: String) -> UIViewController {
         return UIStoryboard(name: from, bundle: nil).instantiateViewController(withIdentifier: id) 
     }
     
-    public class func instantiateInitial(from: String) -> UIViewController {
+    public class func instantiateInitial(_ from: String) -> UIViewController {
         return UIStoryboard(name: from, bundle: nil).instantiateInitialViewController()!
     }
 }

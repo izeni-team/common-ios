@@ -15,7 +15,7 @@ extension UIViewController {
      - parameter alert: The UIAlertController to be presented as an action sheet.
      - parameter source: The source view from which the popover will be presented.
     */
-    public func setPopoverPresentation(alert: UIAlertController, source: UIView) {
+    public func setPopoverPresentation(_ alert: UIAlertController, source: UIView) {
         alert.popoverPresentationController?.sourceView = source
         var targetPoint = source.frame.origin
         var view = source
